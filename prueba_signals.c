@@ -5,6 +5,16 @@
 #include <stdio.h>
 #include <signal.h>
 #include <readline/readline.h>
+#include <unistd.h>
+
+#define BUFFER_SIZE 5
+
+void own_function(void)
+{
+	char buffer[1000];
+	printf("executing OWN_FUNCTION\n");
+	read(0, buffer, BUFFER_SIZE);
+}
 
 void exe_c(int num)
 {
@@ -27,6 +37,8 @@ int main()
 			printf("dentro de while\n");
 			a = 0;
 		}
+		own_function();
+		sleep(10);
 	}
     return (0);
 }
