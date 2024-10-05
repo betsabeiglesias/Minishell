@@ -6,12 +6,15 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:36:24 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/05 16:40:46 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:39:32 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROMPT_H
 # define PROMPT_H
 
+
+
+char *prompt(void);
 
 #endif
