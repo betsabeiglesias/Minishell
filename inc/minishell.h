@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 13:13:15 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/05 16:40:49 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:44:54 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,5 @@
 
 # include "parse.h"
 # include "prompt.h"
-
-int	check_quotes(char *str);
 
 #endif
