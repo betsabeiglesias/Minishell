@@ -1,29 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   prompt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/05 11:31:21 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/05 16:40:50 by beiglesi         ###   ########.fr       */
+/*   Created: 2024/10/05 16:36:24 by beiglesi          #+#    #+#             */
+/*   Updated: 2024/10/05 16:40:46 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#ifndef PROMPT_H
+# define PROMPT_H
 
-void handle_signal_prompt(int num)
-{
-	rl_on_new_line();
-}
 
-char *prompt(void)
-{
-	char *str;
-
-	dignal(SIGINT, )
-    str = readline("minishell> ");
-	add_history(str);
-	        
-    return (str);
-}
+#endif
