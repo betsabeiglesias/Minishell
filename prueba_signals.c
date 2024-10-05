@@ -9,6 +9,11 @@
 
 #define BUFFER_SIZE 5
 
+void ft_prompt()
+{
+    printf("esto es el prompt\n");
+}
+
 void own_function(void)
 {
 	char buffer[1000];
