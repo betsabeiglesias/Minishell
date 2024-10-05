@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftps_lstnew.c                                      :+:      :+:    :+:   */
+/*   ft_lstclear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 16:54:46 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/05/03 17:04:01 by aolabarr         ###   ########.fr       */
+/*   Created: 2024/01/14 15:20:09 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/06/02 12:10:17 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblst.h"
 
-t_list	*ftps_lstnew(int content)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*node;
+	t_list	*follow;
 
-	node = malloc(sizeof(t_list));
-	if (!node)
-		return (NULL);
-	node -> content = content;
-	node -> idx = 0;
-	node -> cost.total = 0;
-	node -> cost.ra = 0;
-	node -> cost.rb = 0;
-	node -> cost.rra = 0;
-	node -> cost.rrb = 0;
-	node -> next = NULL;
-	return (node);
+	if (!lst || !del || !(*lst))
+		return ;
+	while (*lst != NULL)
+	{
+		follow = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = follow;
+	}
+	lst = NULL;
+	return ;
 }

@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftps_lstlast.c                                     :+:      :+:    :+:   */
+/*   ft_lstsize.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 12:05:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/04/27 13:32:05 by aolabarr         ###   ########.fr       */
+/*   Created: 2024/01/12 19:48:21 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/05/05 17:59:45 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblst.h"
 
-t_list	*ftps_lstlast(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
+	int		count;
 	t_list	*node;
 
-	if (lst == NULL)
-		return (NULL);
+	count = 0;
 	node = lst;
-	while ((node -> next) != NULL)
+	if (lst == NULL)
+		return (count);
+	while (node != NULL)
+	{
+		count++;
 		node = node -> next;
-	return (node);
+	}
+	return (count);
 }

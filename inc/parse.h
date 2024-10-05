@@ -6,13 +6,13 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:39:06 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/05 16:44:47 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:01:52 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-int	check_quotes(char *str);
+bool	check_quotes(char *str);
 
 #endif

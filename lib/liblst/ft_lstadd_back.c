@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftps_lstadd_back.c                                 :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "liblst.h"
 
-void	ftps_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*node;
 
@@ -20,7 +20,7 @@ void	ftps_lstadd_back(t_list **lst, t_list *new)
 		return ;
 	if (*lst == NULL)
 	{
-		ftps_lstadd_front(lst, new);
+		ft_lstadd_front(lst, new);
 		return ;
 	}
 	node = *lst;

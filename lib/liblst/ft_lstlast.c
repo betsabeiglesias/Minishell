@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftps_lstdelone.c                                   :+:      :+:    :+:   */
+/*   ft_lstlast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 15:01:27 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/04/27 13:49:04 by aolabarr         ###   ########.fr       */
+/*   Created: 2024/01/14 12:05:26 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/04/27 13:32:05 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblst.h"
 
-void	ftps_lstdelone(t_list *lst, void (*del)(void *))
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!lst || !del)
-		return ;
-	free(lst);
-	lst = NULL;
-	return ;
+	t_list	*node;
+
+	if (lst == NULL)
+		return (NULL);
+	node = lst;
+	while ((node -> next) != NULL)
+		node = node -> next;
+	return (node);
 }

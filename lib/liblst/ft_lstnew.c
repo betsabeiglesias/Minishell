@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftps_lstsize.c                                     :+:      :+:    :+:   */
+/*   ft_lstnew.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 19:48:21 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/05/05 17:59:45 by aolabarr         ###   ########.fr       */
+/*   Created: 2024/01/12 16:54:46 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/05/03 17:04:01 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblst.h"
 
-int	ftps_lstsize(t_list *lst)
+t_list	*ft_lstnew(int content)
 {
-	int		count;
 	t_list	*node;
 
-	count = 0;
-	node = lst;
-	if (lst == NULL)
-		return (count);
-	while (node != NULL)
-	{
-		count++;
-		node = node -> next;
-	}
-	return (count);
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node -> content = content;
+	node -> idx = 0;
+	node -> cost.total = 0;
+	node -> cost.ra = 0;
+	node -> cost.rb = 0;
+	node -> cost.rra = 0;
+	node -> cost.rrb = 0;
+	node -> next = NULL;
+	return (node);
 }

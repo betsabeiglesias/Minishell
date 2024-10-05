@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftps_lstclear.c                                    :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 15:20:09 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/06/02 12:10:17 by aolabarr         ###   ########.fr       */
+/*   Created: 2024/01/14 15:01:27 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/04/27 13:49:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblst.h"
 
-void	ftps_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	t_list	*follow;
-
-	if (!lst || !del || !(*lst))
+	if (!lst || !del)
 		return ;
-	while (*lst != NULL)
-	{
-		follow = (*lst)->next;
-		ftps_lstdelone(*lst, del);
-		*lst = follow;
-	}
+	free(lst);
 	lst = NULL;
 	return ;
 }
