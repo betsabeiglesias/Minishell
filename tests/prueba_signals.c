@@ -9,11 +9,6 @@
 
 #define BUFFER_SIZE 5
 
-void ft_prompt()
-{
-    printf("esto es el tercer prompt\n");
-}
-
 void own_function(void)
 {
 	//static char buffer[1000];
@@ -49,6 +44,3 @@ int main()
 	}
     return (0);
 }
-///////////
-//////
-///////
