@@ -11,7 +11,7 @@
 
 void ft_prompt()
 {
-    printf("esto es el segundo prompt\n");
+    printf("esto es el tercer prompt\n");
 }
 
 void own_function(void)
