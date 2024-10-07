@@ -13,8 +13,11 @@
 
 #include "../inc/minishell.h"
 
-int main()
+int main(int argc, char **argv)
 {
+	(void) argc;
+	(void) argv;
+
 	char *line;
 
 	while(1)

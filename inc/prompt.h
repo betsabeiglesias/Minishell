@@ -13,7 +13,7 @@
 #ifndef PROMPT_H
 # define PROMPT_H
 
-
+# include <stddef.h>
 
 char *prompt(void);
 
