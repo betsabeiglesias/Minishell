@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 11:31:21 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/05 17:57:00 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/08 10:17:48 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-#include <signal.h>
 
 void handle_signal_interactive(int signum)
 {
@@ -27,7 +26,7 @@ void handle_signal_interactive(int signum)
 	else if (signum == SIGQUIT)
 	{
 		rl_on_new_line(); 
-		rl_replace_line("recibe ctrl+\\ \n", 0); 
+		//rl_replace_line("recibe ctrl+\\ \n", 0); 
 		rl_redisplay(); 
 	}
 	
@@ -35,28 +34,26 @@ void handle_signal_interactive(int signum)
 
 void setup_signal_handlers(void)
 {
-	signal(SIGINT, &handle_signal_interactive);
-	signal(SIGQUIT, &handle_signal_interactive);
+	struct sigaction sa;
 
+	sa.sa_handler = handle_signal_interactive;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGQUIT, &sa, NULL);
 }
 
 char *prompt(void)
 {
 	char *str;
 	
+	while(1)
+	{
 	setup_signal_handlers();
 	//printf("estoy en prompt\n");
     str = readline("minishell> ");
 	if (str && *str)
 		add_history(str);
-		        
+	}    
     return (str);
 }
-
-
-
-//struct sigaction sa;
-	//	sa.sa_handler = handle_signal_prompt;
-	//	sigemptyset(&sa.sa_mask); 
-	//	sigaction(SIGINT, &sa, NULL);
-	//	sigaction(SIGQUIT, &sa, NULL);

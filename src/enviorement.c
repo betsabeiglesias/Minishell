@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_prompt.c                                      :+:      :+:    :+:   */
+/*   enviorement.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/05 16:56:42 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/08 10:19:48 by binary           ###   ########.fr       */
+/*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
+/*   Updated: 2024/10/08 10:31:11 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+typedef struct s_mini{
+    char        **env;
+}               t_mini;
 
-#include "../inc/minishell.h"
 
-int main(int argc, char **argv)
+char    **init_env(char **envp)
 {
-	(void) argc;
-	(void) argv;
-
-	char *line;
-
-	line = prompt( );
-	free(line);
-	    	
-	return(0);
+    int     i;
+    char    **mini_env;
+    i = 0;
+    while(envp[i])
+        i++;
+    mini_env = malloc(sizeof(char *) * i + 1);
+    if (mini_env == NULL)
+        return (NULL);
+    return(mini_env);  
 }
