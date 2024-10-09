@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
+#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/10/05 13:38:59 by aolabarr         ###   ########.fr        #
+#    Updated: 2024/10/09 09:32:39 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC =	main_check.c \
 		check.c \
 
 # para borrar
-SRC_BET = main_prompt.c\
+SRC_BET = environment.c #main_prompt.c\
 			prompt.c
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
