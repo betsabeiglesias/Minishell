@@ -6,15 +6,11 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/10/09 11:19:17 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:22:12 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-typedef struct s_mini{
-    char        **env;
-}               t_mini;
 
 void free_env(t_mini *mini)
 {
@@ -29,25 +25,34 @@ void free_env(t_mini *mini)
 	free(mini->env);
 }
 
-char    **init_env(char **envp)
+char    **init_env(char **envp,t_mini *mini)
 {
     int     i;
     char    **mini_env;
+	
     i = 0;
+	mini->oldpwd = false;
     while(envp[i])
+	{
         i++;
+	}
+	if(getenv("OLDPWD") == NULL)
+	{
+		i++;
+		mini->oldpwd = true;
+	}
     mini_env = malloc(sizeof(char *) * i + 1);
     if (mini_env == NULL)
         return (NULL);
     return(mini_env);  
 }
 
-char **get_env(char **envp, t_mini *mini)
+char **get_my_env(char **envp, t_mini *mini)
 {
 	int	i;
 
 	i = 0;
-	mini->env = init_env(envp);
+	mini->env = init_env(envp, mini);
 	if(mini->env == NULL)
 		return (NULL);
 	while (envp[i])
@@ -57,6 +62,8 @@ char **get_env(char **envp, t_mini *mini)
 			free_env(mini);
 		i++;
 	}
+	if (mini->oldpwd == false)
+		mini->env[i] = ft_strdup("OLDPWD=");
 	mini->env[i] = '\0';
 	return(mini->env);
 }
@@ -70,13 +77,13 @@ int main(int argc, char **argv, char **envp)
 	char *str;
 
     int i = 0;
-    mini.env = get_env(envp, &mini);
+    mini.env = get_my_env(envp, &mini);
     while(mini.env[i])
     {
         printf("esto es el env: %s\n",mini.env[i]);
         i++;
     }
-	str = getenv("PATH");
+	str = getenv("OLDPWD");
 	printf("\n\n%s\n\n", str);
 
 	free_env(&mini);
