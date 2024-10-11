@@ -6,18 +6,33 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:39:06 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/05 18:19:03 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:28:11 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-bool	check_quotes(char *str);
-// si solo hay espacios blanco o tabulaciones etc           	-> no hacer nada
-// si el primer caracter despues de los espacios 
-//						no es [A-Z] o [a-z] o $ -> mensaje 		-> syntax error
-// si el ultimo caracter es pipe, redirecciones, metacaracteres	-> syntax error
+typedef enum	e_error
+{
+    ERR_OTHER
+}				t_error;
+
+# define ERR_QUOTE 0
+# define ERR_FINAL 1
+
+# define ERR_MSG_QUOTE "SYNTAX ERROR: open quotes\n"
+# define ERR_MSG_FINAL "SYNTAX ERROR: nothing after metacharacter\n"
+
+
+int	check_quotes(char *str);
+int	check_final(char *str);
+int	is_space(char c);
+int	is_valid_metachar(char c);
+
+void handle_error(int error_type);
+
+void syntax_check(char*str);
 
 
 #endif
