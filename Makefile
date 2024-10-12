@@ -6,7 +6,7 @@
 #    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/10/12 11:42:11 by beiglesi         ###   ########.fr        #
+#    Updated: 2024/10/12 13:33:46 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC =	main_check.c \
 		handle_error.c \
 
 # para borrar
-SRC_BET = main_prompt.c\
+SRC_BET =  builtin_echo.c #main_prompt.c\
 			prompt.c #environment.c 
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
