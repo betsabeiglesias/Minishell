@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/10/09 13:22:12 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:53:07 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int main(int argc, char **argv, char **envp)
         printf("esto es el env: %s\n",mini.env[i]);
         i++;
     }
-	str = getenv("OLDPWD");
+	str = getenv("USER");
 	printf("\n\n%s\n\n", str);
 
 	free_env(&mini);

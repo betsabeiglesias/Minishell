@@ -6,16 +6,16 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 11:31:21 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/09 12:24:30 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/12 13:04:21 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void handle_signal_interactive(int signum)
+void handle_signal_interactive (int signum)
 {
 	(void)signum;
-	//printf("entra en handle\n");
+	printf("entra en handle\n");
 	if (signum == SIGINT)
 	{
 		printf("\n");
@@ -29,7 +29,6 @@ void handle_signal_interactive(int signum)
 		//rl_replace_line("recibe ctrl+\\ \n", 0); 
 		rl_redisplay(); 
 	}
-	
 }
 
 void setup_signal_handlers(void)
@@ -43,17 +42,34 @@ void setup_signal_handlers(void)
 	sigaction(SIGQUIT, &sa, NULL);
 }
 
+void handle_eof_interactive (char *str)
+{
+	if (!str)
+	{
+		printf("exit\n"); 
+		exit(0);
+	}
+}
+
 char *prompt(void)
 {
 	char *str;
 	
+	setup_signal_handlers();
+
 	while(1)
 	{
-	setup_signal_handlers();
-	//printf("estoy en prompt\n");
-    str = readline("minishell> ");
-	if (str && *str)
-		add_history(str);
+		//printf("estoy en prompt\n");
+    	str = readline("minishell> ");
+		handle_eof_interactive(str);
+		if (str && *str)
+			add_history(str);
+		if (!ft_strncmp(str, "exit", ft_strlen(str)))
+		{
+			free(str);
+			exit(0);
+		}
+		free(str);
 	}    
     return (str);
 }
