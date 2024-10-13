@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:08:11 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/07/24 13:39:35 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/10/13 11:28:37 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_quote
-{
-	int		in;
-	char	is;	
-}			t_quote;
-
 # define MAXINT 2147483647
 # define MININT -2147483648
-# define MAXINT_STR "2147483647"
-# define MININT_STR "-2147483648"
 
 // Libft original functions
 int		ft_isalpha(int c);
@@ -69,6 +61,5 @@ void	ft_free_mat_str(char **mat, size_t size);
 size_t	ft_matsize(char **str);
 int		ft_str_is_int(char *str);
 float	ft_atoi_float(const char *str);
-char	**ft_shlex_split(char *s, char c);
 
 #endif

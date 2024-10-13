@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
+#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/10/13 13:16:57 by beiglesi         ###   ########.fr        #
+#    Updated: 2024/10/13 14:01:40 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,9 @@ LIBLST_DIR = ./lib/liblst
 LDFLAGS = -L$(LIBFT_DIR) -lft -L$(LIBLST_DIR) -llst -lreadline
 
 SRC =	main_check.c \
-		syntax_check.c \
+		check_syntax_1.c \
+		check_syntax_2.c \
+		check_utils.c \
 		handle_error.c \
 
 # para borrar
