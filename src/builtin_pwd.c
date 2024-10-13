@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_prompt.c                                      :+:      :+:    :+:   */
+/*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/05 16:56:42 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/13 13:16:40 by beiglesi         ###   ########.fr       */
+/*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
+/*   Updated: 2024/10/13 12:36:24 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// COMPROBAR EN EL PROMPT COMO SE IMPRIME EL SALTO DE LÍNEA 
 
 #include "../inc/minishell.h"
 
-int main(int argc, char **argv)
+void	builtin_pwd(void)
 {
-	(void) argc;
-	(void) argv;
+	char	buff[PATH_MAX];
 
-	char **line;
-
-	line = prompt( );
-	if (ft_strncmp(line[0], "cd", ft_strlen(line[0])))
-		builtin_cd(line);
-	free(line);
-	    	
-	return(0);
+	if (getcwd(buff, sizeof(buff)))
+	{
+		ft_putstr_fd(buff, STDOUT_FILENO);
+		ft_putchar_fd('\n', STDOUT_FILENO);
+	}
+	else
+		ft_putstr_fd("access error", STDOUT_FILENO);
 }
+
+// int main()
+// {
+// 	builtin_pwd();
+// 	return(0);
+// }

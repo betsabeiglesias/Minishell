@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_prompt.c                                      :+:      :+:    :+:   */
+/*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/05 16:56:42 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/13 13:16:40 by beiglesi         ###   ########.fr       */
+/*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
+/*   Updated: 2024/10/13 13:17:53 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../inc/minishell.h"
 
-int main(int argc, char **argv)
+int	builtin_cd(char **cmd)
 {
-	(void) argc;
-	(void) argv;
-
-	char **line;
-
-	line = prompt( );
-	if (ft_strncmp(line[0], "cd", ft_strlen(line[0])))
-		builtin_cd(line);
-	free(line);
-	    	
-	return(0);
+	if (chdir(cmd[1]) != 0)
+	{
+		printf("no se cambió\n");
+		return (1);
+	}
+	else
+	{
+		printf("Se cambió al dir; %s\n", cmd[1]);
+		builtin_pwd();
+	}
+	return (0);
 }
