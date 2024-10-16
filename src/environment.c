@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/10/16 13:17:56 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:06:38 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ char	**get_my_env(char **envp, t_mini *mini)
 	if (mini->oldpwd == false)
 	{
 		mini->env[i] = ft_strdup("OLDPWD=");
+		mini->env[i + 1] = NULL;
 	}
-	mini->env[i] = '\0';
+	else
+		mini->env[i] = NULL;
 	return (mini->env);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/16 13:08:46 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:16:53 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@ char	*expand_varenv(char *str, t_mini *mini)
 {
 	char	*var;
 	size_t	len;
-	bool	exist;
+	
 	// if (!str || str[0] != '$')
 	// 	return(NULL);
-	exist = false;
 	len = ft_strlen(str) - 1;
+	// if(len == 0)
+	//	return(NULL);
 	var = malloc (sizeof(char) * (len + 2));
 	if(!var || !str)
 		return(NULL);
 	ft_strlcpy(var, str + 1, len + 1);
 	var[len] = '=';
 	var[len + 1] = '\0';
-	while(*mini->env)
+	while(*mini->env != NULL)
 	{
 		if (!ft_strncmp(*mini->env, var, len + 1))
 		{
@@ -36,11 +37,8 @@ char	*expand_varenv(char *str, t_mini *mini)
 		}
 		mini->env++;
 	}
-	if (exist == false)
-	{
-		free(var);
-		handle_error(ERR_ENVP);
-	}
+	free(var);
+	handle_error(ERR_ENVP);
 	return (NULL);
 }
 
