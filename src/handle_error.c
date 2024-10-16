@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:43:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/13 15:09:02 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:08:43 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ int	handle_error(int error_type)
 		ft_putendl_fd(ERR_MSG_EXTREM, STDOUT_FILENO);
 	if (error_type == ERR_ALONE)
 		ft_putendl_fd(ERR_MSG_ALONE, STDOUT_FILENO);
+	if (error_type == ERR_ENVP)
+		ft_putendl_fd(ERR_MSG_ENVP, STDOUT_FILENO);
 	return (1);
 }

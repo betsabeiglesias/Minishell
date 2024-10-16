@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/10/13 11:21:01 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:17:56 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,27 +63,42 @@ char	**get_my_env(char **envp, t_mini *mini)
 		i++;
 	}
 	if (mini->oldpwd == false)
+	{
 		mini->env[i] = ft_strdup("OLDPWD=");
+	}
 	mini->env[i] = '\0';
 	return (mini->env);
 }
 
-// int main(int argc, char **argv, char **envp)
-// {
-//     (void) argc;
-//     (void) argv;
-// 	t_mini mini;
-// 	char *str;
+int main(int argc, char **argv, char **envp)
+{
+    // (void) argc;
+    // (void) argv;
+	t_mini mini;
+	//char *s;
+	
+	if (argc != 2)
+	{
+		printf("incorrect arguments");
+		return(1);
+	}
+	mini.env = get_my_env(envp, &mini);
+	// s = expand_varenv(argv[1], &mini);
+	// printf("%s\n", s);
 
-//     int i = 0;
-//     mini.env = get_my_env(envp, &mini);
-//     while(mini.env[i])
-//     {
-// 		printf("esto es el env: %s\n",mini.env[i]);
-// 		i++;
-//     }
-// 	str = getenv("USER");
-// 	printf("\n\n%s\n\n", str);
-// 	free_env(&mini);
-// 	return (0);
-// }
+	printf("%s\n", expand_varenv(argv[1], &mini));
+	
+
+
+    // int i = 0;
+    // mini.env = get_my_env(envp, &mini);
+    // while(mini.env[i])
+    // {
+	// 	printf("esto es el env: %s\n",mini.env[i]);
+	// 	i++;
+    // }
+	// str = getenv("PATH");
+	// printf("\n\n%s\n\n", str);
+	// free_env(&mini);
+	return (0);
+}

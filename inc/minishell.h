@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 13:13:15 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/13 15:05:48 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:14:21 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_token
    char         *cmd;
    char			**cmd_av;
    char			*str;
-   t_token      *next;
-   t_token      *prev;
+   struct t_token      *next;
+   struct t_token      *prev;
 }				t_token;
 
 # include <unistd.h>

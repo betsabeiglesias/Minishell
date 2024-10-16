@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:36:24 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/13 13:18:23 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/16 12:54:46 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct s_mini{
 }               t_mini;
 
 char	*prompt(void);
+
+char	*expand_varenv(char *str, t_mini *mini);
 
 void	builtin_echo(char **cmd);
 void	builtin_pwd(void);

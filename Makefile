@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
+#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/10/13 14:01:40 by aolabarr         ###   ########.fr        #
+#    Updated: 2024/10/16 13:10:43 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,9 @@ SRC =	main_check.c \
 		handle_error.c \
 
 # para borrar
-SRC_BET =  builtin_cd.c builtin_pwd.c builtin_echo.c main_prompt.c\
-			prompt.c #environment.c 
+SRC_BET =  expansion.c environment.c handle_error.c \
+			#builtin_cd.c builtin_pwd.c builtin_echo.c main_prompt.c\
+			#prompt.c 
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
