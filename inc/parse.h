@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:39:06 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/16 13:08:45 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:56:18 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ typedef struct  s_quote
 # define ERR_MSG_ALONE   "SYNTAX ERROR: need separate metacharacter"
 
 # define ERR_MSG_ENVP   "ENVIRONMENT VARIABLE NOT FOUND OR UNDEFINED"
+
+# define SINGLE_QUOTE   '\''
+# define DOUBLE_QUOTE   '"'
+# define SPACE          ' '
 
 // CHECK SYNTAX 1
 int syntax_check(char*str);
