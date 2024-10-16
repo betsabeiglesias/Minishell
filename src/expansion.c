@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/16 15:16:53 by binary           ###   ########.fr       */
+/*   Updated: 2024/10/16 22:10:30 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ char	*expand_varenv(char *str, t_mini *mini)
 		mini->env++;
 	}
 	free(var);
-	handle_error(ERR_ENVP);
-	return (NULL);
+	//handle_error(ERR_ENVP);
+	return (str);
 }
 
 // int main(int ac, char **av, char **env)
