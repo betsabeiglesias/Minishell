@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/19 14:22:26 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:04:50 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,21 @@ bool	has_dollar(char *cmd_line, t_varenv *var, int *i)
 bool	is_expansible(char *cmd_line, int *i)
 {
 	int 	temp;
-	int		d_quote;
+	int		s_quote;
 	
 	temp = *i ;
-	d_quote = 0;
+	s_quote = 0;
 	while(temp >= 0)
 	{
-		if(cmd_line[temp] == '\"')
+		if(cmd_line[temp] == SINGLE_QUOTE)
 		{
-			d_quote++;
+			s_quote++;
 		}
 		temp--;
 	}
-	if (d_quote % 2 == 0)
-		return false;
-	return true;
+	if (s_quote % 2 == 0)
+		return true ;
+	return false;
 }
 
 char	*find_varposition(char *cmd_line, int *i)
