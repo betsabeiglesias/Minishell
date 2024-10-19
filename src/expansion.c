@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/19 17:28:35 by binary           ###   ########.fr       */
+/*   Updated: 2024/10/19 21:12:22 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	trim_toexpand(char *cmd_line, t_varenv *var, int *i, t_mini *mini)
 	char *s;
 	s = get_varenv(mini, var);
 	printf("EXPANDE %s\n", s);
+	printf("AAAAAA\n");
 
 }
 
@@ -85,7 +86,7 @@ char	*find_varposition(char *cmd_line, int *i)
 	return (NULL);
 }
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envp)
 {
 
 	t_varenv *var = malloc(sizeof(t_varenv));
@@ -98,6 +99,7 @@ int main(int argc, char **argv)
         printf("Error al asignar memoria\n");
         return (1);
     }
+	mini->env = get_my_env(envp, mini);
 	int i = 0;
 		
 	if (argc < 2){
@@ -108,8 +110,8 @@ int main(int argc, char **argv)
 	test = has_dollar(argv[1], var, &i);
 	size_t len;
 	len = len_var(argv[1], &i);
-	printf("la longitud de la variable %ld\n", len);
-	printf("el pointer esta en %s\n", var->pointer);
+	// printf("la longitud de la variable %ld\n", len);
+	// printf("el pointer esta en %s\n", var->pointer);
 	if (!test)
 		printf("no hay dollar expansible\n");
 	else if (test)
@@ -119,8 +121,8 @@ int main(int argc, char **argv)
 	printf("justo antes de trime el pointer esta en %s\n", var->pointer);
 	trim_toexpand(argv[1], var, &i, mini);
 	printf("justo despues de trime el pointer esta en %s\n", var->pointer);
-	printf("VAR ANT %s\n", var->ant);
-	printf("VAR POST %s\n", var->post);
+	//printf("VAR ANT %s\n", var->ant);
+	//printf("VAR POST %s\n", var->post);
 	free(var);
 	return(0);
 }
@@ -132,25 +134,28 @@ char	*get_varenv(t_mini *mini, t_varenv *var)
 	char 	*var_name;
 	size_t	len;
 
-	len = ft_strlen(var->post) - 1;
+	len = ft_strlen(var->post);
+	//printf("len en get_varen %ld\n", len);
 	// // if(len == 0)
 	// //	return(NULL);
-	var_name = malloc (sizeof(char) * (len + 2));
+	var_name = malloc (sizeof(char) * (len + 1));
 	if(!var_name)
 		return(NULL);
-	var_name = 	ft_strdup(var->post + 1);
-	var_name[len] = '=';
-	var_name[len + 1] = '\0';
+	ft_strlcpy(var_name, var->post + 1, len + 1);
+	var_name[len - 1] = '=';
+	var_name[len] = '\0';
+	printf("PRINT VAR_NAME QUE TIENE QUE BUSCAR: %s\n", var_name);
 	while(*mini->env != NULL)
 	{
-		if (!ft_strncmp(*mini->env, var_name, len + 1))
+
+		if (!ft_strncmp(*mini->env, var_name, len))
 		{
 			free(var);
-			return(*mini->env + (len + 1));
+			return(*mini->env + (len));
 		}
 		mini->env++;
 	}
-	printf("\n\n%s\n", var_name);
+	//printf("\n\n%s\n", var_name);
 	free(var_name);
 	//handle_error(ERR_ENVP);
 	return (var->post);

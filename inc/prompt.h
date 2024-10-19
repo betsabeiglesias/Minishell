@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:36:24 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/19 17:11:06 by binary           ###   ########.fr       */
+/*   Updated: 2024/10/19 20:29:58 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	trim_toexpand(char *cmd_line, t_varenv *var, int *i, t_mini *mini);
 int		len_var(char *cmd_line, int *i);
 char	*get_varenv(t_mini *mini, t_varenv *var);
 
+char	**get_my_env(char **envp, t_mini *mini);
 
 void	builtin_echo(char **cmd);
 void	builtin_pwd(void);

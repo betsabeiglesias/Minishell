@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/10/16 15:06:38 by binary           ###   ########.fr       */
+/*   Updated: 2024/10/19 20:30:26 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,35 +72,35 @@ char	**get_my_env(char **envp, t_mini *mini)
 	return (mini->env);
 }
 
-int main(int argc, char **argv, char **envp)
-{
-    // (void) argc;
-    // (void) argv;
-	t_mini mini;
-	//char *s;
+// int main(int argc, char **argv, char **envp)
+// {
+//     // (void) argc;
+//     // (void) argv;
+// 	t_mini mini;
+// 	//char *s;
 	
-	if (argc != 2)
-	{
-		printf("incorrect arguments");
-		return(1);
-	}
-	mini.env = get_my_env(envp, &mini);
-	// s = expand_varenv(argv[1], &mini);
-	// printf("%s\n", s);
+// 	if (argc != 2)
+// 	{
+// 		printf("incorrect arguments");
+// 		return(1);
+// 	}
+// 	mini.env = get_my_env(envp, &mini);
+// 	// s = expand_varenv(argv[1], &mini);
+// 	// printf("%s\n", s);
 
-	printf("%s\n", expand_varenv(argv[1], &mini));
+// 	printf("%s\n", expand_varenv(argv[1], &mini));
 	
 
 
-    // int i = 0;
-    // mini.env = get_my_env(envp, &mini);
-    // while(mini.env[i])
-    // {
-	// 	printf("esto es el env: %s\n",mini.env[i]);
-	// 	i++;
-    // }
-	// str = getenv("PATH");
-	// printf("\n\n%s\n\n", str);
-	// free_env(&mini);
-	return (0);
-}
+//     // int i = 0;
+//     // mini.env = get_my_env(envp, &mini);
+//     // while(mini.env[i])
+//     // {
+// 	// 	printf("esto es el env: %s\n",mini.env[i]);
+// 	// 	i++;
+//     // }
+// 	// str = getenv("PATH");
+// 	// printf("\n\n%s\n\n", str);
+// 	// free_env(&mini);
+// 	return (0);
+// }
