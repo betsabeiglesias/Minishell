@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/21 21:34:01 by binary           ###   ########.fr       */
+/*   Updated: 2024/10/22 10:30:34 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	trim_to_expand(char *cmd_line, t_varenv *var, int *i)
 {
 	size_t	len;
 
-	len = len_var(var->pointer, i) - 1;
+	len = len_var(var->pointer, i) + 1;
 	var->ant = ft_substr(cmd_line, 0, *i);
 	var->value = ft_substr(cmd_line, *i, len);
 	*i +=len;
 	var->post = ft_substr(cmd_line, *i, (ft_strlen(cmd_line) - *i));
-	// printf("var_post es: %s\n",var->post);
-	// printf("var_ant es: %s\n",var->ant);
-	// printf("VAR_VALUE es: %s\n",var->value);
+	printf("var_post es: %s\n",var->post);
+	printf("var_ant es: %s\n",var->ant);
+	printf("VAR_VALUE es: %s\n",var->value);
 }
 
 char *expanded_cmd_line(t_varenv *var, t_mini *mini)
@@ -53,12 +53,12 @@ int	len_var(char *cmd_line, int *i)
 	size_t	len;
 	int		temp;
 
-	temp = *i;
+	temp = *i + 1;
 	len = 0;
-	while(ft_isalnum(cmd_line[temp + 1]))
+	while(ft_isalnum(cmd_line[temp]))
 	{
 		len++;
-		temp += 1;
+		temp++;
 	}
 	return(len);
 }
