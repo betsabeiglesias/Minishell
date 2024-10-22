@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/10/19 20:30:26 by binary           ###   ########.fr       */
+/*   Updated: 2024/10/22 10:40:49 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**init_env(char **envp, t_mini *mini)
 		i++;
 		mini->oldpwd = true;
 	}
-	mini_env = malloc(sizeof(char *) * i + 1);
+	mini_env = malloc(sizeof(char *) * (i + 1));
 	if (mini_env == NULL)
 		return (NULL);
 	return (mini_env);
@@ -65,6 +65,11 @@ char	**get_my_env(char **envp, t_mini *mini)
 	if (mini->oldpwd == false)
 	{
 		mini->env[i] = ft_strdup("OLDPWD=");
+		if (mini->env[i] == NULL)
+    	{
+        	free_env(mini);
+        	return (NULL);
+		}
 		mini->env[i + 1] = NULL;
 	}
 	else
