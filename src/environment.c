@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/10/22 10:40:49 by binary           ###   ########.fr       */
+/*   Updated: 2024/10/23 11:14:11 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ void	free_env(t_mini *mini)
 char	**init_env(char **envp, t_mini *mini)
 {
 	int		i;
-	char	**mini_env;
 
 	i = 0;
-	mini->oldpwd = false;
+	mini->oldpwd = true;
 	while (envp[i])
 	{
 		i++;
@@ -39,12 +38,12 @@ char	**init_env(char **envp, t_mini *mini)
 	if (getenv("OLDPWD") == NULL)
 	{
 		i++;
-		mini->oldpwd = true;
+		mini->oldpwd = false;
 	}
-	mini_env = malloc(sizeof(char *) * (i + 1));
-	if (mini_env == NULL)
+	mini->env = malloc(sizeof(char *) * (i + 1));
+	if (mini->env == NULL)
 		return (NULL);
-	return (mini_env);
+	return (mini->env);
 }
 
 char	**get_my_env(char **envp, t_mini *mini)
@@ -71,6 +70,7 @@ char	**get_my_env(char **envp, t_mini *mini)
         	return (NULL);
 		}
 		mini->env[i + 1] = NULL;
+		return (mini->env);
 	}
 	else
 		mini->env[i] = NULL;

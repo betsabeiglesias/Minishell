@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_cd.c                                       :+:      :+:    :+:   */
+/*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/23 11:02:24 by beiglesi         ###   ########.fr       */
+/*   Created: 2024/10/23 10:53:50 by beiglesi          #+#    #+#             */
+/*   Updated: 2024/10/23 11:14:28 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+# include "../inc/minishell.h"
 
-int	builtin_cd(char **cmd)
+void	builtin_env(char **cmd, t_mini *mini)
 {
-	if (chdir(cmd[1]) != 0)
+	if(ft_strncmp(cmd[1], "env", ft_strlen("env")))
 	{
-		printf("no se cambió\n");
-		return (1);
+		while(mini->env[i])
+		{
+			ft_putstr_fd(mini->env[i], STDOUT_FILENO);
+			i++;
+		}
 	}
+
+}
+
+int	main(int argc, char **argv, t_mini *mini)
+{
+	if(argc < 2)
+		printf("Incorrect number of arguments\n");
 	else
-	{
-		printf("Se cambió al dir; %s\n", cmd[1]);
-		builtin_pwd();
-	}
+	mini->env = get_my_env(envp, mini);
+	builtin_env(argv[1], mini);
 	return (0);
 }

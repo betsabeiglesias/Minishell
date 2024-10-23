@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
+#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/10/19 20:28:11 by binary           ###   ########.fr        #
+#    Updated: 2024/10/23 11:51:24 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,10 @@ SRC =	main_check.c \
 		handle_error.c \
 
 # para borrar
-SRC_BET =  expansion.c environment.c #handle_error.c \
+SRC_BET =  environment.c \
+			expansion.c expansion_last.c \
+			#builtin_env.c\
+			#handle_error.c \
 			#builtin_cd.c builtin_pwd.c builtin_echo.c main_prompt.c\
 			#prompt.c 
 				
