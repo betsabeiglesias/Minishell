@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:39:06 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/26 11:51:07 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/10/26 14:39:22 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,11 @@ int	check_pipe_separate(char *str, int i);
 int	check_redir_separate(char *str, int i, char c);
 int	do_redir_check(char *str,int i, char c);
 
+//CLEAN_STRING
 char    *clean_string(char *str);
+char	*ft_add_char_freed(char *str, char const c);
+
+
 char    *add_literal_str(char *dst, char *str, char quote);
 
 #endif
