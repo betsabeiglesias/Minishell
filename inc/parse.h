@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:39:06 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/26 14:39:22 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/10/26 19:49:46 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ typedef struct  s_quote
     bool sing;
     bool doub;
 }               t_quote;
+
+typedef struct s_cl_data
+{
+    char	*dst;
+	char	*tmp;
+    int		i;
+	int		old_len;
+}              t_cl_data;
 
 
 # define ERR_QUOTE      0
@@ -48,6 +56,7 @@ int	check_extrems(char *str);
 // CHECK UTILS
 int	is_space(char c);
 int	is_valid_metachar(char c);
+int	is_str_space(char *str);
 
 // HANDLE ERROR
 int handle_error(int error_type);
@@ -59,11 +68,16 @@ int	check_pipe_separate(char *str, int i);
 int	check_redir_separate(char *str, int i, char c);
 int	do_redir_check(char *str,int i, char c);
 
-//CLEAN_STRING
-char    *clean_string(char *str);
+//CLEAN_CMDLINE_1
+char    *clean_cmdline(char *str);
+void	init_cl_data(t_cl_data *data);
+void	handle_quote(t_cl_data *data, char *str, char quote);
+void	handle_space(t_cl_data *data, char *str);
+
+//CLEAN_CMDLINE_2
+char    *add_literal_str(char *dst, char *str, char quote);
+void	handle_final_tmp(t_cl_data *data);
 char	*ft_add_char_freed(char *str, char const c);
 
-
-char    *add_literal_str(char *dst, char *str, char quote);
 
 #endif

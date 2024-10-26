@@ -12,8 +12,11 @@ int main(int ac, char **av)
         return (printf("1 argumento please\n"), 0);
     printf("%s\n", av[1]);
     if (syntax_check(av[1]))
+    {
         printf("\nUN NUEVO PROMPT\n" );
-    str = clean_string(av[1]);
+        return (1);
+    }  
+    str = clean_cmdline(av[1]);
     if (str)
         printf("%s\n", str);
     else

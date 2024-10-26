@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 13:13:15 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/16 11:14:21 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/26 18:36:34 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ typedef enum    e_token_type
 
 typedef struct s_token
 {
-   t_token_type  type;
-   char         *cmd;
-   char			**cmd_av;
-   char			*str;
-   struct t_token      *next;
-   struct t_token      *prev;
+   t_token_type     type;
+   char             *cmd;
+   char             **cmd_av;
+   char             *str;
+   struct t_token   *next;
+   struct t_token   *prev;
 }				t_token;
 
 # include <unistd.h>
