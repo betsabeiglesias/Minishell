@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_error.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin_freed.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 16:43:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/26 11:46:38 by aolabarr         ###   ########.fr       */
+/*   Created: 2024/01/02 18:21:19 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/10/26 12:02:15 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "libft.h"
 
-int	handle_error(int error_type)
+char	*ft_strjoin_freed(char *s1, char const *s2)
 {
-	if (error_type == ERR_QUOTE)
-		ft_putendl_fd(ERR_MSG_QUOTE, STDOUT_FILENO);
-	if (error_type == ERR_EXTREM)
-		ft_putendl_fd(ERR_MSG_EXTREM, STDOUT_FILENO);
-	if (error_type == ERR_ALONE)
-		ft_putendl_fd(ERR_MSG_ALONE, STDOUT_FILENO);
-	if (error_type == ERR_ENVP)
-		ft_putendl_fd(ERR_MSG_ENVP, STDOUT_FILENO);
-	return (1);
+	char	*str;
+
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
+	ft_strlcpy(str + ft_strlen(s1), s2, ft_strlen(s2) + 1);
+	free(s1);
+	return (str);
 }

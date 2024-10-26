@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
+#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/10/23 11:51:24 by beiglesi         ###   ########.fr        #
+#    Updated: 2024/10/26 12:09:10 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC =	main_check.c \
 		check_syntax_2.c \
 		check_utils.c \
 		handle_error.c \
+		clean_string.c \
 
 # para borrar
 SRC_BET =  environment.c \

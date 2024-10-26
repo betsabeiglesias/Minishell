@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_error.c                                     :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 16:43:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/26 11:46:38 by aolabarr         ###   ########.fr       */
+/*   Created: 2024/10/26 11:02:40 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/10/26 11:09:32 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	handle_error(int error_type)
+int parse(char *str)
 {
-	if (error_type == ERR_QUOTE)
-		ft_putendl_fd(ERR_MSG_QUOTE, STDOUT_FILENO);
-	if (error_type == ERR_EXTREM)
-		ft_putendl_fd(ERR_MSG_EXTREM, STDOUT_FILENO);
-	if (error_type == ERR_ALONE)
-		ft_putendl_fd(ERR_MSG_ALONE, STDOUT_FILENO);
-	if (error_type == ERR_ENVP)
-		ft_putendl_fd(ERR_MSG_ENVP, STDOUT_FILENO);
-	return (1);
+   //chcek_syntax
+   //do_expasion
+   //clean_string
 }

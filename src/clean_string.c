@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenization.c                                     :+:      :+:    :+:   */
+/*   clean_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 15:06:55 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/16 19:09:59 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/10/26 12:08:47 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char *clean_string(char *str)
 		{
 			old_len = ft_strlen(dst);
 			dst = add_literal_str(dst, str[i + 1], DOUBLE_QUOTE);
-			dst = apply_expansion_str(dst);
 		}
 		else
 		{
@@ -47,10 +46,6 @@ char *clean_string(char *str)
 	return (dst);
 }
 
-char * apply_expansion_str(char * dst)
-{
-	// realizar la funcion pasando un string que busque si hay algo para expandir y que lo expanda
-}
 char	*add_literal_str(char *dst, char *str, char quote)
 {
 	char	*dst;
@@ -63,17 +58,4 @@ char	*add_literal_str(char *dst, char *str, char quote)
 	dst = ft_strjoin_freed(dst, aux);
 	free(aux);
 	return (dst);
-}
-
-char	*ft_strjoin_freed(char *s1, char const *s2)
-{
-	char	*str;
-
-	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
-	ft_strlcpy(str + ft_strlen(s1), s2, ft_strlen(s2) + 1);
-	free(s1);
-	return (str);
 }
