@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/26 12:11:11 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/26 16:12:09 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,22 @@ char	*expanded_cmd_line(t_varenv *var, t_mini *mini)
 {
 	char	*new_cmd_line;
 	char	*temp;
-	char	*exp;
 
-	exp = get_var_env(mini, var);
 	// printf("EXPANDE %s\n", exp);
-	// printf("var_post es: %s\n",var->post);
-	// printf("var_ant es: %s\n",var->ant);
-	// printf("VAR_VALUE es: %s\n",var->value);
-	temp = ft_strjoin_freed(var->ant, exp);
+	// printf("var_post es: %p\n",var->post);
+	// printf("var_ant es: %p\n",var->ant);
+	// printf("VAR_VALUE es: %p\n",var->value);
+	temp = ft_strjoin_freed(var->ant, get_var_env(mini, var));
+	// printf("esto es get: %p\n", get_var_env(mini, var));
+	// printf("esto es temp: %p\n", temp);
 	free(var->value);
-	free(var->ant);
 	new_cmd_line = ft_strjoin_freed(temp, var->post);
 	free(var->post);
+	// printf("esto es new: %p\n", new_cmd_line);
+	// if (var)
+	// 	free(var); ¿usarla? cuando no se libere en el main "inventado"
 	return (new_cmd_line);
 }
-
 int	len_var(char *cmd_line)
 {
 	size_t	len;

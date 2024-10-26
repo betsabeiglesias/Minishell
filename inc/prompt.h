@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:36:24 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/23 12:02:43 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/26 16:22:55 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ int		len_var(char *cmd_line);
 char	*get_var_env(t_mini *mini, t_varenv *var);
 char	*do_expansion(char *cmd_line, t_mini *mini);
 
+
 char	**get_my_env(char **envp, t_mini *mini);
+void	free_mini(t_mini *mini);
 
 void	builtin_echo(char **cmd);
 void	builtin_pwd(void);

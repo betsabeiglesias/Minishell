@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/26 11:02:22 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/26 18:07:11 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*do_expansion(char *cmd_line, t_mini *mini)
 	}
 	trim_to_expand(cmd_line, &var, &i);
 	new_line = expanded_cmd_line(&var, mini);
-	do_expansion(new_line, mini);
+	new_line = do_expansion(new_line, mini);
 	return (new_line);
 }
 
@@ -46,10 +46,11 @@ int main(int argc, char **argv, char **envp)
 
 	// i = 0;	
 	mini->env = get_my_env(envp, mini);
-	if (mini->env == NULL) {
-    printf("Error al inicializar el entorno\n");
-    free(mini);
-    return (1);
+	if (mini->env == NULL) 
+	{
+		printf("Error al inicializar el entorno\n");
+		free_mini(mini);
+    	return (1);
 	}
 	if (argc < 2)
 	{
@@ -61,5 +62,7 @@ int main(int argc, char **argv, char **envp)
 	{
 		printf("%s\n", do_expansion(argv[1], mini));
 	}
+	free_mini(mini);
+	free(var);
 	return(0);
 }

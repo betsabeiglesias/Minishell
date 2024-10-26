@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/10/26 12:18:05 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/26 17:27:40 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	free_env(t_mini *mini)
 		i++;
 	}
 	free(mini->env);
+	free(mini);
 }
 
 char	**init_env(char **envp, t_mini *mini)
@@ -43,8 +44,12 @@ char	**init_env(char **envp, t_mini *mini)
 	}
 	mini->env = malloc(sizeof(char *) * (i + 1));
 	if (mini->env == NULL)
+	{	
+		free_mini(mini);
 		return (NULL); //handle_error
-	return (mini->env);
+	}
+	else
+		return (mini->env);
 }
 
 char	**get_my_env(char **envp, t_mini *mini)
@@ -52,31 +57,57 @@ char	**get_my_env(char **envp, t_mini *mini)
 	int	i;
 
 	i = 0;
-	mini->env = init_env(envp, mini);
-	if (mini->env == NULL)
-		return (NULL);
+	if(init_env(envp, mini) == NULL)
+	{	
+		free_mini(mini);
+		return (NULL); //handle_error
+	}
 	while (envp[i])
 	{
 		mini->env[i] = ft_strdup(envp[i]);
 		if (mini->env[i] == NULL)
-			free_env(mini); //handle_error if mini libera
+		{
+			free_mini(mini); //handle_error if mini libera
+			return (NULL);
+		}
 		i++;
 	}
 	if (mini->oldpwd == false)
 	{
+		
 		mini->env[i] = ft_strdup("OLDPWD=");
 		if (mini->env[i] == NULL)
     	{
-        	free_env(mini);
+        	free_mini(mini);
         	return (NULL);
 		}
-		mini->env[i + 1] = NULL;
-		return (mini->env);
+		i++;
 	}
 	else
 		mini->env[i] = NULL;
 	return (mini->env);
 }
+
+void free_mini(t_mini *mini)
+{
+	int	i;
+
+	if (mini)
+	{
+		if(mini->env)
+		{
+			i = 0;
+			while(mini->env[i])
+			{
+				free(mini->env[i]);
+				i++;
+			}
+			free(mini->env);
+		}
+		free(mini);
+	}
+}
+
 
 // int main(int argc, char **argv, char **envp)
 // {
