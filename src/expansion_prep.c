@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion.c                                        :+:      :+:    :+:   */
+/*   expansion_prep.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/23 12:21:42 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/26 12:11:11 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ char	*expanded_cmd_line(t_varenv *var, t_mini *mini)
 	// printf("var_post es: %s\n",var->post);
 	// printf("var_ant es: %s\n",var->ant);
 	// printf("VAR_VALUE es: %s\n",var->value);
-	temp = ft_strjoin(var->ant, exp);
+	temp = ft_strjoin_freed(var->ant, exp);
 	free(var->value);
 	free(var->ant);
-	new_cmd_line = ft_strjoin(temp, var->post);
+	new_cmd_line = ft_strjoin_freed(temp, var->post);
 	free(var->post);
 	return (new_cmd_line);
 }

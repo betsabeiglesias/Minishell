@@ -3,12 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
+#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/10/26 12:09:10 by aolabarr         ###   ########.fr        #
+#    Updated: 2024/10/26 12:19:15 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
 
 NAME = minishell
 
@@ -35,7 +37,7 @@ SRC =	main_check.c \
 
 # para borrar
 SRC_BET =  environment.c \
-			expansion.c expansion_last.c \
+			expansion.c expansion_prep.c \
 			#builtin_env.c\
 			#handle_error.c \
 			#builtin_cd.c builtin_pwd.c builtin_echo.c main_prompt.c\

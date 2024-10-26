@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/10/26 11:46:07 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/10/26 12:18:05 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../inc/minishell.h"
 
@@ -42,7 +43,7 @@ char	**init_env(char **envp, t_mini *mini)
 	}
 	mini->env = malloc(sizeof(char *) * (i + 1));
 	if (mini->env == NULL)
-		return (NULL);
+		return (NULL); //handle_error
 	return (mini->env);
 }
 
@@ -58,7 +59,7 @@ char	**get_my_env(char **envp, t_mini *mini)
 	{
 		mini->env[i] = ft_strdup(envp[i]);
 		if (mini->env[i] == NULL)
-			free_env(mini);
+			free_env(mini); //handle_error if mini libera
 		i++;
 	}
 	if (mini->oldpwd == false)

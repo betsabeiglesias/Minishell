@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/23 12:24:51 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/26 11:02:22 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int main(int argc, char **argv, char **envp)
    	   printf("Error al asignar memoria\n");
         return (1);
     }
-	int	i;
+	// int	i;
 
-	i = 0;	
+	// i = 0;	
 	mini->env = get_my_env(envp, mini);
 	if (mini->env == NULL) {
     printf("Error al inicializar el entorno\n");
@@ -57,10 +57,9 @@ int main(int argc, char **argv, char **envp)
 		free(mini);
 		return (1);
 	}
-	while(argv[i])
+	else
 	{
-		printf("%s\n", do_expansion(argv[i], mini));
-		i++;
+		printf("%s\n", do_expansion(argv[1], mini));
 	}
 	return(0);
 }
