@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/28 15:06:04 by binary           ###   ########.fr       */
+/*   Updated: 2024/10/28 16:02:46 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,17 @@ bool	is_expansible(char *cmd_line, int i)
 }
 
 
-void	get_var_env(t_mini *mini, t_varenv *var)
+int	get_var_env(t_mini *mini, t_varenv *var)
 {
 	char	*var_name;
 	//size_t	len;
-	char	**env_start = mini->env;
+	char	**env_start;
 
-	//len = ft_strlen(var->value);
-	//printf("len en get_varen %ld\n", len);
-
+	env_start = mini->env;
 	var_name = malloc (sizeof(char) * (var->len + 2));
 	if (!var_name)
-		return ;
+		return	(1);
 	ft_strlcpy(var_name, var->value, var->len + 1);
-	// printf("VAR_value %s\n", var->value);
-	// printf("VAR_NAME %s\n", var_name);
 	var_name[var->len] = '=';
 	var_name[var->len + 1] = '\0';
 	printf("VAR_NAME QUE TIENE QUE BUSCAR: %s\n", var_name);
@@ -94,14 +90,16 @@ void	get_var_env(t_mini *mini, t_varenv *var)
 		if (!ft_strncmp(*mini->env, var_name, var->len))
 		{
 			var->var_expanded = (*mini->env + 1 + (var->len));
-			break;
+			free(var_name);
+			mini->env = env_start; 
+			return(0);
 		}
 		mini->env++;
 	}
 	mini->env = env_start; 
+	printf("No existe la variable de entorno: %s\n", var_name);
 	free(var_name);
-	//handle_error(ERR_ENVP);
-	//printf("VAR_VALUE EN GET VAR: %s\n", var->value);
+	return(1);
 }
 
 // int main(int ac, char **av, char **env)

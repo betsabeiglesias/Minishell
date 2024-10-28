@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/28 14:58:57 by binary           ###   ########.fr       */
+/*   Updated: 2024/10/28 16:02:47 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ char	*do_expansion(char **cmd_line, t_mini *mini)
 		{
 			i++;
 			init_varen(&var, *cmd_line, i);
-			// printf("VAR.LEN %d\n", var.len);
-			//printf("VAR.value %s\n", var.value);
-			get_var_env(mini, &var);
-			insert_expanded_var(cmd_line, &var);
-			i += var.len;
-			//clean_varen(&var);
+			if(!get_var_env(mini, &var))
+			{
+				insert_expanded_var(cmd_line, &var);
+				i += var.len;
+			}
+			clean_varen(&var);
 		}
 		i++;
 	}
@@ -102,7 +102,7 @@ int main(int argc, char **argv, char **envp)
 	printf("RECIBE: %s\n", cmd_line);
 	do_expansion(&cmd_line, mini);
 	printf("RETORNA: %s\n",cmd_line);
-	// free_env(mini);
+	free(cmd_line);
 	free_mini(mini);
 	if (var)
 		free(var);
