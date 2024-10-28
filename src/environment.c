@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/10/26 17:27:40 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:32:11 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@ void	free_env(t_mini *mini)
 {
 	int	i;
 
-	i = 0;
-	while (mini->env[i])
+	if (mini->env)
 	{
-		free(mini->env[i]);
-		i++;
+		i = 0;
+		while (mini->env[i])
+		{
+			free(mini->env[i]);
+			i++;
+		}
 	}
 	free(mini->env);
-	free(mini);
+	mini->env = NULL;
 }
 
 char	**init_env(char **envp, t_mini *mini)
@@ -42,12 +45,9 @@ char	**init_env(char **envp, t_mini *mini)
 		i++;
 		mini->oldpwd = false;
 	}
-	mini->env = malloc(sizeof(char *) * (i + 1));
+	mini->env = ft_calloc((i + 1), sizeof(char *));
 	if (mini->env == NULL)
-	{	
-		free_mini(mini);
 		return (NULL); //handle_error
-	}
 	else
 		return (mini->env);
 }
@@ -57,17 +57,14 @@ char	**get_my_env(char **envp, t_mini *mini)
 	int	i;
 
 	i = 0;
-	if(init_env(envp, mini) == NULL)
-	{	
-		free_mini(mini);
+	if(!(mini->env = init_env(envp, mini)))
 		return (NULL); //handle_error
-	}
 	while (envp[i])
 	{
 		mini->env[i] = ft_strdup(envp[i]);
 		if (mini->env[i] == NULL)
 		{
-			free_mini(mini); //handle_error if mini libera
+			free_env(mini); //handle_error if mini libera
 			return (NULL);
 		}
 		i++;
@@ -78,13 +75,14 @@ char	**get_my_env(char **envp, t_mini *mini)
 		mini->env[i] = ft_strdup("OLDPWD=");
 		if (mini->env[i] == NULL)
     	{
-        	free_mini(mini);
+        	free_env(mini);
         	return (NULL);
 		}
 		i++;
+		mini->env[i] = NULL;
 	}
 	else
-		mini->env[i] = NULL;
+	mini->env[i] = NULL;
 	return (mini->env);
 }
 
