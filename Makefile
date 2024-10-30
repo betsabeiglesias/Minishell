@@ -6,7 +6,7 @@
 #    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/10/28 11:27:25 by binary           ###   ########.fr        #
+#    Updated: 2024/10/29 08:19:18 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC =	main_check.c \
 
 # para borrar
 SRC_BET =  environment.c \
-			expansion2.c expansion_prep2.c \
+			expansion.c expansion_prep.c \
 			#builtin_env.c\
 			#handle_error.c \
 			#builtin_cd.c builtin_pwd.c builtin_echo.c main_prompt.c\

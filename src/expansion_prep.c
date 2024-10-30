@@ -6,52 +6,49 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/28 11:20:18 by binary           ###   ########.fr       */
+/*   Updated: 2024/10/29 23:40:44 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/minishell.h"
 
-void	trim_to_expand(char *cmd_line, t_varenv *var, int *i)
+void	insert_expanded_var(char **cmd_line, t_varenv *var)
 {
-	size_t	len;
+	int 	old_len;
+	int		new_len;
+	int		exp_var_len;
+	char	*new_line;
 
-	len = len_var(var->pointer) + 1;
-	var->ant = ft_substr(cmd_line, 0, *i);
-	var->value = ft_substr(cmd_line, *i, len);
-	*i += len;
-	var->post = ft_substr(cmd_line, *i, (ft_strlen(cmd_line) - *i));
-	// printf("var_post es: %s\n",var->post);
-	// printf("var_ant es: %s\n",var->ant);
-	// printf("VAR_VALUE es: %s\n",var->value);
-}
+	old_len = ft_strlen(*cmd_line);
+	if(!var->var_expanded)
+		exp_var_len = 0;
+	else 
+		exp_var_len = ft_strlen(var->var_expanded);
+	//printf("len var exp: %d\n", exp_var_len);
+	new_len = old_len - var->len + exp_var_len;
+	//printf("NEW LEN: %d\n", new_len);
+	new_line = malloc(sizeof(char) * (new_len + 1));
+	if (new_line == NULL)
+		return ;
+	ft_strlcpy(new_line, *cmd_line, var->start);
+	if (var->var_expanded != NULL)
+	{
+		ft_strlcat(new_line, var->var_expanded, new_len + 1);
+		ft_strlcat(new_line, (*cmd_line + var->start + var->len), new_len + 1);
+	}
+	else 
+		ft_strlcat(new_line, (*cmd_line + var->start + var->len + 1), new_len + 1);
+	clean_varen(var);
+	free(*cmd_line);
+	*cmd_line = new_line;
+}	
 
-char	*expanded_cmd_line(t_varenv *var, t_mini *mini)
-{
-	char	*new_cmd_line;
-	char	*temp;
-
-	// printf("EXPANDE %s\n", exp);
-	// printf("var_post es: %p\n",var->post);
-	// printf("var_ant es: %p\n",var->ant);
-	// printf("VAR_VALUE es: %p\n",var->value);
-	temp = ft_strjoin_freed(var->ant, get_var_env(mini, var));
-	// printf("esto es get: %p\n", get_var_env(mini, var));
-	// printf("esto es temp: %p\n", temp);
-	free(var->value);
-	new_cmd_line = ft_strjoin_freed(temp, var->post);
-	free(var->post);
-	// printf("esto es new: %p\n", new_cmd_line);
-	// if (var)
-	// 	free(var); ¿usarla? cuando no se libere en el main "inventado"
-	return (new_cmd_line);
-}
-int	len_var(char *cmd_line)
+int	len_var(char *cmd_line, int i)
 {
 	size_t	len;
 	int		temp;
 
-	temp = 1;
+	temp = i;
 	len = 0;
 	while (ft_isalnum(cmd_line[temp]))
 	{
@@ -61,21 +58,12 @@ int	len_var(char *cmd_line)
 	return (len);
 }
 
-bool	has_dollar(char *cmd_line, t_varenv *var, int *i)
-{
-	var->pointer = find_value_position(cmd_line, i);
-	if (var->pointer)
-		return (true);
-	else
-		return (false);
-}
-
-bool	is_expansible(char *cmd_line, int *i)
+bool	is_expansible(char *cmd_line, int i)
 {
 	int		temp;
 	int		s_quote;
 
-	temp = *i ;
+	temp = i ;
 	s_quote = 0;
 	while (temp >= 0)
 	{
@@ -90,90 +78,32 @@ bool	is_expansible(char *cmd_line, int *i)
 	return (false);
 }
 
-char	*find_value_position(char *cmd_line, int *i)
-{
-	while (cmd_line[*i] != '\0')
-	{
-		if (cmd_line[*i] == '$' && is_expansible(cmd_line, i))
-			return (&cmd_line[*i]);
-		*i += 1;
-	}
-	return (NULL);
-}
-
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	t_varenv *var = malloc(sizeof(t_varenv));
-//     if (var == NULL) {
-//         printf("Error al asignar memoria\n");
-//         return (1);
-//     }
-// 	t_mini *mini = malloc(sizeof(t_mini));
-//     if (mini == NULL) {
-//         printf("Error al asignar memoria\n");
-//         return (1);
-//     }
-// 	mini->env = get_my_env(envp, mini);
-// 	int i = 0;
-// 	if (argc < 2){
-// 		printf("Incorrect arguments\n");
-// 		return(1);
-// 	}
-// 	bool test;
-// 	test = has_dollar(argv[1], var, &i);
-// 	if (!test)
-// 		printf("no hay dollar expansible\n");
-// 	else if (test)
-// 	{
-// 		printf("hay dollar expansible\n");
-// 	}
-// 	trim_to_expand(argv[1], var, &i);
-// 	char *result;
-// 	result = expanded_cmd_line(var, mini);
-// 	printf("RESULTADO: %s\n", result);
-// 	free(var);
-// 	return(0);
-// }
-
-char	*get_var_env(t_mini *mini, t_varenv *var)
+void	get_var_env(t_mini *mini, t_varenv *var)
 {
 	char	*var_name;
-	size_t	len;
+	char	**env_start;
 
-	len = ft_strlen(var->value);
-	//printf("len en get_varen %ld\n", len);
-	// // if(len == 0)
-	// //	return(NULL);
-	var_name = malloc (sizeof(char) * (len + 1));
+	env_start = mini->env;
+	var_name = malloc (sizeof(char) * (var->len + 2));
 	if (!var_name)
-		return (NULL);
-	ft_strlcpy(var_name, var->value + 1, len + 1);
-	var_name[len - 1] = '=';
-	var_name[len] = '\0';
-	// printf("VAR_NAME QUE TIENE QUE BUSCAR:%s\n", var_name);
+		return	;
+	ft_strlcpy(var_name, var->value, var->len + 1);
+	var_name[var->len] = '=';
+	var_name[var->len + 1] = '\0';
 	while (*mini->env != NULL)
 	{
-		if (!ft_strncmp(*mini->env, var_name, len))
+		if (!ft_strncmp(*mini->env, var_name, var->len))
 		{
+			var->var_expanded = (*mini->env + 1 + (var->len));
 			free(var_name);
-			return (*mini->env + (len));
+			mini->env = env_start;
+			return ; 
 		}
 		mini->env++;
 	}
+	mini->env = env_start; 
+	printf("No existe la variable de entorno: %s\n", var_name);
+	printf("Var_expanded: %s\n", var->var_expanded);
+	printf("Var_len: %d\n", var->len);
 	free(var_name);
-	//handle_error(ERR_ENVP);
-	//printf("VAR_VALUE EN GET VAR: %s\n", var->value);
-	return (var->value);
 }
-
-// int main(int ac, char **av, char **env)
-// {
-// 	if(ac != 2)
-// 	{
-// 		printf("incorrect arguments\n");
-// 		return(1);
-// 	}
-// 	printf("%s\n", expand_varenv(av[1],env));
-// 	return(0);
-
-// }
