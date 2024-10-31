@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:40:19 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/05 17:42:03 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/10/31 18:57:27 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,34 @@
 
 # include <stdlib.h>
 
-typedef struct s_cost
+typedef enum	e_type
 {
-	int		total;
-	int		ra;
-	int		rb;
-	int		rra;
-	int		rrb;
-}			t_cost;
+    CMD,
+	RDS_IN,
+	RDS_OUT,
+	RDD_IN,
+	RDD_OUT,
+	PIPE,
+	FILENAME,
+	STR,
+	EIT_CODE,
+	NO_TYPE
+}				t_type;
+
+typedef struct s_token
+{
+	t_type		type;
+	char		*content;
+}			t_token;
 
 typedef struct s_list
 {
-	int				content;
-	int				idx;
-	t_cost			cost;
+	t_token			token;
 	struct s_list	*next;
+	struct s_list	*prev;
 }					t_list;
 
-t_list	*ft_lstnew(int content);
+t_list	*ft_lstnew(char *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);

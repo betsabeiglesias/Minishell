@@ -6,18 +6,31 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:46:17 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/26 19:46:46 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/10/31 19:44:19 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	handle_final_tmp(t_cl_data *data)
+char	*handle_final_tmp(t_cl_data *data)
 {
-	data->dst = ft_add_char_freed(data->dst, DOUBLE_QUOTE);
-	data->dst = ft_strjoin_freed(data->dst, data->tmp);
-	data->dst = ft_add_char_freed(data->dst, DOUBLE_QUOTE);
-	return ;
+	t_list	*node;
+	char *aux;
+
+	aux = ft_strdup(data->tmp);
+	if (!aux)
+		return (handle_error(ERR_MALLOC), NULL);
+	node = ft_lstnew(aux);
+	if (!node)
+		return (handle_error(ERR_MALLOC), NULL);
+	ft_lstadd_back(&data->tk_lst, node);
+	
+	if (data->tmp)
+	{
+		free(data->tmp);
+		data->tmp = NULL;
+	}
+	return (NO_NULL);
 }
 
 char	*add_literal_str(char *dst, char *str, char quote)

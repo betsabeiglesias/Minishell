@@ -11,21 +11,18 @@
 /* ************************************************************************** */
 
 #include "liblst.h"
+#include <stdio.h>
 
-t_list	*ft_lstnew(int content)
+t_list	*ft_lstnew(char *content)
 {
 	t_list	*node;
 
 	node = malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
-	node -> content = content;
-	node -> idx = 0;
-	node -> cost.total = 0;
-	node -> cost.ra = 0;
-	node -> cost.rb = 0;
-	node -> cost.rra = 0;
-	node -> cost.rrb = 0;
-	node -> next = NULL;
+	node->token.type = NO_TYPE;
+	node->token.content = content;
+	node->next = NULL;
+	node->prev = NULL;
 	return (node);
 }

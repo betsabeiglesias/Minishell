@@ -3,14 +3,12 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
+#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/10/29 08:19:18 by binary           ###   ########.fr        #
+#    Updated: 2024/10/31 19:48:36 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-
 
 NAME = minishell
 
@@ -33,8 +31,8 @@ SRC =	main_check.c \
 		check_syntax_2.c \
 		check_utils.c \
 		handle_error.c \
-		clean_cmdline_1.c \
-		clean_cmdline_2.c \
+		tokenization_1.c \
+		tokenization_2.c \
 		init_data.c \
 
 # para borrar

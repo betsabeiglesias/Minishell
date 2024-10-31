@@ -19,7 +19,7 @@ t_list	*ft_lstlast(t_list *lst)
 	if (lst == NULL)
 		return (NULL);
 	node = lst;
-	while ((node -> next) != NULL)
-		node = node -> next;
+	while ((node->next) != NULL)
+		node = node->next;
 	return (node);
 }

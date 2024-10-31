@@ -24,8 +24,9 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		return ;
 	}
 	node = *lst;
-	while ((node -> next) != NULL)
-		node = node -> next;
-	node -> next = new;
+	while ((node->next) != NULL)
+		node = node->next;
+	node->next = new;
+	node->next->prev = node;
 	return ;
 }
