@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 12:43:06 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/26 19:20:20 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/01 11:16:07 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int syntax_check(char *str)
 {
     if (is_str_space(str))
-        return (1);
+        return (EXIT_FAILURE);
 	else if (check_quotes(str))
-        return (handle_error(ERR_QUOTE), 1);
+        return (handle_error(ERR_QUOTE), EXIT_FAILURE);
 	else if (check_extrems(str))
-        return (handle_error(ERR_EXTREM), 1);
+        return (handle_error(ERR_EXTREM), EXIT_FAILURE);
 	else if (check_metachar_separate(str))
-        return (handle_error(ERR_ALONE), 1);
-	return (0) ;
+        return (handle_error(ERR_ALONE), EXIT_FAILURE);
+	return (EXIT_SUCCESS) ;
 }
 
 int	check_quotes(char *str)
@@ -47,10 +47,9 @@ int	check_quotes(char *str)
         i++;
     }
     if (s_quote == true || d_quote == true)
-        return (1);
-    return (0);
+        return (EXIT_FAILURE);
+    return (EXIT_SUCCESS);
 }
-
 
 int	check_extrems(char *str)
 {
@@ -60,13 +59,13 @@ int	check_extrems(char *str)
 	while(is_space(str[i]))
 		i++;
 	if (str[i] == '|')
-		return (1);
+		return (EXIT_FAILURE);
 	i = ft_strlen(str) - 1;
 	while(is_space(str[i]))
 		i--;
 	if (is_valid_metachar(str[i]))
-		return (1);
-	return(0);
+		return (EXIT_FAILURE);
+	return(EXIT_SUCCESS);
 }
 
 

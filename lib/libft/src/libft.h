@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:08:11 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/26 11:57:20 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/01 12:25:03 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ void	ft_putnbr_fd(int n, int fd);
 char	*ft_strjoin_freed(char *s1, char const *s2);
 void	ft_free_mat_str(char **mat, size_t size);
 size_t	ft_matsize(char **str);
+void	ft_free(char *str);
+void	ft_free2(char **str);
 
 #endif
