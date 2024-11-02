@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_prep.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/02 10:20:24 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/02 16:49:02 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,6 @@ void	get_var_env(t_mini *mini, t_varenv *var)
 		}
 		mini->env++;
 	}
-	mini->env = env_start; 
+	mini->env = env_start;
 	free(var_name);
 }

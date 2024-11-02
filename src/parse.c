@@ -6,19 +6,22 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:20:13 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/01 13:13:39 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/02 16:48:45 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	*parse(char *str)
+t_list	*parse(t_mini *shell)
 {
-	t_list *lst;
+	t_list	*lst;
+	char	*str;
 	
-	if (syntax_check(str))
+	if (syntax_check(shell->input))
       return (NULL);
-	// do_expasion
+	str = do_expansion(shell);
+	if (!str)
+		return(NULL);
 	lst = tokenization(str);
 	if (!lst)
 		return (NULL);

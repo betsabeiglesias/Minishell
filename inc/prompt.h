@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 16:36:24 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/02 10:56:08 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/02 16:23:02 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,9 @@
 # include <stddef.h>
 # include <limits.h>
 
-typedef struct s_mini{
-    char        **env;
-	bool		oldpwd;
-}               t_mini;
 
-
-typedef struct s_varenv{
+typedef struct s_varenv
+{
 	char	*value;
 	char	*var_expanded;
 	int		start;
@@ -30,22 +26,30 @@ typedef struct s_varenv{
 }				t_varenv;
 
 
-char	*prompt(void);
+//char	*expand_varenv(char *str, t_mini *mini);
 
-char	*expand_varenv(char *str, t_mini *mini);
-bool	has_dollar(char *cmd_line, t_varenv *var, int *i);
+// SIGNALS
+void	setup_signal_handlers(void);
+void	handle_signal_interactive(int signum);
+void	handle_eof_interactive(char *str);
 
-char	*do_expansion(char **cmd_line, t_mini *mini);
+//EXPANSION
+char	*do_expansion(t_mini *shell);
 void	init_varen (t_varenv *var, char *cmd_line, int i);
 void	insert_expanded_var (char **cmd_line, t_varenv *var);
 int		len_var(char *cmd_line, int i);
+
+//EXPANSION PREP
 bool	is_expansible(char *cmd_line, int i);
 void	get_var_env(t_mini *mini, t_varenv *var);
 void	clean_varen (t_varenv *var);
 
-char	**get_my_env(char **envp, t_mini *mini);
+// ENVIROMENT
+int		init_env(char **envp, t_mini *mini);
+int		get_my_env(char **envp, t_mini *mini);
 void	free_env(t_mini *mini);
 void	free_mini(t_mini *mini);
+
 
 void	builtin_echo(char **cmd);
 void	builtin_pwd(void);

@@ -6,13 +6,13 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:46:17 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/01 12:36:31 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:12:51 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-char	*save_token(t_varparse *data, char *str)
+char	*save_token(t_varparse *data)
 {
 	t_list	*node;
 	char	*aux;
@@ -25,8 +25,8 @@ char	*save_token(t_varparse *data, char *str)
 		return(handle_error(ERR_MALLOC), NULL);
 	ft_lstadd_back(&data->tk_lst, node);
 	ft_free2(&data->tmp);
-	while(str[data->i] == SPACE)
-		data->i++;
+	//while(str[data->i] == SPACE)
+	//	data->i++;
 	return (NO_NULL);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/02 10:39:21 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:14:43 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ void	clean_varen(t_varenv *var)
 	// }
 }
 
-char	*do_expansion(char **cmd_line, t_mini *mini)
+char	*do_expansion(t_mini *shell)
 {
 	int			i;
 	t_varenv	var;
+	char		**cmd_line;
 
+	cmd_line = &shell->input;
 	i = 0;
     while((*cmd_line)[i] != '\0')
 	{
@@ -46,7 +48,7 @@ char	*do_expansion(char **cmd_line, t_mini *mini)
         {
             i++;
             init_varen(&var, *cmd_line, i);
-            get_var_env(mini, &var);
+            get_var_env(shell, &var);
          	insert_expanded_var(cmd_line, &var);
 			// if (var.var_expanded != NULL)
 			// 	i += ft_strlen(var.var_expanded);
@@ -57,9 +59,10 @@ char	*do_expansion(char **cmd_line, t_mini *mini)
 		}
         i++;
 	}
+	//printf("Prueba G: %s\n", *cmd_line);
     return (*cmd_line);
 }
-
+/*
 int main(int argc, char **argv, char **envp)
 {
 	t_mini *mini;
@@ -105,3 +108,4 @@ int main(int argc, char **argv, char **envp)
 		free(var);
 	return(0);
 }
+*/

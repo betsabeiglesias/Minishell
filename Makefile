@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
+#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/02 10:12:47 by beiglesi         ###   ########.fr        #
+#    Updated: 2024/11/02 16:26:34 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,16 +26,32 @@ LIBFT_DIR = ./lib/libft
 LIBLST_DIR = ./lib/liblst
 LDFLAGS = -L$(LIBFT_DIR) -lft -L$(LIBLST_DIR) -llst -lreadline -g3
 
-SRC =	main_parse.c \
+SRC =	main.c \
+		environment.c \
+		signals.c \
+		handle_error.c \
+		init_data.c \
 		check_syntax_1.c \
 		check_syntax_2.c \
 		check_utils.c \
-		handle_error.c \
 		tokenization_1.c \
 		tokenization_2.c \
-		init_data.c \
 		free.c \
 		parse.c \
+		expansion.c \
+		expansion_prep.c \
+		aux.c \
+
+SRC_ARITZ =	main_parse.c \
+			check_syntax_1.c \
+			check_syntax_2.c \
+			check_utils.c \
+			handle_error.c \
+			tokenization_1.c \
+			tokenization_2.c \
+			init_data.c \
+			free.c \
+			parse.c \
 
 # para borrar
 SRC_BET =  environment.c \

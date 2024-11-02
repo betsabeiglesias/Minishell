@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 15:06:55 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/01 12:30:35 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:13:22 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,19 @@ t_list	*tokenization(char *str)
 char	*handle_token(t_varparse *data, char *str)
 {
 	if (!data->tmp)
-		data->tmp = ft_strdup("");
+		data->tmp = ft_strdup(EMPTY);
 	if (!data->tmp)
 		return (handle_error(ERR_MALLOC), NULL);
 	if (str[data->i] == SINGLE_QUOTE)
 		handle_quote(data, str, SINGLE_QUOTE);
-	else if ((str[data->i] == DOUBLE_QUOTE))
+	else if (str[data->i] == DOUBLE_QUOTE)
 		handle_quote(data, str, DOUBLE_QUOTE);
 	else if (str[data->i] == SPACE)
 	{
-		if(!save_token(data, str))
+		if(!save_token(data))
 			return(NULL);
+		while(str[data->i] == SPACE)
+			data->i++;
 	}
 	else
 		handle_char(data, str);

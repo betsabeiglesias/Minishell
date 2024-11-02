@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/10/28 14:32:11 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/02 16:47:23 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,13 @@ void	free_env(t_mini *mini)
 	mini->env = NULL;
 }
 
-char	**init_env(char **envp, t_mini *mini)
+int	init_env(char **envp, t_mini *mini)
 {
 	int		i;
 
 	i = 0;
-	mini->oldpwd = true;
 	while (envp[i])
-	{
 		i++;
-	}
 	if (getenv("OLDPWD") == NULL)
 	{
 		i++;
@@ -47,43 +44,44 @@ char	**init_env(char **envp, t_mini *mini)
 	}
 	mini->env = ft_calloc((i + 1), sizeof(char *));
 	if (mini->env == NULL)
-		return (NULL); //handle_error
-	else
-		return (mini->env);
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+	return(EXIT_SUCCESS) ;
 }
 
-char	**get_my_env(char **envp, t_mini *mini)
+int	get_my_env(char **envp, t_mini *mini)
 {
 	int	i;
 
 	i = 0;
-	if(!(mini->env = init_env(envp, mini)))
-		return (NULL); //handle_error
+	//printf("Prueba BBB\n");
+	if(init_env(envp, mini))
+		return (EXIT_FAILURE);
+	//printf("Prueba CCC\n");
 	while (envp[i])
 	{
 		mini->env[i] = ft_strdup(envp[i]);
+		//printf("Prueba AAA: %s\n", mini->env[i]);
 		if (mini->env[i] == NULL)
 		{
-			free_env(mini); //handle_error if mini libera
-			return (NULL);
+			free_env(mini);
+			return (handle_error(ERR_ENVP), EXIT_FAILURE);
 		}
 		i++;
 	}
 	if (mini->oldpwd == false)
 	{
-		
 		mini->env[i] = ft_strdup("OLDPWD=");
 		if (mini->env[i] == NULL)
     	{
         	free_env(mini);
-        	return (NULL);
+        	return (handle_error(ERR_ENVP), EXIT_FAILURE);
 		}
 		i++;
 		mini->env[i] = NULL;
 	}
 	else
-	mini->env[i] = NULL;
-	return (mini->env);
+		mini->env[i] = NULL;
+	return (EXIT_SUCCESS);
 }
 
 void free_mini(t_mini *mini)
