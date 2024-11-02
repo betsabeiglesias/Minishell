@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:05:15 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 17:42:49 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:08:02 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #define _POSIX_C_SOURCE 200809L
 
+// LIBRERIAS STANDARD
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -27,40 +28,13 @@
 # include <stddef.h>
 # include <limits.h>
 
+//LIBRERIAS PROPIAS
 # include "../lib/libft/src/libft.h"
 # include "../lib/liblst/liblst.h"
 
-typedef struct	s_mini
-{
-   char		**env;
-   bool		oldpwd;
-   char		*input;
-}				t_mini;
-
-# include "parse.h"
-# include "prompt.h"
-
-
-// INIT_DATA
-void    init_shell(t_mini *shell);
-
-
-
-
-/*
-typedef struct s_token
-{
-   t_token_type     type;
-   char             *cmd;
-   char             **cmd_av;
-   char             *str;
-   struct t_token   *next;
-   struct t_token   *prev;
-}				t_token;
-*/
-
-
-
-
+//HEADERS
+# include "variables.h"
+# include "macros.h"
+# include "functions.h"
 
 #endif
