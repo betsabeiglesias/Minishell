@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 10:56:16 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/01 13:12:36 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:32:09 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_varparse
 # define ERR_MSG_EXTREM		"SYNTAX ERROR: nothing after or before metachar"
 # define ERR_MSG_ALONE		"SYNTAX ERROR: need separate metacharacter"
 # define ERR_MSG_ENVP		"ENVIRONMENT VARIABLE NOT FOUND OR UNDEFINED"
-# define ERR_MSG_MALLOC		"ENVIRONMENT VARIABLE NOT FOUND OR UNDEFINED"
+# define ERR_MSG_MALLOC		"MALLOC FAILED"
 
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
