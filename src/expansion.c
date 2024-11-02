@@ -3,27 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/30 15:24:27 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/02 10:39:21 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/minishell.h"
+#include "../inc/minishell.h"
 
-
-void	init_varen (t_varenv *var, char *cmd_line, int i)
+void	init_varen(t_varenv *var, char *cmd_line, int i)
 {
 	var->start = i;
 	var->len = len_var(cmd_line, i);
-	// printf("VAR.LEN %d\n", var->len);
 	var->value = ft_substr(cmd_line, i, var->len);
 	var->var_expanded = NULL;
-	// printf("VAR.value %s\n", var->value);
 }
 
-void	clean_varen (t_varenv *var)
+void	clean_varen(t_varenv *var)
 {
 	if (var->value)
 	{
@@ -37,26 +34,27 @@ void	clean_varen (t_varenv *var)
 	// }
 }
 
-
-char *do_expansion(char **cmd_line, t_mini *mini)
+char	*do_expansion(char **cmd_line, t_mini *mini)
 {
-    int i = 0;
-    t_varenv var;
-	
-    while ((*cmd_line)[i] != '\0')
-    {
-        if ((*cmd_line)[i] == '$' && is_expansible(*cmd_line, i))
+	int			i;
+	t_varenv	var;
+
+	i = 0;
+    while((*cmd_line)[i] != '\0')
+	{
+		if ((*cmd_line)[i] == '$' && is_expansible(*cmd_line, i))
         {
             i++;
             init_varen(&var, *cmd_line, i);
             get_var_env(mini, &var);
          	insert_expanded_var(cmd_line, &var);
-			if (var.var_expanded != NULL)
-            	i += ft_strlen(var.var_expanded);
-			else 
-				i++;
-            clean_varen(&var);
-        }
+			// if (var.var_expanded != NULL)
+			// 	i += ft_strlen(var.var_expanded);
+			// else 
+			// 	i += var.len;
+			clean_varen(&var);
+			i = 0;
+		}
         i++;
 	}
     return (*cmd_line);

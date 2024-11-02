@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_prep.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/29 23:40:44 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/02 10:20:24 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void	insert_expanded_var(char **cmd_line, t_varenv *var)
 		exp_var_len = 0;
 	else 
 		exp_var_len = ft_strlen(var->var_expanded);
-	//printf("len var exp: %d\n", exp_var_len);
 	new_len = old_len - var->len + exp_var_len;
-	//printf("NEW LEN: %d\n", new_len);
 	new_line = malloc(sizeof(char) * (new_len + 1));
 	if (new_line == NULL)
 		return ;
@@ -102,8 +100,5 @@ void	get_var_env(t_mini *mini, t_varenv *var)
 		mini->env++;
 	}
 	mini->env = env_start; 
-	printf("No existe la variable de entorno: %s\n", var_name);
-	printf("Var_expanded: %s\n", var->var_expanded);
-	printf("Var_len: %d\n", var->len);
 	free(var_name);
 }

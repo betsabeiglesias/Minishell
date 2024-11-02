@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
+#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/01 12:57:40 by aolabarr         ###   ########.fr        #
+#    Updated: 2024/11/02 10:12:47 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ_DIR = ./obj
 INC_DIR = ./inc
 LIBFT_DIR = ./lib/libft
 LIBLST_DIR = ./lib/liblst
-LDFLAGS = -L$(LIBFT_DIR) -lft -L$(LIBLST_DIR) -llst -lreadline
+LDFLAGS = -L$(LIBFT_DIR) -lft -L$(LIBLST_DIR) -llst -lreadline -g3
 
 SRC =	main_parse.c \
 		check_syntax_1.c \
