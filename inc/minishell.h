@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:05:15 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 15:15:23 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:42:49 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <stddef.h>
+# include <limits.h>
 
 # include "../lib/libft/src/libft.h"
 # include "../lib/liblst/liblst.h"
@@ -35,14 +37,14 @@ typedef struct	s_mini
    char		*input;
 }				t_mini;
 
-
 # include "parse.h"
 # include "prompt.h"
 
 
-
 // INIT_DATA
 void    init_shell(t_mini *shell);
+
+
 
 
 /*

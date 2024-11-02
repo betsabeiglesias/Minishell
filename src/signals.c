@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 12:50:07 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 13:23:43 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:43:36 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,3 @@ void	handle_eof_interactive(char *str)
 		exit(EXIT_SUCCESS);
 	}
 }
-
-/*
-FUNCION A BORRAR
-char	*prompt(void)
-{
-	char	*str;
-
-	setup_signal_handlers();
-	while (1)
-	{
-		str = readline("minishell> ");
-		handle_eof_interactive(str);
-		if (str && *str)
-			add_history(str);
-		if (!ft_strncmp(str, EXIT, ft_strlen(str)))
-		{
-			free(str);
-			exit(EXIT_SUCCESS);
-		}
-		free(str);
-	}
-	return (str);
-}
-*/
-

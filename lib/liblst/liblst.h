@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:40:19 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 17:39:12 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:47:16 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_token
 
 typedef struct s_list
 {
-	void	*content;
-	//t_token			token;
+	//void	*content;
+	t_token			token;
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;
