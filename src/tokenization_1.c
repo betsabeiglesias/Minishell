@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 15:06:55 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 17:13:22 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:23:08 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,35 @@ t_list	*tokenization(char *str)
 		data.i++;
 	while(str[data.i])
 	{
-		if (!handle_token(&data, str))
+		if (handle_token(&data, str))
 			return (NULL);
 	}
 	if (data.tmp)
-		handle_final_token(&data);
+		if (handle_final_token(&data))
+			return (NULL);
 	return (data.tk_lst);
 }
 
-char	*handle_token(t_varparse *data, char *str)
+int	handle_token(t_varparse *data, char *str)
 {
 	if (!data->tmp)
 		data->tmp = ft_strdup(EMPTY);
 	if (!data->tmp)
-		return (handle_error(ERR_MALLOC), NULL);
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	if (str[data->i] == SINGLE_QUOTE)
 		handle_quote(data, str, SINGLE_QUOTE);
 	else if (str[data->i] == DOUBLE_QUOTE)
 		handle_quote(data, str, DOUBLE_QUOTE);
 	else if (str[data->i] == SPACE)
 	{
-		if(!save_token(data))
-			return(NULL);
+		if(save_token(data))
+			return(EXIT_FAILURE);
 		while(str[data->i] == SPACE)
 			data->i++;
 	}
 	else
 		handle_char(data, str);
-	return (NO_NULL);
+	return (EXIT_SUCCESS);
 }
 
 void	init_var_parse(t_varparse *data)

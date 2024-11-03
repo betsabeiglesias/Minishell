@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/03 13:28:37 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:25:24 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ t_list	*tokenization(char *str);
 void	init_var_parse(t_varparse *data);
 void	handle_quote(t_varparse *data, char *str, char quote);
 void	handle_char(t_varparse *data, char *str);
-char	*handle_token(t_varparse *data, char *str);
+int     handle_token(t_varparse *data, char *str);
 
 //TOKENIZATION_2
-char	*save_token(t_varparse *data);
-char	*handle_final_token(t_varparse *data);
+int     save_token(t_varparse *data);
+int     handle_final_token(t_varparse *data);
 char	*add_literal_str(char *dst, char *str, char quote);
 char	*ft_add_char_freed(char *str, char const c);
 

@@ -6,14 +6,14 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:30:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/03 13:33:37 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:06:51 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VARIABLES_H
 # define VARIABLES_H
 
-typedef struct s_exe_list
+typedef struct s_exec
 {
 	char	**env;
 	char	*cmd;
@@ -21,7 +21,7 @@ typedef struct s_exe_list
 	char	*path;
 	int		fd_in;
 	int		fd_out;
-}				t_exe_list;
+}				t_exec;
 
 typedef struct	s_mini
 {
