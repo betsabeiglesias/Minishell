@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:43:08 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 15:08:34 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:38:19 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	lst_clear_token_content(t_list *lst)
 	i = 0;
 	while (i < size)
 	{
-		ft_free(lst->token.content);
+		ft_free(lst->content);
 		lst = lst->next;
 		i++;
 	}

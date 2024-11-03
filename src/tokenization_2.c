@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:46:17 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 17:12:51 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:36:23 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ char	*save_token(t_varparse *data)
 	aux = ft_strdup(data->tmp);
 	if(!aux)
 		return(handle_error(ERR_MALLOC), NULL);
-	node = ft_lstnew(aux);
+	node = ft_lstnew((void *)aux);
 	if(!node)
 		return(handle_error(ERR_MALLOC), NULL);
 	ft_lstadd_back(&data->tk_lst, node);
 	ft_free2(&data->tmp);
-	//while(str[data->i] == SPACE)
-	//	data->i++;
 	return (NO_NULL);
 }
 
@@ -39,7 +37,7 @@ char	*handle_final_token(t_varparse *data)
 	ft_free2(&data->tmp);
 	if (!aux)
 		return (handle_error(ERR_MALLOC), NULL);
-	node = ft_lstnew(aux);
+	node = ft_lstnew((void *)aux);
 	aux = NULL;
 	if (!node)
 		return (handle_error(ERR_MALLOC), NULL);

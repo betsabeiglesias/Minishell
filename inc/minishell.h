@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 11:05:15 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 18:08:02 by aolabarr         ###   ########.fr       */
+/*   Created: 2024/11/03 13:29:46 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/11/03 13:29:50 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#define _POSIX_C_SOURCE 200809L
+# define _POSIX_C_SOURCE 200809L
 
 // LIBRERIAS STANDARD
 # include <unistd.h>
@@ -30,7 +30,7 @@
 
 //LIBRERIAS PROPIAS
 # include "../lib/libft/src/libft.h"
-# include "../lib/liblst/liblst.h"
+# include "../lib/liblst/src/liblst.h"
 
 //HEADERS
 # include "variables.h"

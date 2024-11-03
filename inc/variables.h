@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 16:38:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 18:04:25 by aolabarr         ###   ########.fr       */
+/*   Created: 2024/11/03 13:30:14 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/11/03 13:33:37 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,21 @@ typedef struct	s_varparse
 }				t_varparse;
 
 /*
+typedef enum	e_type
+{
+    CMD,
+	RDS_IN,
+	RDS_OUT,
+	RDD_IN,
+	RDD_OUT,
+	PIPE,
+	FILENAME,
+	STR,
+	EIT_CODE,
+	NO_TYPE
+}				t_type;
+
+
 typedef struct s_token
 {
    t_token_type     type;

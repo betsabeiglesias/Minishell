@@ -5,39 +5,45 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/13 13:48:44 by aolabarr          #+#    #+#              #
-#    Updated: 2024/10/05 17:42:03 by aolabarr         ###   ########.fr        #
+#    Created: 2023/12/17 15:08:51 by aolabarr          #+#    #+#              #
+#    Updated: 2024/11/03 13:24:04 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = liblst.a
+
 CC = cc
-OBJ_CREATE = -c
+NO_LINK = -c
 CFLAGS = -Wall -Wextra -Werror
 
 SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 	  ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
 	  ft_lstclear.c
 
-OBJS = $(SRC:.c=.o)
-NAME = liblst.a
+OBJ_DIR = ./obj
+SRC_DIR = ./src
+OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
-$(NAME): $(OBJS)
-	ar -cr $(NAME) $(OBJS)
+$(NAME): $(OBJ_DIR) $(OBJ)
+	ar -cr $(NAME) $(OBJ)
 
 all: $(NAME)
 
-%.o: %.c
-	$(CC) $(OBJ_CREATE) $(CFLAGS) $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(NO_LINK) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR):
+	mkdir obj
 
 fclean: clean
 	rm -f $(NAME) *.out
 
 clean:
+	@if [ -d $(OBJ_DIR) ]; then rm -rf $(OBJ_DIR); fi
 	rm -f *.o
 
-re: fclean all
+re: fclean all 
 
 .PHONY: all fclean clean re
-
 
 #.SILENT:

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:40:19 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 17:47:16 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:33:34 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,10 @@
 
 # include <stdlib.h>
 
-typedef enum	e_type
-{
-    CMD,
-	RDS_IN,
-	RDS_OUT,
-	RDD_IN,
-	RDD_OUT,
-	PIPE,
-	FILENAME,
-	STR,
-	EIT_CODE,
-	NO_TYPE
-}				t_type;
-
-typedef struct s_token
-{
-	t_type		type;
-	char		*content;
-}			t_token;
-
 typedef struct s_list
 {
-	//void	*content;
-	t_token			token;
+	void	*content;
+	//t_token			token;
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;

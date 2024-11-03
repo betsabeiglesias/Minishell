@@ -9,7 +9,7 @@ int    ft_print_lst(t_list *list)
     printf("\nLISTA\n");
     while (list)
     {
-        printf("%s\n", list->token.content);
+        printf("%s\n", (char *)list->content);
         list = list->next;
     }
     printf("\n\n");
