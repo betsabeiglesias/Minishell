@@ -6,7 +6,7 @@
 #    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/02 16:26:34 by aolabarr         ###   ########.fr        #
+#    Updated: 2024/11/03 20:05:11 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC =	main.c \
 		init_data.c \
 		check_syntax_1.c \
 		check_syntax_2.c \
+		check_syntax_3.c \
 		check_utils.c \
 		tokenization_1.c \
 		tokenization_2.c \

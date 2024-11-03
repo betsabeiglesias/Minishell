@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/03 14:25:24 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/03 20:16:01 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ int    ft_print_lst(t_list *list);
 int		syntax_check(char*str);
 int		check_quotes(char *str);
 int		check_extrems(char *str);
+void    new_quote_status(bool *s_quote, bool *d_quote, int i, char *str);
 
 // CHECK UTILS
 int		is_space(char c);
 int		is_valid_metachar(char c);
 int		is_str_space(char *str);
+int     is_redir_metachar(char c);
 
 // HANDLE ERROR
 int		handle_error(int error_type);
@@ -38,6 +40,10 @@ int		do_check(char *str, int i);
 int		check_pipe_separate(char *str, int i);
 int		check_redir_separate(char *str, int i, char c);
 int		do_redir_check(char *str,int i, char c);
+
+//SYNTAX CHECK 3
+int check_metachar_consecutive(char *str);
+int do_check_consecutive(char *str, int i);
 
 //TOKENIZATION_1
 t_list	*tokenization(char *str);

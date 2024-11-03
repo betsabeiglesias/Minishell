@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 11:32:48 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/26 19:23:33 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/03 19:54:32 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ int	is_space(char c)
 int	is_valid_metachar(char c)
 {
 	if (c == '>' || c == '<' || c == '|')
+		return (1);
+	return (0);
+}
+
+int	is_redir_metachar(char c)
+{
+	if (c == '>' || c == '<')
 		return (1);
 	return (0);
 }

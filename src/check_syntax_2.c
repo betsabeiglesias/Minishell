@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 11:34:49 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/10/13 13:54:41 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/03 20:21:51 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,34 @@
 int	check_metachar_separate(char *str)
 {
 	size_t	i;
-	t_quote	quote;
+	bool	s_quote;
+    bool	d_quote;
 
 	i = 0;
-	quote.sing = false;
-    quote.doub = false;
+	s_quote = false;
+    d_quote = false;
 	while (i < ft_strlen(str))
     {
-        if (str[i] == '\'' && quote.sing == false && quote.doub == false)
-            quote.sing = true;
-        else if (str[i] == '\'' && quote.sing == true && quote.doub == false)
-            quote.sing = false;
-        else if (str[i] == '"' && quote.sing == false && quote.doub == false)
-            quote.doub = true;
-        else if (str[i] == '"' && quote.sing == false && quote.doub == true)
-            quote.doub = false;
-		if (quote.sing == false && quote.doub == false && is_valid_metachar(str[i]))
+        new_quote_status(&s_quote, &d_quote, i, str);
+		if (s_quote == false && d_quote == false && is_valid_metachar(str[i]))
 		{
 			if (do_check(str, i))
-				return (1);
+				return (EXIT_FAILURE);
 		}
 		i++;
     }
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int do_check(char *str, int i)
 {
 	if (check_pipe_separate(str, i))
-		return (1);
+		return (EXIT_FAILURE);
 	if (check_redir_separate(str, i, '>'))
-		return (1);
+		return (EXIT_FAILURE);
 	if (check_redir_separate(str, i, '<'))
-		return (1);
-	return (0);
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 int	check_pipe_separate(char *str, int i)
@@ -56,11 +50,11 @@ int	check_pipe_separate(char *str, int i)
 	if (str[i] == '|')
 	{
 		if (str[i - 1] == ' ' && str[i + 1] == ' ')
-			return (0);
+			return (EXIT_SUCCESS);
 		else
-			return (1);
+			return (EXIT_FAILURE);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	check_redir_separate(char *str, int i, char c)
@@ -68,35 +62,35 @@ int	check_redir_separate(char *str, int i, char c)
 	if (str[i] == c && i == 0)
 	{
 		if (str[i + 1] == ' ' || (str[i + 1] == c && str[i + 2] == ' '))
-			return (0);
+			return (EXIT_SUCCESS);
 		else
-			return (1);
+			return (EXIT_FAILURE);
 	}
 	else if (str[i] == c && i == 1)
 	{
 		if (str[i - 1] == ' ' && str[i + 1] == ' ')
-			return (0);
+			return (EXIT_SUCCESS);
 		else if (str[i - 1] == ' ' && str[i + 1] == c && str[i + 2] == ' ')
-			return (0);
+			return (EXIT_SUCCESS);
 		else
-			return (1);
+			return (EXIT_FAILURE);
 	}
 	else if (str[i] == c)
 	{
 		if (do_redir_check(str, i, c))
-			return (1);
+			return (EXIT_FAILURE);
 		else
-			return (0);
+			return (EXIT_SUCCESS);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 int	do_redir_check(char *str,int i, char c)
 {
 	if (str[i - 1] == ' ' && str[i + 1] == ' ')
-		return (0);
+		return (EXIT_SUCCESS);
 	else if (str[i - 1] == ' ' && str[i + 1] == c && str[i + 2] == ' ')
-		return (0);
+		return (EXIT_SUCCESS);
 	else if (str[i - 2] == ' ' && str[i - 1] == c && str[i + 1] == ' ')
-		return (0);
-	return (1);
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }
