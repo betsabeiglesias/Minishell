@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
+#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/03 20:05:11 by aolabarr         ###   ########.fr        #
+#    Updated: 2024/11/04 12:30:49 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,8 @@ SRC =	main.c \
 		tokenization_2.c \
 		free.c \
 		parse.c \
-		expansion.c \
-		expansion_prep.c \
+		expansion_1.c \
+		expansion_2.c \
 		aux.c \
 
 SRC_ARITZ =	main_parse.c \

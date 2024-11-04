@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 12:50:07 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 17:43:36 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:37:59 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,19 @@ void	handle_signal_interactive(int signum)
 	}
 }
 
-void	handle_eof_interactive(char *str)
+int handle_eof_interactive(char *str)
 {
 	if (!str)
 	{
 		printf(EXIT);
 		printf(NEW_LINE);
 		handle_error(EOF);
-		exit(EXIT_SUCCESS);
+		exit (EXIT_SUCCESS);
 	}
+	if (*str == '\0')
+	{
+		free(str);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }

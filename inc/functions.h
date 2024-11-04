@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/03 20:16:01 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:38:34 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,20 @@ void	lst_clear_token_content(t_list *lst);
 
 // SIGNALS
 void	setup_signal_handlers(void);
-void	handle_signal_interactive(int signum);
-void	handle_eof_interactive(char *str);
+void    handle_signal_interactive(int signum);
+int    handle_eof_interactive(char *str);
 
-//EXPANSION
-char	*do_expansion(t_mini *shell);
-void	init_varen (t_varenv *var, char *cmd_line, int i);
-void	clean_varen (t_varenv *var);
-int		len_var(char *cmd_line, int i);
-
-//EXPANSION PREP
+//EXPANSION_1
 void	insert_expanded_var (char **cmd_line, t_varenv *var);
 bool	is_expansible(char *cmd_line, int i);
 int		len_var(char *cmd_line, int i);
 void	get_var_env(t_mini *mini, t_varenv *var);
+
+//EXPANSION_2
+char	*do_expansion(t_mini *shell);
+void	init_varen (t_varenv *var, char *cmd_line, int i);
+void	clean_varen (t_varenv *var);
+int		len_var(char *cmd_line, int i);
 
 // ENVIROMENT
 int		init_env(char **envp, t_mini *mini);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/02 17:13:06 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:38:32 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		shell.input = readline(MINISHELL);
-		handle_eof_interactive(shell.input);
+		if(handle_eof_interactive(shell.input))
+			continue ;
 		if (shell.input && *shell.input)
 			add_history(shell.input);
 		cmdline = parse(&shell);
