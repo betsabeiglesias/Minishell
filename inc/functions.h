@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/04 13:38:34 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/04 15:36:28 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int    handle_eof_interactive(char *str);
 void	insert_expanded_var (char **cmd_line, t_varenv *var);
 bool	is_expansible(char *cmd_line, int i);
 int		len_var(char *cmd_line, int i);
+int     valid_char_env(char c);
 void	get_var_env(t_mini *mini, t_varenv *var);
 
 //EXPANSION_2

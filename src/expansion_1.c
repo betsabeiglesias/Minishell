@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_prep.c                                   :+:      :+:    :+:   */
+/*   expansion_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/02 16:49:02 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/04 15:38:57 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,19 @@ int	len_var(char *cmd_line, int i)
 
 	temp = i;
 	len = 0;
-	while (ft_isalnum(cmd_line[temp]))
+	while (!valid_char_env(cmd_line[temp]))
 	{
 		len++;
 		temp++;
 	}
 	return (len);
+}
+
+int	valid_char_env(char c)
+{
+	if(ft_isalnum(c) || c == '_')
+		return(0);
+	return(1);
 }
 
 bool	is_expansible(char *cmd_line, int i)
