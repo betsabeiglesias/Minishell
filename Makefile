@@ -6,7 +6,7 @@
 #    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/04 12:30:49 by binary           ###   ########.fr        #
+#    Updated: 2024/11/05 09:57:53 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,12 +55,22 @@ SRC_ARITZ =	main_parse.c \
 			parse.c \
 
 # para borrar
-SRC_BET =  environment.c \
-			expansion.c expansion_prep.c \
-			#builtin_env.c\
-			#handle_error.c \
-			#builtin_cd.c builtin_pwd.c builtin_echo.c main_prompt.c\
-			#prompt.c 
+SRC_BET = main_bet.c \
+		environment.c \
+		signals.c \
+		handle_error.c \
+		init_data.c \
+		check_syntax_1.c \
+		check_syntax_2.c \
+		check_syntax_3.c \
+		check_utils.c \
+		tokenization_1.c \
+		tokenization_2.c \
+		free.c \
+		parse.c \
+		expansion_1.c \
+		expansion_2.c \
+		aux.c \
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 

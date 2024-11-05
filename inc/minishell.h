@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:29:46 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/03 13:29:50 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/05 09:53:53 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <signal.h>
 # include <stddef.h>
 # include <limits.h>
+# include <termios.h>
 
 //LIBRERIAS PROPIAS
 # include "../lib/libft/src/libft.h"

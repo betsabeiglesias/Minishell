@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/03 20:03:30 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/05 11:33:44 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define ERR_ENVP		    4
 # define ERR_MALLOC		    5
 # define ERR_ARG            6
+# define ERR_ATTR           7
 
 # define ERR_MSG_QUOTE		    "SYNTAX ERROR: open quotes"
 # define ERR_MSG_EXTREM		    "SYNTAX ERROR: nothing after or before metachar"
@@ -28,6 +29,7 @@
 # define ERR_MSG_MALLOC		    "MALLOC FAILED"
 # define ERR_MSG_ARG		    "ningun argumento"
 # define ERR_MSG_CONSECUTIVE    "SYNTAX ERROR: Consecutive metachar"
+# define ERR_MSG_ATTR           "UNABLE TO ACCESS TERMINAL ATTRIBUTES"
 
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
