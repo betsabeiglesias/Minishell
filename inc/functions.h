@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/04 15:36:28 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/08 18:23:32 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ char	*ft_add_char_freed(char *str, char const c);
 
 //FREE
 void	lst_clear_token_content(t_list *lst);
+void	free_shell(t_mini *shell);
+void    handle_free(t_mini shell, int error);
 
 // SIGNALS
 void	setup_signal_handlers(void);

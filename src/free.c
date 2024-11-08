@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:43:08 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/03 13:38:19 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:47:52 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,17 @@ void handle_free(t_mini shell, int error)
 	{
 		//liberar todo shell
 	}
+	return ;
+}
+void	free_shell(t_mini *shell)
+{	
+	//printf("Prueba A: %p\t%p\t%s\n", shell->env, shell->env[0], shell->env[0]);
+	//printf("Prueba B: %ld\n", ft_matsize(shell->env));
+	if (shell->env)
+		ft_free_mat_str(shell->env, ft_matsize(shell->env));
+	if (shell->input)
+		ft_free(shell->input);
+	shell->env = NULL;
+	shell->input = NULL;
 	return ;
 }

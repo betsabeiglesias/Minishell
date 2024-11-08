@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/11/02 17:56:35 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:27:38 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	init_env(char **envp, t_mini *mini)
 	mini->env = ft_calloc((i + 1), sizeof(char *));
 	if (mini->env == NULL)
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+	//liberar env en el punto donde falla
 	return(EXIT_SUCCESS) ;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/04 13:38:32 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:05:55 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,13 @@ int main(int argc, char **argv, char **envp)
 		//printf("%s\n", shell.input);
 		ft_print_lst(cmdline);
 		
-		//FREE
+		//FREES
+		lst_clear_token_content(cmdline);
+		ft_lstclear(&cmdline, &free);
 		ft_free(shell.input);
 	}
 	//liberar shell
+	rl_clear_history();
+	free_shell(&shell);
 	return (EXIT_SUCCESS);
 }
