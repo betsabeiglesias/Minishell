@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/04 15:38:57 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/06 13:45:14 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,24 +63,49 @@ int	valid_char_env(char c)
 	return(1);
 }
 
-bool	is_expansible(char *cmd_line, int i)
+bool	is_expansible(char *input, int i)
 {
 	int		temp;
-	int		s_quote;
-
+	int		j;
+	bool	s_quote;
+	bool	d_quote;
+	
 	temp = i ;
-	s_quote = 0;
-	while (temp >= 0)
+	s_quote = false;
+	d_quote = false;
+	j = 0;
+	while (j < temp)
 	{
-		if (cmd_line[temp] == SINGLE_QUOTE)
-		{
-			s_quote++;
-		}
-		temp--;
+		if (input[j] == SINGLE_QUOTE && s_quote == false)
+			s_quote = true;
+		else if (input[j] == SINGLE_QUOTE && s_quote == true)
+			s_quote = false;
+		else if (input[j] == DOUBLE_QUOTE && d_quote == false)
+			d_quote = true;
+		else if (input[j] == DOUBLE_QUOTE && d_quote == true)
+			d_quote = false;
+		j++;
 	}
-	if (s_quote % 2 == 0)
+	if (d_quote == true && s_quote == true)
+	{
+		while (input[j] != '\0')
+		{
+			if (input[j] == SINGLE_QUOTE)
+				return (false);
+			j++;
+		}
+	}
+	else if (d.quote == false && s.quote == true)
+	{
+		while (input[j] != '\0')
+		{
+			if (input[j] == SINGLE_QUOTE)
+				return (false);
+			j++;
+		}
+	}
+	else
 		return (true);
-	return (false);
 }
 
 void	get_var_env(t_mini *mini, t_varenv *var)
