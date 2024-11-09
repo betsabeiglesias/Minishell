@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/09 18:33:54 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/09 18:45:34 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,26 +77,9 @@ bool	is_expansible(char *input, int i)
 		new_quote_status(&s_quote, &d_quote, j, input);
 		j++;
 	}
-	if (d_quote == true && s_quote == true)
-	{
-		while (input[j] != '\0')
-		{
-			if (input[j] == SINGLE_QUOTE)
-				return (true);
-			j++;
-		}
-	}
-	else if (d_quote == false && s_quote == true)
-	{
-		while (input[j] != '\0')
-		{
-			if (input[j] == SINGLE_QUOTE)
-				return (true);
-			j++;
-		}
-	}
-	else
-		return (true);
+	if (s_quote == true)
+		return (false);
+	return (true);
 }
 
 int	get_var_env(t_mini *shell, t_varenv *var)

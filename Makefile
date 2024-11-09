@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
+#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/09 12:13:33 by aolabarr         ###   ########.fr        #
+#    Updated: 2024/11/09 18:47:45 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,8 @@ SRC_BET = main_bet.c \
 		parse.c \
 		expansion_1.c \
 		expansion_2.c \
+		command_list_1.c \
+		command_list_2.c \
 		aux.c \
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
