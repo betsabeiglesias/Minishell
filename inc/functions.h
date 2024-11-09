@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 18:18:43 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 18:34:23 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
@@ -67,18 +68,18 @@ void    handle_free(t_mini shell, int error);
 // SIGNALS
 void	setup_signal_handlers(void);
 void    handle_signal_interactive(int signum);
-int    handle_eof_interactive(char *str);
+int		handle_eof_interactive(char *str);
 
 //EXPANSION_1
-void	insert_expanded_var (char **cmd_line, t_varenv *var);
+int		insert_expanded_var (char **cmd_line, t_varenv *var);
 bool	is_expansible(char *cmd_line, int i);
 int		len_var(char *cmd_line, int i);
 int     valid_char_env(char c);
-void	get_var_env(t_mini *mini, t_varenv *var);
+int		get_var_env(t_mini *mini, t_varenv *var);
 
 //EXPANSION_2
 char	*do_expansion(t_mini *shell);
-void	init_varen (t_varenv *var, char *cmd_line, int i);
+int		init_varen (t_varenv *var, char *cmd_line, int i);
 void	clean_varen (t_varenv *var);
 int		len_var(char *cmd_line, int i);
 

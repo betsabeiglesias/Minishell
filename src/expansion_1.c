@@ -3,52 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/09 13:04:10 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 18:33:54 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/minishell.h"
 
-void	insert_expanded_var(char **cmd_line, t_varenv *var)
+int	insert_expanded_var(char **input, t_varenv *var)
 {
 	int 	old_len;
 	int		new_len;
 	int		exp_var_len;
 	char	*new_line;
 
-	old_len = ft_strlen(*cmd_line);
-	if(!var->var_expanded)
-		exp_var_len = 0;
-	else 
-		exp_var_len = ft_strlen(var->var_expanded);
+	old_len = ft_strlen(*input);
+	exp_var_len = ft_strlen(var->var_expanded);
 	new_len = old_len - var->len + exp_var_len;
 	new_line = malloc(sizeof(char) * (new_len + 1));
 	if (new_line == NULL)
-		return ;
-	ft_strlcpy(new_line, *cmd_line, var->start);
+		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+	ft_strlcpy(new_line, *input, var->start);
 	if (var->var_expanded != NULL)
 	{
 		ft_strlcat(new_line, var->var_expanded, new_len + 1);
-		ft_strlcat(new_line, (*cmd_line + var->start + var->len), new_len + 1);
+		ft_strlcat(new_line, (*input + var->start + var->len), new_len + 1);
 	}
 	else 
-		ft_strlcat(new_line, (*cmd_line + var->start + var->len + 1), new_len + 1);
+		ft_strlcat(new_line, (*input + var->start + var->len + 1), new_len + 1);
 	clean_varen(var);
-	free(*cmd_line);
-	*cmd_line = new_line;
+	free(*input);
+	*input = new_line;
+	return (EXIT_SUCCESS);
 }	
 
-int	len_var(char *cmd_line, int i)
+int	len_var(char *input, int i)
 {
 	size_t	len;
 	int		temp;
 
 	temp = i;
 	len = 0;
-	while (!valid_char_env(cmd_line[temp]))
+	while (!valid_char_env(input[temp]))
 	{
 		len++;
 		temp++;
@@ -76,14 +74,7 @@ bool	is_expansible(char *input, int i)
 	j = 0;
 	while (j < temp)
 	{
-		if (input[j] == SINGLE_QUOTE && s_quote == false)
-			s_quote = true;
-		else if (input[j] == SINGLE_QUOTE && s_quote == true)
-			s_quote = false;
-		else if (input[j] == DOUBLE_QUOTE && d_quote == false)
-			d_quote = true;
-		else if (input[j] == DOUBLE_QUOTE && d_quote == true)
-			d_quote = false;
+		new_quote_status(&s_quote, &d_quote, j, input);
 		j++;
 	}
 	if (d_quote == true && s_quote == true)
@@ -104,32 +95,35 @@ bool	is_expansible(char *input, int i)
 			j++;
 		}
 	}
-	return (true);
+	else
+		return (true);
 }
 
-void	get_var_env(t_mini *mini, t_varenv *var)
+int	get_var_env(t_mini *shell, t_varenv *var)
 {
 	char	*var_name;
 	char	**env_start;
 
-	env_start = mini->env;
+	env_start = shell->env;
 	var_name = malloc (sizeof(char) * (var->len + 2));
 	if (!var_name)
-		return	;
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	ft_strlcpy(var_name, var->value, var->len + 1);
 	var_name[var->len] = '=';
 	var_name[var->len + 1] = '\0';
-	while (*mini->env != NULL)
+	while (*shell->env != NULL)
 	{
-		if (!ft_strncmp(*mini->env, var_name, var->len))
+		if (!ft_strncmp(*shell->env, var_name, var->len))
 		{
-			var->var_expanded = (*mini->env + 1 + (var->len));
+			var->var_expanded = (*shell->env + 1 + (var->len));
 			free(var_name);
-			mini->env = env_start;
-			return ; 
+			shell->env = env_start;
+			return (EXIT_SUCCESS); 
 		}
-		mini->env++;
+		shell->env++;
 	}
-	mini->env = env_start;
+	shell->env = env_start;
+	var->var_expanded = "";
 	free(var_name);
+	return (EXIT_SUCCESS);
 }
