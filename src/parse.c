@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:20:13 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/03 14:18:19 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 18:21:00 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_list	*parse(t_mini *shell)
 {
 	t_list	*tk_lst;
-	//t_list	*cmd_lst;
+	t_list	*cmd_lst;
 	char	*str;
 	
 	if (syntax_check(shell->input))
@@ -26,9 +26,10 @@ t_list	*parse(t_mini *shell)
 	tk_lst = tokenization(str);
 	if (!tk_lst)
 		return (NULL);
-	//cmd_lst = create_command_list(tk_lst);
-   
-   
+	cmd_lst = create_command_list(tk_lst, shell);
+	
+	ft_print_lst(tk_lst);
+	ft_print_cmd_lst(cmd_lst);
    // aclarar bien el flujo de información
    // que estructuras se necesitan?
    // que se tiene que liberar en cada momento?

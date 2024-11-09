@@ -6,7 +6,7 @@
 #    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/17 15:08:51 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/01 12:20:56 by aolabarr         ###   ########.fr        #
+#    Updated: 2024/11/09 18:00:38 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC =	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
 		ft_putendl_fd.c ft_putnbr_fd.c \
 		ft_strjoin_freed.c ft_mat_size.c ft_free_mat_str.c \
 		ft_free.c ft_free2.c \
+		get_next_line.c \
 
 OBJ_DIR = ./obj
 SRC_DIR = ./src

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 11:58:38 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:37:16 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define ERR_MALLOC		    5
 # define ERR_ARG            6
 # define ERR_ATTR           7
+# define ERR_OPEN           8
 
 # define ERR_MSG_QUOTE		    "SYNTAX ERROR: open quotes"
 # define ERR_MSG_EXTREM		    "SYNTAX ERROR: nothing after or before metachar"
@@ -32,6 +33,7 @@
 # define ERR_MSG_ATTR           "UNABLE TO ACCESS TERMINAL ATTRIBUTES"
 
 # define ACCESS		0
+# define OPEN_ERROR	-1
 
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
@@ -52,5 +54,6 @@
 # define RD_END		        0
 # define WR_END		        1
 # define PATH		        "PATH="
+# define HERE_DOC           "here_doc"
 
 #endif

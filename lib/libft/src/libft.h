@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:08:11 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/01 12:25:03 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:33:23 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "get_next_line.h"
 
 # define MAXINT 2147483647
 # define MININT -2147483648

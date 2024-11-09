@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 12:14:27 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 18:19:48 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(int argc, char **argv, char **envp)
 		}
 		//PRINTS
 		//printf("%s\n", shell.input);
-		ft_print_lst(cmdline);
+		
 		
 		//FREES
 		lst_clear_token_content(cmdline);

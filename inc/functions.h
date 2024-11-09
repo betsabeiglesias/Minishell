@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 13:36:25 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 18:18:43 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 //AUX
 int    ft_print_lst(t_list *list);
+int ft_print_cmd_lst(t_list *cmd_lst);
 
 // CHECK SYNTAX 1
 int		syntax_check(char*str);
@@ -100,6 +101,9 @@ int     get_all_paths(t_mini *shell);
 //COMMAND_LIST_1
 t_exec  *init_cmd_node(void);
 int	handle_redir_in(t_list *tk_lst, t_exec *node, t_mini *shell, char *redir);
+int	is_identical_str(char *str1, char *str2);
+int	read_stdin(t_exec *node, char *delimiter);
+t_list	*create_command_list(t_list *tk_lst, t_mini *shell);
 
 
 //COMMAND_LIST_2

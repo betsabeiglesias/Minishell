@@ -15,3 +15,23 @@ int    ft_print_lst(t_list *list)
     printf("\n\n");
     return (0);
 }
+int ft_print_cmd_lst(t_list *cmd_lst)
+{
+    /*
+    char	**env;
+	char	*cmd;
+	char	**cmd_all;
+	char	*path;
+	char	*filename_in;
+	char	*filename_out;
+	char	*heredoc_content;
+    */
+    printf("\nLISTA DE EXEC: %p\n", cmd_lst);
+    while (cmd_lst != NULL)
+    {
+        printf("EXEC\n");
+        printf("here doc: %s\n",((t_exec *)cmd_lst->content)->heredoc_content);
+        cmd_lst = cmd_lst->next;
+    }
+    return (EXIT_SUCCESS);
+}

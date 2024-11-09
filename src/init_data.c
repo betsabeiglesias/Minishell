@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 13:01:16 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:11:01 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void    init_shell(t_mini *shell)
    shell->oldpwd = true;
    get_all_paths(shell);
    shell->paths = NULL;
+   shell->delimiter = NULL;
    return ;
 }
 

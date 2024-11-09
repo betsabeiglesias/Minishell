@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:30:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 12:02:38 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 18:03:45 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ typedef struct s_exec
 	char	*cmd;
 	char	**cmd_all;
 	char	*path;
-	int		fd_in;
-	int		fd_out;
+	char	*filename_in;
+	char	*filename_out;
+	char	*heredoc_content;
 }				t_exec;
 
 typedef struct	s_mini
@@ -30,6 +31,7 @@ typedef struct	s_mini
    char		**paths;
    bool		oldpwd;
    char		*input;
+   char		*delimiter;
 }				t_mini;
 
 typedef struct s_varenv
