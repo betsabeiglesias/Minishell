@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/06 13:45:13 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/08 14:39:59 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*do_expansion(t_mini *shell)
 	i = 0;
     while((*cmd_line)[i] != '\0')
 	{
-		if ((*cmd_line)[i] == '$' && !is_expansible(*cmd_line, i))
+		if ((*cmd_line)[i] == '$' && is_expansible(*cmd_line, i))
         {
             i++;
             init_varen(&var, *cmd_line, i);
