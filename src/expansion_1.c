@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/09 11:15:24 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/09 13:04:10 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,7 @@ bool	is_expansible(char *input, int i)
 			j++;
 		}
 	}
-	else
-		return (true);
+	return (true);
 }
 
 void	get_var_env(t_mini *mini, t_varenv *var)

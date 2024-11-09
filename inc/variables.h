@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:30:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/03 14:06:51 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:02:38 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_exec
 typedef struct	s_mini
 {
    char		**env;
+   char		**all_paths;
+   char		**paths;
    bool		oldpwd;
    char		*input;
 }				t_mini;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
+#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/05 09:57:53 by binary           ###   ########.fr        #
+#    Updated: 2024/11/09 12:13:33 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ SRC =	main.c \
 		parse.c \
 		expansion_1.c \
 		expansion_2.c \
+		command_list_1.c \
+		command_list_2.c \
 		aux.c \
 
 SRC_ARITZ =	main_parse.c \

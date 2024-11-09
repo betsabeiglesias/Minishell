@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/05 11:33:44 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/09 11:58:38 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,26 @@
 # define ERR_MSG_CONSECUTIVE    "SYNTAX ERROR: Consecutive metachar"
 # define ERR_MSG_ATTR           "UNABLE TO ACCESS TERMINAL ATTRIBUTES"
 
+# define ACCESS		0
+
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
 # define SPACE				' '
 # define PIPE				'|'
+# define DOTS	            58
+# define SLASH		        "/"
+# define REDIR_OUT_S		">"
+# define REDIR_OUT_D		">>"
+# define REDIR_IN_S		    "<"
+# define REDIR_IN_D		    "<<"
 # define NEW_LINE            "\n"
-# define NO_NULL			"no_null"
 # define EMPTY              ""
 # define EXIT               "exit"
 # define MINISHELL          "minishell> "
+
+# define OPEN_MODE          0644
+# define RD_END		        0
+# define WR_END		        1
+# define PATH		        "PATH="
 
 #endif

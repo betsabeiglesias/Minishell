@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/08 18:23:32 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 13:36:25 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,17 @@ void	builtin_env(char **cmd, t_mini *mini);
 
 // INIT_DATA
 void    init_shell(t_mini *shell);
+int     get_all_paths(t_mini *shell);
+
+//COMMAND_LIST_1
+t_exec  *init_cmd_node(void);
+int	handle_redir_in(t_list *tk_lst, t_exec *node, t_mini *shell, char *redir);
+
+
+//COMMAND_LIST_2
+int	is_str_pipe(char *str);
+int	is_str_redir(char *str, char *redir);
+char	*get_path(char **all_paths, char *cmd);
+
 
 #endif
