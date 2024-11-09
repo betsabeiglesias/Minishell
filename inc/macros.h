@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/11/09 18:34:50 by beiglesi         ###   ########.fr       */
+/*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/11/09 18:53:08 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,8 @@
 # define WR_END		        1
 # define PATH		        "PATH="
 # define HERE_DOC           "here_doc"
+
+
+/*este archivo he cambiado*/
 
 #endif
