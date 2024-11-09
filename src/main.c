@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 18:19:48 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 19:16:16 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int main(int argc, char **argv, char **envp)
 			add_history(shell.input);
 		cmdline = parse(&shell);
 		// analizar si cmdline = NULL
-		if (!ft_strncmp(shell.input, EXIT, ft_strlen(shell.input)))
+		if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
 		{
 			free(shell.input);
 			exit(EXIT_SUCCESS);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_list_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 18:30:10 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 19:13:11 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_list	*create_command_list(t_list *tk_lst, t_mini *shell)
 			is_redir = handle_redir_in(tk_lst, node, shell, REDIR_IN_S);
 		else if (is_str_redir((char *)(tk_lst->content), REDIR_IN_D))
 			is_redir = handle_redir_in(tk_lst, node, shell, REDIR_IN_D);
+
 		/*
 		if (is_str_redir((char *)(tk_lst->content), REDIR_OUT_S))
 			is_redir = handle_redir_out(tk_lst, &node, shell, REDIR_OUT_S);
@@ -39,6 +40,7 @@ t_list	*create_command_list(t_list *tk_lst, t_mini *shell)
 		else
 			handle_cmd(tk_lst, &node);
 		*/
+		printf("here doc: %s\n", node->heredoc_content);
 		if (is_redir)
 			tk_lst = tk_lst->next;
 		tk_lst = tk_lst->next;

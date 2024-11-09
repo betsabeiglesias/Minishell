@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 18:53:08 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/09 19:07:42 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define ERR_MALLOC		    5
 # define ERR_ARG            6
 # define ERR_ATTR           7
+# define ERR_OPEN			8
+
 
 # define ERR_MSG_QUOTE		    "SYNTAX ERROR: open quotes"
 # define ERR_MSG_EXTREM		    "SYNTAX ERROR: nothing after or before metachar"
@@ -46,6 +48,9 @@
 # define EMPTY              ""
 # define EXIT               "exit"
 # define MINISHELL          "minishell> "
+
+# define ACCESS 			0
+# define OPEN_ERROR			-1
 
 # define OPEN_MODE          0644
 # define RD_END		        0
