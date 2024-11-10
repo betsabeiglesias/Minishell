@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 19:16:16 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:17:53 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int main(int argc, char **argv, char **envp)
 			continue ;
 		if (shell.input && *shell.input)
 			add_history(shell.input);
+		
 		cmdline = parse(&shell);
 		// analizar si cmdline = NULL
 		if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
@@ -43,7 +44,6 @@ int main(int argc, char **argv, char **envp)
 		}
 		//PRINTS
 		//printf("%s\n", shell.input);
-		
 		
 		//FREES
 		lst_clear_token_content(cmdline);

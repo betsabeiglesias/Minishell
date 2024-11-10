@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 11:34:49 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/03 20:21:51 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:05:51 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ int do_check(char *str, int i)
 	if (check_redir_separate(str, i, '>'))
 		return (EXIT_FAILURE);
 	if (check_redir_separate(str, i, '<'))
-		return (EXIT_FAILURE);
+		return (EXIT_FAILURE);	
 	return (EXIT_SUCCESS);
 }
 
 int	check_pipe_separate(char *str, int i)
 {
-	if (str[i] == '|')
+	if (str[i] == PIPE)
 	{
-		if (str[i - 1] == ' ' && str[i + 1] == ' ')
+		if (str[i - 1] == SPACE && str[i + 1] == SPACE)
 			return (EXIT_SUCCESS);
 		else
 			return (EXIT_FAILURE);
@@ -61,19 +61,20 @@ int	check_redir_separate(char *str, int i, char c)
 {
 	if (str[i] == c && i == 0)
 	{
-		if (str[i + 1] == ' ' || (str[i + 1] == c && str[i + 2] == ' '))
+		if (str[i + 1] == SPACE || (str[i + 1] == c && str[i + 2] == SPACE))
 			return (EXIT_SUCCESS);
 		else
 			return (EXIT_FAILURE);
 	}
 	else if (str[i] == c && i == 1)
 	{
-		if (str[i - 1] == ' ' && str[i + 1] == ' ')
+		if (str[i - 1] == SPACE && str[i + 1] == SPACE)
 			return (EXIT_SUCCESS);
-		else if (str[i - 1] == ' ' && str[i + 1] == c && str[i + 2] == ' ')
+		else if (str[i - 1] == SPACE && str[i + 1] == c && str[i + 2] == SPACE)
 			return (EXIT_SUCCESS);
-		else
-			return (EXIT_FAILURE);
+		else if (str[i - 1] == c && str[i + 1] == SPACE)
+			return (EXIT_SUCCESS);
+		return (EXIT_FAILURE);
 	}
 	else if (str[i] == c)
 	{
@@ -86,11 +87,11 @@ int	check_redir_separate(char *str, int i, char c)
 }
 int	do_redir_check(char *str,int i, char c)
 {
-	if (str[i - 1] == ' ' && str[i + 1] == ' ')
+	if (str[i - 1] == SPACE && str[i + 1] == SPACE)
 		return (EXIT_SUCCESS);
-	else if (str[i - 1] == ' ' && str[i + 1] == c && str[i + 2] == ' ')
+	else if (str[i - 1] == SPACE && str[i + 1] == c && str[i + 2] == SPACE)
 		return (EXIT_SUCCESS);
-	else if (str[i - 2] == ' ' && str[i - 1] == c && str[i + 1] == ' ')
+	else if (str[i - 2] == SPACE && str[i - 1] == c && str[i + 1] == SPACE)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }

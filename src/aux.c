@@ -12,7 +12,7 @@ int    ft_print_lst(t_list *list)
         printf("%s\n", (char *)list->content);
         list = list->next;
     }
-    printf("\n\n");
+    printf("\n");
     return (0);
 }
 int ft_print_cmd_lst(t_list *cmd_lst)
@@ -34,4 +34,17 @@ int ft_print_cmd_lst(t_list *cmd_lst)
         cmd_lst = cmd_lst->next;
     }
     return (EXIT_SUCCESS);
+}
+
+void print_cmd_all(char **cmd_all)
+{
+    size_t i;
+    
+    i = 0;
+    printf("CMD_all: ");
+    while (i < ft_matsize(cmd_all))
+    {
+        printf("%s ", cmd_all[i]);
+    }
+    printf("\n");
 }

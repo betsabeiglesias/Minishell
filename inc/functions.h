@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 19:39:02 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:17:11 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 # define FUNCTIONS_H
 
 //AUX
-int    ft_print_lst(t_list *list);
-int ft_print_cmd_lst(t_list *cmd_lst);
+int     ft_print_lst(t_list *list);
+int     ft_print_cmd_lst(t_list *cmd_lst);
+void    print_cmd_all(char **cmd_all);
 
 // CHECK SYNTAX 1
 int		syntax_check(char*str);
@@ -44,8 +45,8 @@ int		check_redir_separate(char *str, int i, char c);
 int		do_redir_check(char *str,int i, char c);
 
 //SYNTAX CHECK 3
-int check_metachar_consecutive(char *str);
-int do_check_consecutive(char *str, int i);
+int     check_metachar_consecutive(char *str);
+int     do_check_consecutive(char *str, int i);
 
 //TOKENIZATION_1
 t_list	*tokenization(char *str);
@@ -96,20 +97,26 @@ int		builtin_cd(char **cmd);
 void	builtin_env(char **cmd, t_mini *mini);
 
 // INIT_DATA
-void    init_shell(t_mini *shell);
+int     init_shell(t_mini *shell);
 int     get_all_paths(t_mini *shell);
+t_exec  *init_cmd_node(void);
 
 //COMMAND_LIST_1
-t_exec  *init_cmd_node(void);
+
 int     handle_redir(t_list *tk_lst, t_exec *node, char *redir);
-int     is_identical_str(char *str1, char *str2);
 int     read_stdin(t_exec *node, char *delimiter);
 t_list	*create_command_list(t_list *tk_lst, t_mini *shell);
 
 
 //COMMAND_LIST_2
+char	*get_path(char **all_paths, char *cmd);
+int     handle_commands(t_list *tk_lst, t_exec *node);
+char    **add_token_to_cmd(char **cmd_all, char *str);
+
+
+//COMMAND_LIST_AUX
 int     is_str_pipe(char *str);
 int     is_str_redir(char *str, char *redir);
-char	*get_path(char **all_paths, char *cmd);
+int     is_identical_str(char *str1, char *str2);
 
 #endif

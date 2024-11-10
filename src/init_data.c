@@ -6,21 +6,22 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 15:11:01 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:36:57 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void    init_shell(t_mini *shell)
+int    init_shell(t_mini *shell)
 {
-   shell->env = NULL;
-   shell->input = NULL;
-   shell->oldpwd = true;
-   get_all_paths(shell);
-   shell->paths = NULL;
-   shell->delimiter = NULL;
-   return ;
+	shell->env = NULL;
+	shell->input = NULL;
+	shell->oldpwd = true;
+	if (get_all_paths(shell))
+		return(EXIT_FAILURE);
+	shell->paths = NULL;
+	shell->delimiter = NULL;
+	return (EXIT_SUCCESS);
 }
 
 int	get_all_paths(t_mini *shell)
@@ -38,10 +39,29 @@ int	get_all_paths(t_mini *shell)
 		if (!ft_strncmp(shell->env[i], PATH, ft_strlen(PATH)))
 		{
 			paths = ft_split(shell->env[i] + ft_strlen(PATH), DOTS);
+			if (!paths)
+				return(handle_error(ERR_MALLOC), EXIT_FAILURE);
 			get = 1;
 		}
 		i++;
 	}
 	shell->all_paths = paths;
 	return (EXIT_SUCCESS);
+}
+
+t_exec *init_cmd_node(void)
+{
+	t_exec *node;
+	
+	node = malloc(sizeof(t_exec));
+	if (!node)
+		return (handle_error(ERR_MALLOC), NULL);
+	node->env = NULL;
+	node->cmd = NULL;
+	node->cmd_all = NULL;
+	node->path = NULL;
+	node->filename_in = NULL;
+	node->filename_out = NULL;
+	node->heredoc_content = NULL;
+	return (node);
 }
