@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/10 19:17:11 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/13 11:59:04 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,13 @@ void	free_mini(t_mini *mini);
 void	builtin_echo(char **cmd);
 void	builtin_pwd(void);
 int		builtin_cd(char **cmd);
-void	builtin_env(char **cmd, t_mini *mini);
+void	builtin_env(t_mini *shell);
+
+// BUILTIN_EXPORT
+int		builtin_export(t_mini *shell, t_list *tk_lst);
+int		export_args(char *str, t_mini *shell);
+void	export_no_args(t_mini *shell);
+void	print_export(char *str);
 
 // INIT_DATA
 int     init_shell(t_mini *shell);

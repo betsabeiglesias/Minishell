@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/10 17:17:53 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:34:39 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int main(int argc, char **argv, char **envp)
 {
 	t_mini	shell;
 	t_list	*cmdline;
+	t_exec	node;
 
 	if (argc != 1)
 		return(handle_error(ERR_ARG), EXIT_FAILURE);
@@ -36,12 +37,15 @@ int main(int argc, char **argv, char **envp)
 			add_history(shell.input);
 		
 		cmdline = parse(&shell);
+		print("A\n");
+		do_export(&shell, &node);
 		// analizar si cmdline = NULL
 		if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
 		{
 			free(shell.input);
 			exit(EXIT_SUCCESS);
 		}
+		
 		//PRINTS
 		//printf("%s\n", shell.input);
 		

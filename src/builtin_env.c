@@ -3,34 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:53:50 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/23 11:14:28 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:25:04 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/minishell.h"
 
-void	builtin_env(char **cmd, t_mini *mini)
+void	builtin_env(t_mini *shell)
 {
-	if(ft_strncmp(cmd[1], "env", ft_strlen("env")))
+	int	i;
+
+	i = 0;
+	while(shell->env[i])
 	{
-		while(mini->env[i])
-		{
-			ft_putstr_fd(mini->env[i], STDOUT_FILENO);
-			i++;
-		}
+		ft_putstr_fd(shell->env[i], STDOUT_FILENO);
+		ft_putstr_fd("\n", STDOUT_FILENO);
+		i++;
 	}
-
-}
-
-int	main(int argc, char **argv, t_mini *mini)
-{
-	if(argc < 2)
-		printf("Incorrect number of arguments\n");
-	else
-	mini->env = get_my_env(envp, mini);
-	builtin_env(argv[1], mini);
-	return (0);
 }

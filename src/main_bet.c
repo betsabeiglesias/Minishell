@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bet.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 18:03:35 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:52:37 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int main(int argc, char **argv, char **envp)
 {
 	t_mini	shell;
 	t_list	*cmdline;
+	t_exec	node;
+
 
 	if (argc != 1)
 		return(handle_error(ERR_ARG), EXIT_FAILURE);
@@ -43,8 +45,8 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		shell.input = readline(MINISHELL);
-		// if(handle_eof_interactive(shell.input))
-		// 	continue ;
+		if(handle_eof_interactive(shell.input))
+			continue ;
 		if (shell.input && *shell.input)
 			add_history(shell.input);
 		cmdline = parse(&shell);
@@ -54,13 +56,19 @@ int main(int argc, char **argv, char **envp)
 			free(shell.input);
 			exit(EXIT_SUCCESS);
 		}
+		builtin_export(&shell, &node);
 		//PRINTS
 		//printf("%s\n", shell.input);
-		ft_print_lst(cmdline);
+		//ft_print_lst(cmdline);
 		
 		//FREE
+		//FREES
+		lst_clear_token_content(cmdline);
+		ft_lstclear(&cmdline, &free);
 		ft_free(shell.input);
 	}
 	//liberar shell
+	rl_clear_history();
+	free_shell(&shell);
 	return (EXIT_SUCCESS);
 }
