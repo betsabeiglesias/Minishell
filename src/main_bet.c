@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/13 12:52:37 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/15 16:49:59 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv, char **envp)
 {
 	t_mini	shell;
 	t_list	*cmdline;
-	t_exec	node;
+	//t_list	node;
 
 
 	if (argc != 1)
@@ -56,7 +56,10 @@ int main(int argc, char **argv, char **envp)
 			free(shell.input);
 			exit(EXIT_SUCCESS);
 		}
-		builtin_export(&shell, &node);
+		builtin_export(&shell, cmdline);
+		builtin_env(&shell);
+		builtin_unset("TEST", &shell);
+		builtin_env(&shell);
 		//PRINTS
 		//printf("%s\n", shell.input);
 		//ft_print_lst(cmdline);

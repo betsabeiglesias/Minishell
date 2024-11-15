@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:56:51 by binary            #+#    #+#             */
-/*   Updated: 2024/11/13 11:59:03 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/15 16:48:50 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ int	builtin_export(t_mini *shell, t_list *tk_lst)
 {
 	int args;
 	args = 1;
-	if(!((char *)(tk_lst->content))[args])
+	if(((char *)(tk_lst->content))[args])
 	{
 		printf("Aquí añadir variable\n");
 		// str es la variable nueva, modificar cuando esté full_cmd
-		if(export_args(str, shell))
+		if(export_args(tk_lst->content, shell))
 			return(EXIT_FAILURE);
 		return(EXIT_SUCCESS);
 	}
-	export_no_args(shell);
+	//export_no_args(shell);
 	return(EXIT_SUCCESS);
 
 }
@@ -34,6 +34,7 @@ int	export_args(char *str, t_mini *shell)
 	size_t	i;
 	char	**new_env;
 	
+	printf("entra %s\n", str);
 	len = ft_matsize(shell->env);
 	i = 0;
 	new_env = malloc(sizeof(char *) * (len + 2));
@@ -46,10 +47,10 @@ int	export_args(char *str, t_mini *shell)
 			return(handle_error(ERR_MALLOC), EXIT_FAILURE);
 		i++;
 	}
-	new_env[i + 1] = ft_strdup(str);
+	new_env[i] = ft_strdup(str);
 	if(!new_env[i])
 		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
-	new_env[i + 2] = '\0';
+	new_env[i + 1] = '\0';
 	ft_free_mat_str(shell->env, len);
 	shell->env = new_env;
 	return(EXIT_SUCCESS);
