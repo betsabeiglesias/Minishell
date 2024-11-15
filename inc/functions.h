@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/15 16:27:43 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/15 17:15:45 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	builtin_pwd(void);
 int		builtin_cd(char **cmd);
 void	builtin_env(t_mini *shell);
 int     builtin_unset(char *var_name, t_mini *shell);
+int     new_reduced_size_env(char *var_name, t_mini *shell);
 
 // BUILTIN_EXPORT
 int		builtin_export(t_mini *shell, t_list *tk_lst);
