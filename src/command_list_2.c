@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:18:03 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 18:57:12 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/16 19:41:43 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int handle_commands(t_list *tk_lst, t_exec *node)
 {
-	printf("ENTRA AQUI?????????\n");
 	if (!node->cmd_all)
 	{
 		node->cmd_all = malloc(sizeof(char *));
@@ -47,8 +46,7 @@ char **add_token_to_cmd(char **cmd_all, char *str)
 		dst[i] = cmd_all[i];
 		i++;
 	}
-	print_cmd_all(dst);
-	printf("Prueba: %ld\t%s\t%p\t%s\t%ld\n", i, str, &dst, dst[10], ft_matsize(dst));
+	//printf("Prueba: %ld\t%s\t%p\t%s\t%ld\n", i, str, &dst, dst[10], ft_matsize(dst));
 	dst[i] = str;
 	dst[i + 1] = NULL;
 	//print_cmd_all(dst);

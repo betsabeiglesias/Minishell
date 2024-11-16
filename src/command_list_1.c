@@ -6,25 +6,22 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 18:55:18 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:19:56 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-t_list	*create_command_list(t_list *tk_lst, t_mini *shell)
+t_list	*create_command_list(t_list *tk_lst)
 {
-	t_list	*cmd_lst;
+	t_list	*exe_lst;
 	t_exec	*node;
 	int		is_redir;
 
-	(void)shell; // guardar los nodos en la struct shell
-
-	cmd_lst = NULL;
+	exe_lst = NULL;
 	node = NULL;
 	while(tk_lst != NULL)
 	{
-		//printf("\n\n\n\n\n\nVAMOS...\n");
 		is_redir = 0;
 		if (!node)
 			node = init_cmd_node();
@@ -36,13 +33,13 @@ t_list	*create_command_list(t_list *tk_lst, t_mini *shell)
 			is_redir = handle_redir(tk_lst, node, REDIR_OUT_S);
 		else if (is_str_redir((char *)(tk_lst->content), REDIR_OUT_D))
 			is_redir = handle_redir(tk_lst, node, REDIR_OUT_D);
-		/*
 		else if (is_str_pipe((char *)(tk_lst->content)))
 		{
-		handle_pipe(cmd_lst, &node, shell);
-			//liberar node;
+			//node->path = get_path(shell->)
+			if (save_exe_node(&exe_lst, node))
+				return (NULL);
+			node = NULL;
 		}
-		*/
 		else
 		{
 			if (handle_commands(tk_lst, node))
@@ -52,14 +49,13 @@ t_list	*create_command_list(t_list *tk_lst, t_mini *shell)
 			tk_lst = tk_lst->next;
 		tk_lst = tk_lst->next;
 	}
-	//PRINTS
-	printf("\nINFO de EXEC\n");
-	printf("filename IN: %s\n", node->filename_in);
-	printf("filename OUT: %s\n", node->filename_out);
-	printf("here doc: %s\n", node->heredoc_content);
-	print_cmd_all(node->cmd_all);
-
-	return (cmd_lst);
+	if (node)
+	{
+		if (save_exe_node(&exe_lst, node))
+				return (NULL);
+			node = NULL;
+	}
+	return (exe_lst);
 }
 
 int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
@@ -79,7 +75,7 @@ int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 		node->filename_out = (char *)tk_lst->next->content;
 	else if (!ft_strncmp(redir, REDIR_OUT_D, ft_strlen(redir)))
 		node->filename_out = (char *)tk_lst->next->content;
-	return (EXIT_SUCCESS);
+	return (1);
 }
 
 int	read_stdin(t_exec *node, char *delimiter)
@@ -107,4 +103,25 @@ int	read_stdin(t_exec *node, char *delimiter)
 	return (EXIT_SUCCESS);
 }
 
+int	save_exe_node(t_list **exe_lst, t_exec *exe_node)
+{
+	t_list * node;	
+
+	node = ft_lstnew((void *)exe_node);
+	if(!node)
+		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+	ft_lstadd_back(exe_lst, node);
+	return (EXIT_SUCCESS);
+}
+/*
+int	handle_last_save_node(t_exec **node)
+{
+	if (!*node)
+		return (NULL);
+	if (save_exe_node(&exe_lst, *node))
+		return (EXIT_FAILURE);
+	*node = NULL;
+	return (NULL);
+}
+*/
 

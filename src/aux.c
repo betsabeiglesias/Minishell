@@ -30,7 +30,11 @@ int ft_print_cmd_lst(t_list *cmd_lst)
     while (cmd_lst != NULL)
     {
         printf("EXEC\n");
+        printf("path: %s\n",((t_exec *)cmd_lst->content)->path);
+        printf("file IN: %s\n",((t_exec *)cmd_lst->content)->filename_in);
+        printf("file OUT: %s\n",((t_exec *)cmd_lst->content)->filename_out);
         printf("here doc: %s\n",((t_exec *)cmd_lst->content)->heredoc_content);
+        print_cmd_all(((t_exec *)cmd_lst->content)->cmd_all);
         cmd_lst = cmd_lst->next;
     }
     return (EXIT_SUCCESS);

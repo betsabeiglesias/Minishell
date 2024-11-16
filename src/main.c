@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 18:54:33 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:16:44 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		shell.input = readline(MINISHELL);
+		if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
+		{
+			ft_free(shell.input);
+			exit(EXIT_SUCCESS);
+		}
 		if(handle_eof_interactive(shell.input))
 			continue ;
 		if (shell.input && *shell.input)
@@ -37,11 +42,6 @@ int main(int argc, char **argv, char **envp)
 		
 		cmdline = parse(&shell);
 		// analizar si cmdline = NULL
-		if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
-		{
-			free(shell.input);
-			exit(EXIT_SUCCESS);
-		}
 		
 		//PRINTS
 		//printf("%s\n", shell.input);
