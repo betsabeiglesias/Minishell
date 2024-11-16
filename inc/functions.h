@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 21:29:49 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/16 21:32:25 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ t_exec  *init_cmd_node(void);
 
 int     handle_redir(t_list *tk_lst, t_exec *node, char *redir);
 int     read_stdin(t_exec *node, char *delimiter);
-t_list	*create_command_list(t_list *tk_lst);
+t_list	*create_execution_list(t_list *tk_lst, t_mini *shell);
 int     save_exe_node(t_list **exe_lst, t_exec *exe_node);
 
 
@@ -127,6 +127,7 @@ int     save_exe_node(t_list **exe_lst, t_exec *exe_node);
 char	*get_path(char **all_paths, char *cmd);
 int     handle_commands(t_list *tk_lst, t_exec *node);
 char    **add_token_to_cmd(char **cmd_all, char *str);
+int     handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell);
 
 
 //COMMAND_LIST_AUX

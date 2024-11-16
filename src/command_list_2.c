@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:18:03 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 19:41:43 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:46:36 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,10 @@ char **add_token_to_cmd(char **cmd_all, char *str)
 		dst[i] = cmd_all[i];
 		i++;
 	}
-	//printf("Prueba: %ld\t%s\t%p\t%s\t%ld\n", i, str, &dst, dst[10], ft_matsize(dst));
 	dst[i] = str;
 	dst[i + 1] = NULL;
-	//print_cmd_all(dst);
-	/*
-	ft_free_mat_str(cmd_all, ft_matsize(cmd_all));
-	*/
-	(void)size;
-	(void)i;
-	(void)str;
 	return (dst);
 }
-
-
 
 char	*get_path(char **all_paths, char *cmd)
 {
@@ -75,12 +65,16 @@ char	*get_path(char **all_paths, char *cmd)
 		pathname = ft_strjoin_freed(pathname, all_paths[i]);
 		pathname = ft_strjoin_freed(pathname, SLASH);
 		pathname = ft_strjoin_freed(pathname, cmd);
+		if (!pathname)
+			return (handle_error(ERR_MALLOC), NULL);
 		if (access(pathname, X_OK) == ACCESS)
 			break ;
 		ft_free(pathname);
 		pathname = NULL;
 		i++;
 	}
+	if (!pathname)
+		return (handle_error(ERR_ACCESS), NULL);
 	return (pathname);
 }
 

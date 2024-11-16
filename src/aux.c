@@ -26,7 +26,7 @@ int ft_print_cmd_lst(t_list *cmd_lst)
 	char	*filename_out;
 	char	*heredoc_content;
     */
-    printf("\nLISTA DE EXEC: %p\n", cmd_lst);
+    printf("\nLISTA DE EXEC\n");
     while (cmd_lst != NULL)
     {
         printf("EXEC\n");

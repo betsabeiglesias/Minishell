@@ -6,13 +6,13 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 20:19:56 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/16 21:25:05 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-t_list	*create_command_list(t_list *tk_lst)
+t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 {
 	t_list	*exe_lst;
 	t_exec	*node;
@@ -33,28 +33,24 @@ t_list	*create_command_list(t_list *tk_lst)
 			is_redir = handle_redir(tk_lst, node, REDIR_OUT_S);
 		else if (is_str_redir((char *)(tk_lst->content), REDIR_OUT_D))
 			is_redir = handle_redir(tk_lst, node, REDIR_OUT_D);
-		else if (is_str_pipe((char *)(tk_lst->content)))
+		if (is_redir == 0 && is_str_pipe((char *)(tk_lst->content)))
 		{
-			//node->path = get_path(shell->)
+			node->path = get_path(shell->all_paths, node->cmd_all[0]);
+			if (!node->path)
+				return (NULL);
 			if (save_exe_node(&exe_lst, node))
 				return (NULL);
 			node = NULL;
 		}
-		else
-		{
+		else if (is_redir == 0)
 			if (handle_commands(tk_lst, node))
 				return(NULL);
-		}
 		if (is_redir)
 			tk_lst = tk_lst->next;
 		tk_lst = tk_lst->next;
 	}
-	if (node)
-	{
-		if (save_exe_node(&exe_lst, node))
-				return (NULL);
-			node = NULL;
-	}
+	if (handle_last_save_node(&exe_lst, &node, shell))
+		return (NULL);
 	return (exe_lst);
 }
 
@@ -113,15 +109,17 @@ int	save_exe_node(t_list **exe_lst, t_exec *exe_node)
 	ft_lstadd_back(exe_lst, node);
 	return (EXIT_SUCCESS);
 }
-/*
-int	handle_last_save_node(t_exec **node)
+
+int	handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell)
 {
 	if (!*node)
-		return (NULL);
-	if (save_exe_node(&exe_lst, *node))
+		return (EXIT_FAILURE);
+	(*node)->path= get_path(shell->all_paths, (*node)->cmd_all[0]);
+	if (!(*node)->path)
+		return (EXIT_FAILURE);
+	if (save_exe_node(exe_lst, *node))
 		return (EXIT_FAILURE);
 	*node = NULL;
-	return (NULL);
+	return (EXIT_SUCCESS);
 }
-*/
 

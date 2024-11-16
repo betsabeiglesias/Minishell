@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:20:13 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 19:40:58 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/16 21:00:54 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*parse(t_mini *shell)
 	tk_lst = tokenization(str);
 	if (!tk_lst)
 		return (NULL);
-	exe_lst = create_command_list(tk_lst);
+	exe_lst = create_execution_list(tk_lst, shell);
 	ft_print_lst(tk_lst);
 	ft_print_cmd_lst(exe_lst);
    // aclarar bien el flujo de información
