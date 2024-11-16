@@ -6,18 +6,18 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:53:50 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/16 12:20:18 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/16 13:38:46 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/minishell.h"
+#include "../inc/minishell.h"
 
 void	builtin_env(t_mini *shell)
 {
 	int	i;
 
 	i = 0;
-	while(shell->env[i])
+	while (shell->env[i])
 	{
 		ft_putstr_fd(shell->env[i], STDOUT_FILENO);
 		ft_putstr_fd("\n", STDOUT_FILENO);
@@ -25,9 +25,9 @@ void	builtin_env(t_mini *shell)
 	}
 }
 
-void builtin_exit(char **cmd_all)
+void	builtin_exit(char **cmd_all)
 {
-	if(!ft_strncmp(cmd_all[0], "exit", ft_strlen(cmd_all[0])))
+	if (!ft_strncmp(cmd_all[0], "exit", ft_strlen(cmd_all[0])))
 		exit(EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 12:12:38 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/16 14:50:40 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define ERR_ARG            6
 # define ERR_ATTR           7
 # define ERR_OPEN			8
-
+# define ERR_ACCESS			9
 
 # define ERR_MSG_QUOTE		    "SYNTAX ERROR: open quotes"
 # define ERR_MSG_EXTREM		    "SYNTAX ERROR: nothing after or before metachar"
@@ -34,6 +34,7 @@
 # define ERR_MSG_ARG		    "ningun argumento"
 # define ERR_MSG_ATTR           "UNABLE TO ACCESS TERMINAL ATTRIBUTES"
 # define ERR_MSG_OPEN           "OPEN ERROR"
+# define ERR_MSG_ACCESS			"FAILED TO ACCESS DIRECTORY"
 
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
