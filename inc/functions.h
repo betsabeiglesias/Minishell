@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/15 17:15:45 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/16 12:12:27 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,16 @@ int		get_my_env(char **envp, t_mini *mini);
 void	free_env(t_mini *mini);
 void	free_mini(t_mini *mini);
 
-// BUILT INS (en archivos separados)
-void	builtin_echo(char **cmd);
+// BUILT_ENV_EXIT_ECHO (en archivos separados)
+void	builtin_echo(char **cmd_all);
+void	builtin_exit(char **cmd_all);
+void	builtin_env(t_mini *shell);
+
 void	builtin_pwd(void);
 int		builtin_cd(char **cmd);
-void	builtin_env(t_mini *shell);
+int		execute_builtin(char **full_cmd);
+
+// BUILTIN_UNSET
 int     builtin_unset(char *var_name, t_mini *shell);
 int     new_reduced_size_env(char *var_name, t_mini *shell);
 
