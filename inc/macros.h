@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/10 18:07:03 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/16 12:12:38 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,15 @@
 
 # define REDIR_SINGLE       0
 # define REDIR_DOUBLE       1
+/*
+# define ECHO				"echo"
+*/
+# define CD					"cd"
+# define PWD				"pwd"
+# define EXPORT				"export"
+# define UNSET				"unset"
+# define ENV				"env"
+# define EXIT				"exit"
+
 
 #endif

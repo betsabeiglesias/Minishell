@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/23 11:02:24 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/16 12:12:59 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,10 @@ int	builtin_cd(char **cmd)
 	}
 	return (0);
 }
+
+/*int	execute_builtin(t_exec *node)
+{
+	if(node->cmd_all[0] == ECHO)
+		builtin_echo()
+
+}*/
