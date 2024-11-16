@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/10/13 12:36:24 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/16 13:37:42 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,41 @@
 
 #include "../inc/minishell.h"
 
-void	builtin_pwd(void)
+int	builtin_pwd(void)
 {
-	char	buff[PATH_MAX];
+	char	*currentwd;
 
-	if (getcwd(buff, sizeof(buff)))
+	currentwd = getcwd(NULL, 0);
+	if (currentwd == NULL)
 	{
-		ft_putstr_fd(buff, STDOUT_FILENO);
-		ft_putchar_fd('\n', STDOUT_FILENO);
+		return (handle_error(ERR_ACCESS), EXIT_FAILURE);
 	}
 	else
-		ft_putstr_fd("access error", STDOUT_FILENO);
+	{
+		ft_putstr_fd(currentwd, STDOUT_FILENO);
+		ft_putchar_fd('\n', STDOUT_FILENO);
+		free(currentwd);
+	}
+	return (EXIT_SUCCESS);
 }
 
-// int main()
-// {
-// 	builtin_pwd();
-// 	return(0);
-// }
+int	execute_builtin(t_exec *node, t_mini *shell)
+{
+	int	len;
+
+	len = ft_strlen(node->cmd_all[0]);
+	if (!ft_strncmp(node->cmd_all[0], "echo", len))
+		return (builtin_echo(node->cmd_all));
+	if (!ft_strncmp(node->cmd_all[0], CD, len))
+		return (builtin_cd(node->cmd_all));
+	if (!ft_strncmp(node->cmd_all[0], PWD, len))
+		return (builtin_env(shell));
+	if (!ft_strncmp(node->cmd_all[0], EXPORT, len))
+		return (builtin_export(shell, /*VARIABLE*/));
+	if (!ft_strncmp(node->cmd_all[0], UNSET, len))
+		return (builtin_unset(shell, /*VARIABLE*/));
+	if (!ft_strncmp(node->cmd_all[0], ENV, len))
+		return (builtin_env(shell));
+	if (!ft_strncmp(node->cmd_all[0], EXIT, len))
+		return (builtin_exit(node->cmd_all));
+}

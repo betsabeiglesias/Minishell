@@ -6,7 +6,7 @@
 #    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/16 12:13:47 by beiglesi         ###   ########.fr        #
+#    Updated: 2024/11/16 13:32:58 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRC_BET = main_bet.c \
 		builtin_export.c \
 		builtin_env_exit_echo.c \
 		builtin_unset.c \
+		builtin_pwd.c \
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 

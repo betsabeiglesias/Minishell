@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bet.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/15 16:49:59 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/16 13:32:19 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ int main(int argc, char **argv, char **envp)
 			free(shell.input);
 			exit(EXIT_SUCCESS);
 		}
-		builtin_export(&shell, cmdline);
-		builtin_env(&shell);
-		builtin_unset("TEST", &shell);
-		builtin_env(&shell);
+		builtin_pwd();
+		// builtin_export(&shell, cmdline);
+		// builtin_env(&shell);
+		// builtin_unset("TEST", &shell);
+		// builtin_env(&shell);
 		//PRINTS
 		//printf("%s\n", shell.input);
 		//ft_print_lst(cmdline);

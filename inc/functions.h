@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 12:12:27 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/16 13:35:55 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,10 @@ void	builtin_echo(char **cmd_all);
 void	builtin_exit(char **cmd_all);
 void	builtin_env(t_mini *shell);
 
-void	builtin_pwd(void);
-int		builtin_cd(char **cmd);
+int		builtin_pwd(void);
 int		execute_builtin(char **full_cmd);
+int		builtin_cd(char **cmd);
+
 
 // BUILTIN_UNSET
 int     builtin_unset(char *var_name, t_mini *shell);
