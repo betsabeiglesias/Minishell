@@ -45,6 +45,7 @@ void print_cmd_all(char **cmd_all)
     while (i < ft_matsize(cmd_all))
     {
         printf("%s ", cmd_all[i]);
+        i++;
     }
     printf("\n");
 }

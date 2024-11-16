@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/10 20:23:17 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:55:18 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_list	*create_command_list(t_list *tk_lst, t_mini *shell)
 		*/
 		else
 		{
-			//if (handle_commands(tk_lst, node))
-			//	return(NULL);
+			if (handle_commands(tk_lst, node))
+				return(NULL);
 		}
 		if (is_redir)
 			tk_lst = tk_lst->next;

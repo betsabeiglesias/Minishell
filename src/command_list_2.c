@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:18:03 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/10 20:18:23 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:57:12 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int handle_commands(t_list *tk_lst, t_exec *node)
 			return(handle_error(ERR_MALLOC), EXIT_FAILURE);
 	}
 	node->cmd_all = add_token_to_cmd(node->cmd_all, (char *)tk_lst->content);
-	//(void)tk_lst;
 	if (!node->cmd_all)
 		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
@@ -50,7 +49,7 @@ char **add_token_to_cmd(char **cmd_all, char *str)
 	}
 	print_cmd_all(dst);
 	printf("Prueba: %ld\t%s\t%p\t%s\t%ld\n", i, str, &dst, dst[10], ft_matsize(dst));
-	dst[i] = NULL;
+	dst[i] = str;
 	dst[i + 1] = NULL;
 	//print_cmd_all(dst);
 	/*
