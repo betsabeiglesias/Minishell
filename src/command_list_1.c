@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 21:25:05 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:03:13 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,11 @@ int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 	else if (!ft_strncmp(redir, REDIR_OUT_S, ft_strlen(redir)))
 		node->filename_out = (char *)tk_lst->next->content;
 	else if (!ft_strncmp(redir, REDIR_OUT_D, ft_strlen(redir)))
+	{
 		node->filename_out = (char *)tk_lst->next->content;
+		node->out_append = 1;
+	}
+		
 	return (1);
 }
 

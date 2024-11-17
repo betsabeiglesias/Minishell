@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:30:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/09 18:03:45 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:00:46 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_exec
 	char	*path;
 	char	*filename_in;
 	char	*filename_out;
+	int		out_append;
 	char	*heredoc_content;
 }				t_exec;
 
