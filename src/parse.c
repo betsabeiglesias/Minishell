@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:20:13 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/18 14:40:00 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/18 21:41:50 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_list	*parse(t_mini *shell)
 {
 	t_list	*tk_lst;
-	t_list	*exe_lst;
+	// t_list	*exe_lst;
 	char	*str;
 	
 	if (syntax_check(shell->input))

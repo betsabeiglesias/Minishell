@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/18 14:35:21 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/18 21:39:55 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,10 @@ char *find_env(char *str, t_mini *shell)
 	while(shell->env[i])
 	{
 		if(!ft_strncmp(str, shell->env[i], len) && shell->env[i][len] == '=')
+		{
+			printf("FIND ENV: %s\n", shell->env[i] + len + 1);
 			return(shell->env[i] + len + 1);
+		}
 		i++;	
 	}
 	return(NULL);
@@ -90,6 +93,7 @@ int	update_dir_env(char *dir, char *new_value, t_mini *shell)
 	int		len;
 	char	*new_var;
 	
+	printf("entra en update\n");
 	i = 0;
 	len = ft_strlen(dir);
 	while (shell->env[i])
@@ -97,6 +101,9 @@ int	update_dir_env(char *dir, char *new_value, t_mini *shell)
 		if(!ft_strncmp(dir, shell->env[i], len) && shell->env[i][len] == '=')
 		{
 			new_var = ft_strjoin_variadic(3, dir, "=", new_value);
+			printf("DIR: %s\n\n", dir);
+			printf("NEW VALUE: %s\n\n", new_value);
+			printf("NEW VAR: %s\n\n", new_var);
 			if(!new_var)
 				return(handle_error(ERR_MALLOC), EXIT_FAILURE);
 			shell->env[i] = new_var;
@@ -107,20 +114,24 @@ int	update_dir_env(char *dir, char *new_value, t_mini *shell)
 	return(EXIT_SUCCESS);
 }
 
-size_t ft_strlen_variadic(int num_args, va_list args) 
+size_t ft_strlen_variadic(int num_args, ...) 
 {
 	size_t len;
 	char *str;
     int i;
-
+	va_list args;
+	printf("entra en strlen variadic\n");
     len = 0;
     i = 0;
+	va_start(args, num_args);
     while (i < num_args) 
 	{
         str = va_arg(args, char *);
-        len += ft_strlen(str);
+		if (str)
+        	len += ft_strlen(str);
         i++;
     }
+	va_end(args);
     return (len);
 }
 
@@ -128,14 +139,15 @@ void concatenate_strings(int num_args, va_list args, char *result)
 {
     char *str;
     int i;
-    size_t len;
-
-    len = ft_strlen_variadic(num_args, args);
+    
+	printf("entra en concaneta variadic\n");
+   
+    result[0] = '\0';  // Asegúrate de que el resultado esté vacío
     i = 0;
-    while (i < num_args) 
+    while (i < num_args)  // Restar 1 porque ya hemos pasado `result`
     {
         str = va_arg(args, char *);
-        ft_strlcat(result, str, len + 1);
+		ft_strlcat(result, str, ft_strlen(result) + ft_strlen(str) + 1);
         i++;
     }
 }
@@ -145,19 +157,16 @@ char *ft_strjoin_variadic(int num_args, ...)
     va_list args;
     size_t len;
     char *result;
-
+	printf("entra en join variadic\n");
     va_start(args, num_args);
     len = ft_strlen_variadic(num_args, args);
     va_end(args);
 
     result = (char *)malloc((len + 1) * sizeof(char));
     if (!result)
-        return NULL;
-
-    result[0] = '\0';
-    va_start(args, num_args);
-    concatenate_strings(num_args, args, result);
-    va_end(args);
-
+		return NULL;
+	va_start(args, num_args);
+	concatenate_strings(num_args, args, result);  // Pasar `result` primero
+	va_end(args);
     return (result);
 }

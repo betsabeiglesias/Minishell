@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/18 13:14:45 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/18 21:37:57 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ int     builtin_cd(char *cmd_all, t_mini *shell);
 int     cd_to_home(t_mini *shell);
 char    *find_env(char *str, t_mini *shell);
 int     update_dir_env(char *dir, char *new_value, t_mini *shell);
-size_t  ft_strlen_variadic(int num_args, va_list args);
-void    concatenate_strings(int num_args, va_list args, char *result) ;
+size_t  ft_strlen_variadic(int num_args,...);
+void concatenate_strings(int num_args, va_list args, char *result);
 char    *ft_strjoin_variadic(int num_args, ...);
 
 // BUILTIN_UNSET
