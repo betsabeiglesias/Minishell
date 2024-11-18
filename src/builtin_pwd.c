@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/16 13:37:42 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:28:57 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,41 @@ int	builtin_pwd(void)
 	return (EXIT_SUCCESS);
 }
 
-int	execute_builtin(t_exec *node, t_mini *shell)
+//int	execute_builtin(t_exec *node, t_mini *shell)
+int	execute_builtin(t_list *tk_lst, t_mini *shell)
 {
 	int	len;
-
-	len = ft_strlen(node->cmd_all[0]);
-	if (!ft_strncmp(node->cmd_all[0], "echo", len))
-		return (builtin_echo(node->cmd_all));
-	if (!ft_strncmp(node->cmd_all[0], CD, len))
-		return (builtin_cd(node->cmd_all));
-	if (!ft_strncmp(node->cmd_all[0], PWD, len))
-		return (builtin_env(shell));
-	if (!ft_strncmp(node->cmd_all[0], EXPORT, len))
-		return (builtin_export(shell, /*VARIABLE*/));
-	if (!ft_strncmp(node->cmd_all[0], UNSET, len))
-		return (builtin_unset(shell, /*VARIABLE*/));
-	if (!ft_strncmp(node->cmd_all[0], ENV, len))
-		return (builtin_env(shell));
-	if (!ft_strncmp(node->cmd_all[0], EXIT, len))
-		return (builtin_exit(node->cmd_all));
+	(void) shell;
+	// t_exec *node;
+	printf("Entra en execute built\n");
+	printf("%s\n", (char *)tk_lst->content);
+    if (!tk_lst || !tk_lst->content)
+    {
+        printf("Error: tk_lst or tk_lst->content is NULL\n");
+        return 1;
+    }
+    printf("CMD_ALL[0] ES: %s\n", (char *)tk_lst->content);
+	//print_cmd_all(node->cmd_all);
+	len = ft_strlen((char *)(tk_lst->content));
+	// if (!ft_strncmp(node->cmd_all[0], "echo", len))
+	// 	return (builtin_echo(node->cmd_all),0);
+	if (!ft_strncmp((char *)(tk_lst->content), CD, len))
+	{
+		printf("entra en CD\n");
+		return (builtin_cd((char *)(tk_lst->content), shell),0);
+	}
+	if (!ft_strncmp((char *)(tk_lst->content), PWD, len))
+	{
+		printf("entra en PWD\n");
+		return (builtin_pwd(),0);
+	}
+	// if (!ft_strncmp((char *)(tk_lst->content), EXPORT, len))
+	// 	return (builtin_export(shell, /*VARIABLE*/));
+	// if (!ft_strncmp(node->cmd_all[0], UNSET, len))
+	// // 	return (builtin_unset(shell, /*VARIABLE*/));
+	if (!ft_strncmp((char *)(tk_lst->content), ENV, len))
+		return (builtin_env(shell),0);
+	if (!ft_strncmp((char *)(tk_lst->content), EXIT, len))
+		return (builtin_exit((char *)(tk_lst->content)),0);
+	return(0);
 }

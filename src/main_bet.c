@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bet.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 13:32:19 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:50:41 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv, char **envp)
 {
 	t_mini	shell;
 	t_list	*cmdline;
-	//t_list	node;
+	//t_exec	*node = NULL;
 
 
 	if (argc != 1)
@@ -41,22 +41,26 @@ int main(int argc, char **argv, char **envp)
 	init_shell(&shell);
 	if (get_my_env(envp, &shell))
 		return(handle_error(ERR_ENVP), EXIT_FAILURE);
+	if (get_all_paths(&shell))
+		return(handle_error(ERR_ENVP), EXIT_FAILURE);
 	setup_signal_handlers();
 	while (1)
 	{
 		shell.input = readline(MINISHELL);
+		// if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
+		// {
+		// 	free(shell.input);
+		// 	exit(EXIT_SUCCESS);
+		// }
 		if(handle_eof_interactive(shell.input))
 			continue ;
 		if (shell.input && *shell.input)
 			add_history(shell.input);
 		cmdline = parse(&shell);
 		// analizar si cmdline = NULL
-		if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
-		{
-			free(shell.input);
-			exit(EXIT_SUCCESS);
-		}
+	
 		builtin_pwd();
+		execute_builtin(cmdline, &shell);
 		// builtin_export(&shell, cmdline);
 		// builtin_env(&shell);
 		// builtin_unset("TEST", &shell);

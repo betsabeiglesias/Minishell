@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env_exit_echo.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:53:50 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/16 13:38:46 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:50:41 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	builtin_env(t_mini *shell)
 	}
 }
 
-void	builtin_exit(char **cmd_all)
+void	builtin_exit(char *cmd_all)
 {
-	if (!ft_strncmp(cmd_all[0], "exit", ft_strlen(cmd_all[0])))
+	if (!ft_strncmp(cmd_all, "exit", ft_strlen(cmd_all)))
 		exit(EXIT_SUCCESS);
 }
 

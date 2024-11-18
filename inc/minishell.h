@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:29:46 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/05 09:53:53 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/18 13:07:57 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <stddef.h>
 # include <limits.h>
 # include <termios.h>
+# include <stdarg.h>
 
 //LIBRERIAS PROPIAS
 # include "../lib/libft/src/libft.h"

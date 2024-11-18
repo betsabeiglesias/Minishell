@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 21:32:25 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:14:45 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,21 @@ void	free_mini(t_mini *mini);
 
 // BUILT_ENV_EXIT_ECHO (en archivos separados)
 void	builtin_echo(char **cmd_all);
-void	builtin_exit(char **cmd_all);
+void	builtin_exit(char *cmd_all);
 void	builtin_env(t_mini *shell);
 
 int		builtin_pwd(void);
-int		execute_builtin(char **full_cmd);
-int		builtin_cd(char **cmd);
+//int	execute_builtin(t_exec *node, t_mini *shell);
+int     execute_builtin(t_list *tk_lst, t_mini *shell);
 
+// BUILTIN_CD
+int     builtin_cd(char *cmd_all, t_mini *shell);
+int     cd_to_home(t_mini *shell);
+char    *find_env(char *str, t_mini *shell);
+int     update_dir_env(char *dir, char *new_value, t_mini *shell);
+size_t  ft_strlen_variadic(int num_args, va_list args);
+void    concatenate_strings(int num_args, va_list args, char *result) ;
+char    *ft_strjoin_variadic(int num_args, ...);
 
 // BUILTIN_UNSET
 int     builtin_unset(char *var_name, t_mini *shell);
