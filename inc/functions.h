@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/18 21:37:57 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/19 10:38:34 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,20 @@ int		builtin_pwd(void);
 //int	execute_builtin(t_exec *node, t_mini *shell);
 int     execute_builtin(t_list *tk_lst, t_mini *shell);
 
-// BUILTIN_CD
+// BUILTIN_CD_1
 int     builtin_cd(char *cmd_all, t_mini *shell);
 int     cd_to_home(t_mini *shell);
 char    *find_env(char *str, t_mini *shell);
 int     update_dir_env(char *dir, char *new_value, t_mini *shell);
 size_t  ft_strlen_variadic(int num_args,...);
-void concatenate_strings(int num_args, va_list args, char *result);
+void    concatenate_strings(int num_args, va_list args, char *result);
 char    *ft_strjoin_variadic(int num_args, ...);
+
+// BUILTIN_CD_2
+int     cd_especial_cases(char **cmd_all, t_mini *shell);
+int     go_to_oldpwd(t_mini *shell);
+int     go_to_previousdir(t_mini *shell):
+char	*get_previous_dir(char *str);
 
 // BUILTIN_UNSET
 int     builtin_unset(char *var_name, t_mini *shell);

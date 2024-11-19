@@ -6,7 +6,7 @@
 #    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/18 13:04:18 by binary           ###   ########.fr        #
+#    Updated: 2024/11/19 09:26:09 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,7 @@ SRC_BET = main_bet.c \
 		builtin_unset.c \
 		builtin_pwd.c \
 		builtin_cd.c \
+		builtin_cd_1.c \
 				
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

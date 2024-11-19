@@ -1,24 +1,92 @@
-# include "../inc/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_cd_1.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
+/*   Updated: 2024/11/19 10:41:05 by binary           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int cd_especial_cases(char **cmd_all, t_mini *shell)
+#include "../inc/minishell.h"
+
+int	builtin_cd(char **cmd_all, t_mini *shell)
 {
-    if(cmd_all[1] == "-")
-        go_to_olpwd(shell);
-
+	if(!cmd_all[1])
+		return(cd_to_home(shell), EXIT_SUCCESS);
+	if (cmd_all[1] == ".." || cmd_all[1] == "-")
+		return(cd_especial_cases(shell), EXIT_SUCCESS);
+	if(chdir[cmd[1] == 0])
+		return(EXIT_SUCCESS);
+	return (handle_error(ERR_ACCESS), EXIT_FAILURE); 
 }
 
-int go_to_oldpwd(t_mini *shell)
+// REVISAR MENSAJES DE ERRORES DE RETORNO
+int	cd_to_home(t_mini *shell)
 {
-    char *dir_to_save;
-    char *previous_dir;
+	char	*home_path;
+	char	*dir_to_save;
 
-    dir_to_save = getcwd(NULL, 0);
-    previous_dir = find_env("OLDPWD", shell);
-    if(!dir_to_save)
+	home_path = find_env("HOME", shell);
+	if (home_path == NULL)
+		return(printf("ERROR AL ACCEDER A HOME\n"), EXIT_FAILURE);
+	dir_to_save = getcwd(NULL, 0);
+	if(!dir_to_save)
 		return(printf("ERROR AL GUARDAR DIR\n"), EXIT_FAILURE);
-    if (chdir(previous_dir) != 0)
+	if(update_dir_env("OLDPWD", dir_to_save, shell) != 0)
+		return(printf("ERROR AL UPDATE OLDPWD\n"), EXIT_FAILURE);
+	if (chdir(home_path) != 0)
 		return (handle_error(ERR_ACCESS), EXIT_FAILURE);
-    update_dir_env("OLDPWD", dir_to_save, shell);
-    update_dir_env("PWD", previous_dir, shell);
-    return(EXIT_SUCCESS);
+	dir_to_save = getcwd(NULL, 0);
+	update_dir_env("PWD", dir_to_save, shell);
+	free(dir_to_save);
+	return (EXIT_SUCCESS);
+}
+
+char *find_env(char *str, t_mini *shell)
+{
+	int i;
+	int len;
+	
+	i = 0;
+	len = ft_strlen(str);
+	while(shell->env[i])
+	{
+		if(!ft_strncmp(str, shell->env[i], len) && shell->env[i][len] == '=')
+		{
+			printf("FIND ENV: %s\n", shell->env[i] + len + 1);
+			return(shell->env[i] + len + 1);
+		}
+		i++;	
+	}
+	return(NULL);
+}
+
+int	update_dir_env(char *dir, char *new_value, t_mini *shell)
+{
+	int		i;
+	int		len;
+	char	*new_var;
+	
+	printf("entra en update\n");
+	i = 0;
+	len = ft_strlen(dir);
+	while (shell->env[i])
+	{
+		if(!ft_strncmp(dir, shell->env[i], len) && shell->env[i][len] == '=')
+		{
+			new_var = ft_strjoin_variadic(3, dir, "=", new_value);
+			printf("DIR: %s\n\n", dir);
+			printf("NEW VALUE: %s\n\n", new_value);
+			printf("NEW VAR: %s\n\n", new_var);
+			if(!new_var)
+				return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+			shell->env[i] = new_var;
+				return(EXIT_SUCCESS);
+		}
+		i++;	
+	}
+	return(EXIT_SUCCESS);
 }

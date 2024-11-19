@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/18 12:50:41 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/19 09:32:48 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int main(int argc, char **argv, char **envp)
 	t_mini	shell;
 	t_list	*cmdline;
 	//t_exec	*node = NULL;
-
 
 	if (argc != 1)
 		return(handle_error(ERR_ARG), EXIT_FAILURE);
@@ -61,10 +60,6 @@ int main(int argc, char **argv, char **envp)
 	
 		builtin_pwd();
 		execute_builtin(cmdline, &shell);
-		// builtin_export(&shell, cmdline);
-		// builtin_env(&shell);
-		// builtin_unset("TEST", &shell);
-		// builtin_env(&shell);
 		//PRINTS
 		//printf("%s\n", shell.input);
 		//ft_print_lst(cmdline);
