@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 21:33:21 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:53:31 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # define ERR_ATTR           7
 # define ERR_OPEN			8
 # define ERR_ACCESS			9
+# define ERR_FORK			10
+# define ERR_EXECVE         11
+# define ERR_WAIT           12
 
 # define ERR_MSG_QUOTE		    "SYNTAX ERROR: open quotes"
 # define ERR_MSG_EXTREM		    "SYNTAX ERROR: nothing after or before metachar"
@@ -35,6 +38,8 @@
 # define ERR_MSG_ATTR           "UNABLE TO ACCESS TERMINAL ATTRIBUTES"
 # define ERR_MSG_OPEN           "OPEN ERROR"
 # define ERR_MSG_ACCESS			"FAILED TO ACCESS DIRECTORY"
+# define ERR_MSG_FORK			"FAILED FORK"
+# define ERR_MSG_EXECVE			"FAILED EXECVE"
 
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
@@ -59,6 +64,7 @@
 # define WR_END		        1
 # define PATH		        "PATH="
 # define HERE_DOC           "here_doc"
+# define ERROR			    -1
 
 # define REDIR_SINGLE       0
 # define REDIR_DOUBLE       1

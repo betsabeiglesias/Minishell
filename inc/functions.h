@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/22 09:45:50 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/23 13:30:22 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ char	*ft_add_char_freed(char *str, char const c);
 void	lst_clear_token_content(t_list *lst);
 void	free_shell(t_mini *shell);
 void    handle_free(t_mini shell, int error);
+void	ft_free_mat_int(int **mat, int size);
 
 // SIGNALS
 void	setup_signal_handlers(void);
@@ -111,7 +112,7 @@ char    *ft_strjoin_variadic(int num_args, ...);
 // BUILTIN_CD_2
 int     cd_especial_cases(char **cmd_all, t_mini *shell);
 int     go_to_oldpwd(t_mini *shell);
-int     go_to_previousdir(t_mini *shell);
+int     go_to_previousdir(t_mini *shell):
 char	*get_previous_dir(char *str);
 
 // BUILTIN_UNSET
@@ -128,6 +129,7 @@ void	print_export(char *str);
 int     init_shell(t_mini *shell);
 int     get_all_paths(t_mini *shell);
 t_exec  *init_cmd_node(void);
+int	**ft_malloc_mat_int(int x, int y, int size);
 
 //COMMAND_LIST_1
 
@@ -142,6 +144,13 @@ char	*get_path(char **all_paths, char *cmd);
 int     handle_commands(t_list *tk_lst, t_exec *node);
 char    **add_token_to_cmd(char **cmd_all, char *str);
 int     handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell);
+
+// EXECUTION
+int     init_execution(t_list *exe_lst, t_mini *shell);
+int exe_child(t_exec *node, int child, int num_childs, char **env);
+void	wait_childs(t_mini *shell, int num_childs);
+int     **create_pipes(int num_childs);
+void	close_pipes(t_exec *node, int num_childs);
 
 
 //COMMAND_LIST_AUX

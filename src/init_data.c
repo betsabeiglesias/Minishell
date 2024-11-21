@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/17 15:01:16 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:59:22 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int    init_shell(t_mini *shell)
 		return(EXIT_FAILURE);
 	shell->paths = NULL;
 	shell->delimiter = NULL;
+	shell->pid = NULL;
 	return (EXIT_SUCCESS);
 }
 
@@ -64,5 +65,25 @@ t_exec *init_cmd_node(void)
 	node->filename_out = NULL;
 	node->out_append = 0;
 	node->heredoc_content = NULL;
+	node->pipes = NULL;
 	return (node);
+}
+
+int	**ft_malloc_mat_int(int x, int y, int size)
+{
+	int	**map;
+	int	i;
+
+	map = malloc(sizeof(void *) * x);
+	if (!map)
+		return (NULL);
+	i = 0;
+	while (i < x)
+	{
+		map[i] = malloc(size * y);
+		if (!map[i])
+			return (ft_free_mat_int(map, i), NULL);
+		i++;
+	}
+	return (map);
 }

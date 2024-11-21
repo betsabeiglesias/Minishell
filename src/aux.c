@@ -35,6 +35,7 @@ int ft_print_cmd_lst(t_list *cmd_lst)
         printf("file OUT: %s\n",((t_exec *)cmd_lst->content)->filename_out);
         printf("OUT append: %d\n",((t_exec *)cmd_lst->content)->out_append);
         printf("here doc: %s\n",((t_exec *)cmd_lst->content)->heredoc_content);
+        printf("PRUEBA: %s\n", ((t_exec *)cmd_lst->content)->cmd_all[0]);
         print_cmd_all(((t_exec *)cmd_lst->content)->cmd_all);
         cmd_lst = cmd_lst->next;
     }

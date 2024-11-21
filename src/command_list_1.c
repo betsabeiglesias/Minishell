@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/17 15:03:13 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:51:09 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 {
 	char	*delimiter;
+	int		fd;
 
 	if (!ft_strncmp(redir, REDIR_IN_S, ft_strlen(redir)))
 		node->filename_in = (char *)tk_lst->next->content;
@@ -74,7 +75,11 @@ int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 		node->filename_out = (char *)tk_lst->next->content;
 		node->out_append = 1;
 	}
-		
+	if (!ft_strncmp(redir, REDIR_OUT_S, ft_strlen(redir)) || !ft_strncmp(redir, REDIR_OUT_D, ft_strlen(redir)))
+	{
+		fd = open(node->filename_out, O_CREAT);
+		close(fd);
+	}
 	return (1);
 }
 

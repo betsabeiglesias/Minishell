@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:20:13 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/22 09:47:06 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/23 13:30:02 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ t_list	*parse(t_mini *shell)
    // aclarar bien el flujo de información
    // que estructuras se necesitan?
    // que se tiene que liberar en cada momento?
-   return (tk_lst);
+   return (exe_lst);
 }

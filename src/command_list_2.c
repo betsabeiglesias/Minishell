@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:18:03 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 20:46:36 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:40:09 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int handle_commands(t_list *tk_lst, t_exec *node)
 		node->cmd_all = malloc(sizeof(char *));
 		if (!node->cmd_all)
 			return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+		node->cmd_all = NULL;
 	}
 	node->cmd_all = add_token_to_cmd(node->cmd_all, (char *)tk_lst->content);
 	if (!node->cmd_all)

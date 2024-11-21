@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 20:16:44 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:43:17 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(int argc, char **argv, char **envp)
 {
 	t_mini	shell;
-	t_list	*cmdline;
+	t_list	*exe_lst;
 
 	if (argc != 1)
 		return(handle_error(ERR_ARG), EXIT_FAILURE);
@@ -39,16 +39,15 @@ int main(int argc, char **argv, char **envp)
 			continue ;
 		if (shell.input && *shell.input)
 			add_history(shell.input);
-		
-		cmdline = parse(&shell);
+		exe_lst = parse(&shell);
 		// analizar si cmdline = NULL
-		
+		init_execution(exe_lst, &shell);
 		//PRINTS
 		//printf("%s\n", shell.input);
 		
 		//FREES
-		lst_clear_token_content(cmdline);
-		ft_lstclear(&cmdline, &free);
+		lst_clear_token_content(exe_lst);
+		ft_lstclear(&exe_lst, &free);
 		ft_free(shell.input);
 	}
 	//liberar shell

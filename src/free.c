@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:43:08 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/08 18:47:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:45:27 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,19 @@ void	free_shell(t_mini *shell)
 		ft_free(shell->input);
 	shell->env = NULL;
 	shell->input = NULL;
+	return ;
+}
+
+void	ft_free_mat_int(int **mat, int size)
+{
+	int	i;
+
+	if (!mat)
+		return ;
+	i = 0;
+	while (i < size)
+		free(mat[i++]);
+	free(mat);
+	mat = NULL;
 	return ;
 }
