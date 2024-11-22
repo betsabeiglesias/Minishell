@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/19 10:38:34 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/22 09:45:50 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ char    *ft_strjoin_variadic(int num_args, ...);
 // BUILTIN_CD_2
 int     cd_especial_cases(char **cmd_all, t_mini *shell);
 int     go_to_oldpwd(t_mini *shell);
-int     go_to_previousdir(t_mini *shell):
+int     go_to_previousdir(t_mini *shell);
 char	*get_previous_dir(char *str);
 
 // BUILTIN_UNSET
