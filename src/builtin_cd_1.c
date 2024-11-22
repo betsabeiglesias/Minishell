@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/19 10:41:05 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/22 10:01:27 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	builtin_cd(char **cmd_all, t_mini *shell)
 {
 	if(!cmd_all[1])
 		return(cd_to_home(shell), EXIT_SUCCESS);
-	if (cmd_all[1] == ".." || cmd_all[1] == "-")
-		return(cd_especial_cases(shell), EXIT_SUCCESS);
-	if(chdir[cmd[1] == 0])
+	if (!ft_strncmp(cmd_all[1], "..", 2) || !ft_strncmp(cmd_all[1] ==, "-", 1))
+		return(cd_especial_cases(cmd_all, shell), EXIT_SUCCESS);
+	if(chdir(cmd[1]) == 0)
 		return(EXIT_SUCCESS);
 	return (handle_error(ERR_ACCESS), EXIT_FAILURE); 
 }

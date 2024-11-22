@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
+#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/21 20:37:33 by aolabarr         ###   ########.fr        #
+#    Created: Invalid date        by                   #+#    #+#              #
+#    Updated: 2024/11/23 14:43:43 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = minishell
 
@@ -82,8 +83,9 @@ SRC_BET = main_bet.c \
 		builtin_env_exit_echo.c \
 		builtin_unset.c \
 		builtin_pwd.c \
-		builtin_cd.c \
 		builtin_cd_1.c \
+		builtin_cd_2.c \
+		builtin_auxiliar.c \
 				
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

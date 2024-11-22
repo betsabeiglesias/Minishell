@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 13:30:22 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:43:09 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,17 @@ int		builtin_pwd(void);
 //int	execute_builtin(t_exec *node, t_mini *shell);
 int     execute_builtin(t_list *tk_lst, t_mini *shell);
 
-// BUILTIN_CD_1
-int     builtin_cd(char *cmd_all, t_mini *shell);
-int     cd_to_home(t_mini *shell);
-char    *find_env(char *str, t_mini *shell);
-int     update_dir_env(char *dir, char *new_value, t_mini *shell);
+
+// BUILTIN_AUXILIAR
 size_t  ft_strlen_variadic(int num_args,...);
 void    concatenate_strings(int num_args, va_list args, char *result);
 char    *ft_strjoin_variadic(int num_args, ...);
+
+// BUILTIN_CD_1
+int     builtin_cd(char **cmd_all, t_mini *shell);
+int     cd_to_home(t_mini *shell);
+char    *find_env(char *str, t_mini *shell);
+int     update_dir_env(char *dir, char *new_value, t_mini *shell);
 
 // BUILTIN_CD_2
 int     cd_especial_cases(char **cmd_all, t_mini *shell);
