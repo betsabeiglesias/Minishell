@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_auxiliar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:39:30 by binary            #+#    #+#             */
-/*   Updated: 2024/11/19 10:41:02 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/22 10:36:23 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,14 @@ char *ft_strjoin_variadic(int num_args, ...)
 	concatenate_strings(num_args, args, result);
 	va_end(args);
     return (result);
+}
+
+int is_builtin(char *cmd)
+{
+	if(!ft_strncmp(cmd, ENV, 2))
+		return(EXIT_SUCCESS);
+	if(!ft_strncmp(cmd, EXPORT, 2))
+		return(EXIT_SUCCESS);
+	return(EXIT_FAILURE);
+
 }

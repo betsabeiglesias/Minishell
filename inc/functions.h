@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 14:43:09 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:45:18 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int     execute_builtin(t_list *tk_lst, t_mini *shell);
 size_t  ft_strlen_variadic(int num_args,...);
 void    concatenate_strings(int num_args, va_list args, char *result);
 char    *ft_strjoin_variadic(int num_args, ...);
+int		is_builtin(char *cmd);
 
 // BUILTIN_CD_1
 int     builtin_cd(char **cmd_all, t_mini *shell);

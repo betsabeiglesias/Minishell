@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bet.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/19 09:32:48 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/22 10:39:07 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int main(int argc, char **argv, char **envp)
 			add_history(shell.input);
 		cmdline = parse(&shell);
 		// analizar si cmdline = NULL
-	
-		builtin_pwd();
 		execute_builtin(cmdline, &shell);
 		//PRINTS
 		//printf("%s\n", shell.input);

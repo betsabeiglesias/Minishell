@@ -2,9 +2,9 @@
 
 int cd_especial_cases(char **cmd_all, t_mini *shell)
 {
-    if (cmd_all[1] == "-")
-    	return(go_to_olpwd(shell), EXIT_SUCCESS);
-	if (cmd_all[1] == "..")
+	if (!ft_strncmp(cmd_all[1], "-", 1))
+		return(go_to_oldpwd(shell), EXIT_SUCCESS);
+	if (!ft_strncmp(cmd_all[1], "..", 2))
 		return(go_to_previousdir(shell), EXIT_SUCCESS);
 	return(EXIT_FAILURE);
 }
