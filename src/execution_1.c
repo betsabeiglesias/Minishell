@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/21 21:07:00 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 13:20:38 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int exe_child(t_exec *node, int child, int num_childs, char **env)
     int fd_in;
     int fd_out;
 
-
+	fd_in = 0;
+	fd_out = 0;
     node->pipes = create_pipes(num_childs);
 
 	if (child != 0)
@@ -62,8 +63,9 @@ int exe_child(t_exec *node, int child, int num_childs, char **env)
     if (fd_out == ERROR)
 		return (handle_error(ERR_OPEN), EXIT_FAILURE);
     if (node->filename_in != NULL)
-        dup2(node->pipes[child - 1][RD_END], STDIN_FILENO);
-	
+        dup2(fd_in, STDIN_FILENO);
+	 if (node->filename_out != NULL)
+        dup2(fd_out, STDOUT_FILENO);
     close_pipes(node, num_childs);
 	execve(node->path, node->cmd_all, env);
 	handle_error(ERR_EXECVE);
