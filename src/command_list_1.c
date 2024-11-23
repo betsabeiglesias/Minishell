@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/21 18:51:09 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:20:00 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 			is_redir = handle_redir(tk_lst, node, REDIR_OUT_D);
 		if (is_redir == 0 && is_str_pipe((char *)(tk_lst->content)))
 		{
-			node->path = get_path(shell->all_paths, node->cmd_all[0]);
-			if (!node->path)
-				return (NULL);
+			if (!is_builtin(node->cmd_all[0]))
+			{
+				node->path = get_path(shell->all_paths, node->cmd_all[0]);
+				if (!node->path)
+					return (handle_error(ERR_ACCESS), NULL);
+			}
 			if (save_exe_node(&exe_lst, node))
-				return (NULL);
+				return (handle_error(ERR_MALLOC), NULL);
 			node = NULL;
 		}
 		else if (is_redir == 0)
@@ -123,11 +126,14 @@ int	handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell)
 {
 	if (!*node)
 		return (EXIT_FAILURE);
-	(*node)->path= get_path(shell->all_paths, (*node)->cmd_all[0]);
-	if (!(*node)->path)
-		return (EXIT_FAILURE);
+	if (!is_builtin((*node)->cmd_all[0]))
+	{
+		(*node)->path= get_path(shell->all_paths, (*node)->cmd_all[0]);
+		if (!(*node)->path)
+			return (handle_error(ERR_ACCESS), EXIT_FAILURE);
+	}
 	if (save_exe_node(exe_lst, *node))
-		return (EXIT_FAILURE);
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	*node = NULL;
 	return (EXIT_SUCCESS);
 }

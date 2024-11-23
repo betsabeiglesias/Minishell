@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:30:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/21 20:48:45 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:12:42 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct s_exec
 {
-	char	**env;
-	char	*cmd;
+	//char	**env;
+	//char	*cmd;
 	char	**cmd_all;
 	char	*path;
 	char	*filename_in;

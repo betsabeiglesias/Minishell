@@ -1,5 +1,5 @@
 # include "../inc/minishell.h"
-
+/*
 int cd_especial_cases(char **cmd_all, t_mini *shell)
 {
 	if (!ft_strncmp(cmd_all[1], "-", 1))
@@ -65,4 +65,4 @@ char	*get_previous_dir(char *str)
 	}
 	result[i] = '\0';
 	return(result);
-}
+}*/

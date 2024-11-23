@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/22 10:21:02 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:25:28 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
+/*
 int	builtin_cd(char **cmd_all, t_mini *shell)
 {
 	if(!cmd_all[1])
@@ -90,3 +90,4 @@ int	update_dir_env(char *dir, char *new_value, t_mini *shell)
 	}
 	return(EXIT_SUCCESS);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:43:08 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/21 20:45:27 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:27:09 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,31 @@ void	ft_free_mat_int(int **mat, int size)
 		free(mat[i++]);
 	free(mat);
 	mat = NULL;
+	return ;
+}
+void lst_clear_exec(t_list *lst) // meter int num_procs)
+{
+	t_exec *node;
+	
+	while (lst)
+	{
+		node = (t_exec *)lst->content;
+		ft_free_mat_str(node->cmd_all, ft_matsize(node->cmd_all));
+		ft_free(node->path);
+		ft_free(node->filename_in);
+		ft_free(node->filename_out);
+		ft_free(node->heredoc_content);
+		ft_free_exec(node);
+		node = NULL;
+		//ft_free_mat_int(node->pipes, num_procs);
+		lst = lst->next;
+	}
+	return ;
+}
+
+void	ft_free_exec(t_exec *str)
+{
+	if (str)
+		free(str);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/21 20:43:17 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:40:41 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int main(int argc, char **argv, char **envp)
 			add_history(shell.input);
 		exe_lst = parse(&shell);
 		// analizar si cmdline = NULL
-		init_execution(exe_lst, &shell);
+		//init_execution(exe_lst, &shell);
 		//PRINTS
 		//printf("%s\n", shell.input);
 		
 		//FREES
-		lst_clear_token_content(exe_lst);
-		ft_lstclear(&exe_lst, &free);
+		//lst_clear_exec(exe_lst);
+		//ft_lstclear(&exe_lst, &free);
 		ft_free(shell.input);
 	}
 	//liberar shell

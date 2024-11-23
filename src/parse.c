@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:20:13 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 14:44:43 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:26:01 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_list	*parse(t_mini *shell)
 	exe_lst = create_execution_list(tk_lst, shell);
 	ft_print_lst(tk_lst);
 	ft_print_cmd_lst(exe_lst);
+	lst_clear_token_content(tk_lst);
+	ft_lstclear(&tk_lst, &free);
    // aclarar bien el flujo de información
    // que estructuras se necesitan?
    // que se tiene que liberar en cada momento?

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
+#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/11/23 14:43:43 by beiglesi         ###   ########.fr        #
+#    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
+#    Updated: 2024/11/23 16:25:18 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,13 @@ SRC =	main.c \
 		command_list_aux.c \
 		execution_1.c \
 		aux.c \
+		builtin_export.c \
+		builtin_env_exit_echo.c \
+		builtin_unset.c \
+		builtin_pwd.c \
+		builtin_cd_2.c \
+		builtin_cd_1.c \
+		builtin_auxiliar.c \
 
 SRC_ARITZ =	main_parse.c \
 			check_syntax_1.c \

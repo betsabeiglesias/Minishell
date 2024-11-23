@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 13:20:38 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:07:59 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,40 @@
 int	init_execution(t_list *exe_lst, t_mini *shell)
 {
 	int		i;
-    int     num_childs;
+    int     num_procs;
 
 	i = 0;
-    num_childs = ft_lstsize(exe_lst);
-    shell->pid = malloc( num_childs * sizeof(pid_t *));
-	while (i < num_childs)
+    num_procs = ft_lstsize(exe_lst); //calculate_num_procs()
+    shell->pid = malloc( num_procs * sizeof(pid_t *));
+	while (i < num_procs)
 	{
 		shell->pid[i] = fork();
 		if (shell->pid[i] == ERROR)
 			return (handle_error(ERR_FORK), EXIT_FAILURE);
 		else if (shell->pid[i] == 0)
-			exe_child((t_exec *)exe_lst->content, i, num_childs, shell->env);
+			exe_child((t_exec *)exe_lst->content, i, num_procs, shell->env);
 		i++;
         exe_lst = exe_lst->next;
 	}
 	//close_pipes(data);
-	wait_childs(shell, num_childs);
+	wait_childs(shell, num_procs);
     //free(shell->pid);
     shell->pid = NULL;
 	return (EXIT_SUCCESS);
 }
 
-int exe_child(t_exec *node, int child, int num_childs, char **env)
+int exe_child(t_exec *node, int child, int num_procs, char **env)
 {
     int fd_in;
     int fd_out;
 
 	fd_in = 0;
 	fd_out = 0;
-    node->pipes = create_pipes(num_childs);
+    node->pipes = create_pipes(num_procs);
 
 	if (child != 0)
 		dup2(node->pipes[child - 1][RD_END], STDIN_FILENO);
-	if (child != num_childs - 1)
+	if (child != num_procs - 1)
 		dup2(node->pipes[child][WR_END], STDOUT_FILENO);
     if (node->filename_in != NULL)
     {
@@ -66,22 +66,22 @@ int exe_child(t_exec *node, int child, int num_childs, char **env)
         dup2(fd_in, STDIN_FILENO);
 	 if (node->filename_out != NULL)
         dup2(fd_out, STDOUT_FILENO);
-    close_pipes(node, num_childs);
+    close_pipes(node, num_procs);
 	execve(node->path, node->cmd_all, env);
 	handle_error(ERR_EXECVE);
     return (EXIT_SUCCESS);
 }
 
-void	wait_childs(t_mini *shell, int num_childs)
+void	wait_childs(t_mini *shell, int num_procs)
 {
 	int	i;
 	int	*status;
 
-	status = malloc(sizeof(int) * num_childs);
+	status = malloc(sizeof(int) * num_procs);
 	if (!status)
 		handle_error(ERR_MALLOC);
 	i = 0;
-	while (i < num_childs)
+	while (i < num_procs)
 	{
 		if (waitpid(shell->pid[i], &(status[i]), 0) == ERROR)
 		{
@@ -94,16 +94,16 @@ void	wait_childs(t_mini *shell, int num_childs)
 	return ;
 }
 
-int	**create_pipes(int num_childs)
+int	**create_pipes(int num_procs)
 {
 	int		i;
 	int		**pipes;
 
 	i = 0;
-	pipes = ft_malloc_mat_int(num_childs - 1, 2, sizeof(int));
+	pipes = ft_malloc_mat_int(num_procs - 1, 2, sizeof(int));
 	if (!pipes)
 		return (handle_error(ERR_MALLOC), NULL);
-	while (i < num_childs - 1)
+	while (i < num_procs - 1)
 	{
 		if (pipe(pipes[i]) == ERROR)
 			return (free(pipes), handle_error(ERR_MALLOC), NULL);
@@ -112,12 +112,12 @@ int	**create_pipes(int num_childs)
 	return (pipes);
 }
 
-void	close_pipes(t_exec *node, int num_childs)
+void	close_pipes(t_exec *node, int num_procs)
 {
 	int	i;
 
 	i = 0;
-	while (i < num_childs - 1)
+	while (i < num_procs - 1)
 	{
 		close(node->pipes[i][RD_END]);
 		close(node->pipes[i][WR_END]);
