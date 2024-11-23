@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:20:13 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 16:26:01 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:39:33 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ t_list	*parse(t_mini *shell)
 		return (NULL);
 	exe_lst = create_execution_list(tk_lst, shell);
 	ft_print_lst(tk_lst);
+	printf("print en parse...\n");
 	ft_print_cmd_lst(exe_lst);
-	lst_clear_token_content(tk_lst);
-	ft_lstclear(&tk_lst, &free);
+	//lst_clear_token_content(tk_lst); LIBERAR AL FINAL EN EL MAIN
+	//ft_lstclear(&tk_lst, &free); LIBERAR AL FINAL
    // aclarar bien el flujo de información
    // que estructuras se necesitan?
    // que se tiene que liberar en cada momento?

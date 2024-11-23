@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:30:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 15:12:42 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:19:41 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_exec
 	char	*filename_out;
 	int		out_append;
 	char	*heredoc_content;
-	int		**pipes;
 }				t_exec;
 
 typedef struct	s_mini
@@ -35,6 +34,7 @@ typedef struct	s_mini
    char		*input;
    char		*delimiter;
    pid_t	*pid;
+   int		**pipes;
 }				t_mini;
 
 typedef struct s_varenv

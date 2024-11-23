@@ -46,10 +46,10 @@ void print_cmd_all(char **cmd_all)
     size_t i;
     
     i = 0;
-    printf("CMD_all: ");
+    printf("CMD_all:");
     while (i < ft_matsize(cmd_all))
     {
-        printf("%s ", cmd_all[i]);
+        printf("%s ", cmd_all[i]); // comprobar direcciones si hay problemas
         i++;
     }
     printf("\n");

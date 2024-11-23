@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:39:30 by binary            #+#    #+#             */
-/*   Updated: 2024/11/23 16:25:50 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:50:21 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,11 @@ char *ft_strjoin_variadic(int num_args, ...)
 	concatenate_strings(num_args, args, result);
 	va_end(args);
     return (result);
+}
+
+int     is_builtin(char *cmd)
+{
+    if (!ft_strncmp(cmd, ENV, ft_strlen(ENV)) && (ft_strlen(cmd) == ft_strlen(ENV)))
+		return (1);
+    return (0);
 }

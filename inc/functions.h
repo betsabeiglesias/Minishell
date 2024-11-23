@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 16:25:04 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:04:07 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ void	builtin_echo(char **cmd_all);
 void	builtin_exit(char *cmd_all);
 void	builtin_env(t_mini *shell);
 
+// BUILTIN_PWD
 int		builtin_pwd(void);
-//int	execute_builtin(t_exec *node, t_mini *shell);
-int     execute_builtin(t_list *tk_lst, t_mini *shell);
+int     execute_builtin(t_exec *node, t_mini *shell);
 
 
 // BUILTIN_AUXILIAR
@@ -156,10 +156,10 @@ int     handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell);
 
 // EXECUTION
 int     init_execution(t_list *exe_lst, t_mini *shell);
-int     exe_child(t_exec *node, int child, int num_procs, char **env);
+int     exe_child(t_exec *node, int child, int num_procs, t_mini *shell);
 void	wait_childs(t_mini *shell, int num_procs);
 int     **create_pipes(int num_procs);
-void	close_pipes(t_exec *node, int num_procs);
+void	close_pipes(t_mini *shell, int num_procs);
 
 
 //COMMAND_LIST_AUX

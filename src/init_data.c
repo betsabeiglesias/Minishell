@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 15:17:03 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:20:03 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int    init_shell(t_mini *shell)
 	shell->paths = NULL;
 	shell->delimiter = NULL;
 	shell->pid = NULL;
+	shell->pipes = NULL;
 	return (EXIT_SUCCESS);
 }
 
@@ -65,7 +66,6 @@ t_exec *init_cmd_node(void)
 	node->filename_out = NULL;
 	node->out_append = 0;
 	node->heredoc_content = NULL;
-	node->pipes = NULL;
 	return (node);
 }
 
