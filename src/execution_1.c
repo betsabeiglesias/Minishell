@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 18:49:30 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 19:03:53 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	wait_childs(t_mini *shell, int num_procs)
 	if (!status)
 		handle_error(ERR_MALLOC);
 	i = 0;
-	while (i < num_procs - 1)
+	while (i < num_procs)
 	{
 		wait(NULL);
 		/*
