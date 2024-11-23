@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 19:03:53 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/23 19:17:59 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 	if (is_builtin(node->cmd_all[0]))
 	{
 		execute_builtin(node, shell);
+		exit(EXIT_SUCCESS);
 	}
 	else
 	{
