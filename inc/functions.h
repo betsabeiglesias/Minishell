@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 18:04:07 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/24 02:54:35 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ void	free_env(t_mini *mini);
 void	free_mini(t_mini *mini);
 
 // BUILT_ENV_EXIT_ECHO (en archivos separados)
-void	builtin_echo(char **cmd_all);
-void	builtin_exit(char *cmd_all);
+void	builtin_echo(t_exec *node);
+void	builtin_exit();
 void	builtin_env(t_mini *shell);
 
 // BUILTIN_PWD

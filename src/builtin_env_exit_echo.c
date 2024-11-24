@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env_exit_echo.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:53:50 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/22 10:05:06 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/24 02:54:36 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,27 @@ void	builtin_env(t_mini *shell)
 	}
 }
 
-void	builtin_exit(char *cmd_all)
+void	builtin_exit()
 {
-	if (!ft_strncmp(cmd_all, "exit", ft_strlen(cmd_all)))
+	//if (!ft_strncmp(node->cmd_all[0], "exit", ft_strlen(node->cmd_all[0])))
 		exit(EXIT_SUCCESS);
 }
 
-void	builtin_echo(char **cmd_all)
+void	builtin_echo(t_exec *node)
 {
 	int		i;
 	bool	flag;
 
 	i = 1;
 	flag = false;
-	if (!ft_strncmp(cmd_all[i], "-n", ft_strlen(cmd_all[1])))
+	if (!ft_strncmp(node->cmd_all[i], "-n", ft_strlen(node->cmd_all[1])))
 	{
 		i++;
 		flag = true;
 	}
-	while (cmd_all[i])
+	while (node->cmd_all[i])
 	{
-		ft_putstr_fd(cmd_all[i], STDOUT_FILENO);
+		ft_putstr_fd(node->cmd_all[i], STDOUT_FILENO);
 		i++;
 		ft_putchar_fd(' ', STDOUT_FILENO);
 	}

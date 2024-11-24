@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
+#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/23 16:25:18 by aolabarr         ###   ########.fr        #
+#    Updated: 2024/11/24 02:44:55 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ SRC_ARITZ =	main_parse.c \
 			parse.c \
 
 # para borrar
-SRC_BET = main_bet.c \
+SRC_BET = main.c \
 		environment.c \
 		signals.c \
 		handle_error.c \
@@ -85,13 +85,14 @@ SRC_BET = main_bet.c \
 		command_list_1.c \
 		command_list_2.c \
 		command_list_aux.c \
+		execution_1.c \
 		aux.c \
 		builtin_export.c \
 		builtin_env_exit_echo.c \
 		builtin_unset.c \
 		builtin_pwd.c \
-		builtin_cd_1.c \
 		builtin_cd_2.c \
+		builtin_cd_1.c \
 		builtin_auxiliar.c \
 				
 				

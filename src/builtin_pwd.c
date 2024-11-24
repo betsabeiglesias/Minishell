@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/23 18:12:43 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/24 02:55:46 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ int	execute_builtin(t_exec *node, t_mini *shell)
 	len = ft_strlen(node->cmd_all[0]);
 	if (!ft_strncmp(node->cmd_all[0], ENV, len))
 		builtin_env(shell);
+	else if (!ft_strncmp(node->cmd_all[0], EXIT, len))
+		builtin_exit(node);
+	else if (!ft_strncmp(node->cmd_all[0], "echo", len))
+		builtin_echo(node);
 	// else if (!ft_strncmp((char *)(tk_lst->content), CD, len))
 	// {
 	// 	printf("entra en CD\n");
@@ -50,8 +54,7 @@ int	execute_builtin(t_exec *node, t_mini *shell)
 	// 	printf("entra en PWD\n");
 	// 	return (builtin_pwd(),0);
 	// }
-	// if (!ft_strncmp(node->cmd_all[0], "echo", len))
-	// 	return (builtin_echo(node->cmd_all),0);
+	
 	// if (!ft_strncmp((char *)(tk_lst->content), CD, len))
 	// {
 	// 	printf("entra en CD\n");
