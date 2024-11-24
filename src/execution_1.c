@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 19:17:59 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/24 01:34:41 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
     int     num_procs;
 
 	num_procs = ft_lstsize(exe_lst);
+	shell->num_pipes = num_procs - 1;
 	shell->pipes = create_pipes(num_procs);
+	if (!shell->pipes)
+		return(EXIT_FAILURE);
     shell->pid = malloc(num_procs * sizeof(pid_t *));
+	if (!shell->pid)
+		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
 	i = 0;
 	while (i < num_procs)
 	{
@@ -28,7 +33,8 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 			return (handle_error(ERR_FORK), EXIT_FAILURE);
 		else if (shell->pid[i] == 0)
 		{
-			exe_child((t_exec *)exe_lst->content, i, num_procs, shell);
+			if (exe_child((t_exec *)exe_lst->content, i, num_procs, shell))
+				return (EXIT_FAILURE);
 		}
 		i++;
         exe_lst = exe_lst->next;
@@ -67,7 +73,7 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
         dup2(fd_in, STDIN_FILENO);
 	 if (node->filename_out != NULL)
         dup2(fd_out, STDOUT_FILENO);
-    close_pipes(shell, num_procs); // entender esto bien!
+    close_pipes(shell, num_procs);
 	if (is_builtin(node->cmd_all[0]))
 	{
 		execute_builtin(node, shell);
@@ -81,7 +87,7 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
     return (EXIT_SUCCESS);
 }
 
-void	wait_childs(t_mini *shell, int num_procs)
+int	wait_childs(t_mini *shell, int num_procs)
 {
 	int	i;
 	int	*status;
@@ -89,22 +95,21 @@ void	wait_childs(t_mini *shell, int num_procs)
 	(void)shell;
 	status = malloc(sizeof(int) * num_procs);
 	if (!status)
-		handle_error(ERR_MALLOC);
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	i = 0;
 	while (i < num_procs)
 	{
-		wait(NULL);
-		/*
+		//wait(NULL);
 		if (waitpid(shell->pid[i], &(status[i]), 0) == ERROR)
 		{
-			//free(status);
+			free(status);
 			handle_error(ERR_WAIT);
+			return (EXIT_FAILURE);
 		}
-		*/
 		i++;
 	}
-	//free(status);
-	return ;
+	free(status);
+	return (EXIT_SUCCESS);
 }
 
 int	**create_pipes(int num_procs)
@@ -119,7 +124,7 @@ int	**create_pipes(int num_procs)
 	while (i < num_procs - 1)
 	{
 		if (pipe(pipes[i]) == ERROR)
-			return (free(pipes), handle_error(ERR_PIPE), NULL);
+			return (ft_free_v((void *)pipes), handle_error(ERR_PIPE), NULL);
 		i++;
 	}
 	return (pipes);
