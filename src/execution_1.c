@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 19:17:59 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:07:24 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 	int		i;
     int     num_procs;
 
+	// print_env(shell);
 	num_procs = ft_lstsize(exe_lst);
 	shell->pipes = create_pipes(num_procs);
     shell->pid = malloc(num_procs * sizeof(pid_t *));

@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/24 02:49:54 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/25 20:25:38 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		shell.input = readline(MINISHELL);
-		// if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
-		// {
-		// 	ft_free(shell.input);
-		// 	exit(EXIT_SUCCESS);
-		// }
 		if(handle_eof_interactive(shell.input))
 			continue ;
+		if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
+		{
+			ft_free(shell.input);
+			exit(EXIT_SUCCESS);
+		}
 		if (shell.input && *shell.input)
 			add_history(shell.input);
 		exe_lst = parse(&shell);

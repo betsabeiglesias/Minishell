@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/24 02:55:46 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/25 14:07:23 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,41 @@ int	execute_builtin(t_exec *node, t_mini *shell)
 {
 	int	len;
 
-	printf("Prueba A\n");
 	len = ft_strlen(node->cmd_all[0]);
 	if (!ft_strncmp(node->cmd_all[0], ENV, len))
+	{
+		printf("ENTRA EN ENV\n\n");
 		builtin_env(shell);
+	}
 	else if (!ft_strncmp(node->cmd_all[0], EXIT, len))
-		builtin_exit(node);
+	{
+		printf("ENTRA EN EXIT\n\n");
+		builtin_exit();
+	}
 	else if (!ft_strncmp(node->cmd_all[0], "echo", len))
+	{
+		printf("ENTRA EN ECHO\n\n");
 		builtin_echo(node);
-	// else if (!ft_strncmp((char *)(tk_lst->content), CD, len))
-	// {
-	// 	printf("entra en CD\n");
-	// 	return (builtin_cd((char *)(tk_lst->content), shell),0);
-	// }
-	// if (!ft_strncmp((char *)(tk_lst->content), PWD, len))
-	// {
-	// 	printf("entra en PWD\n");
-	// 	return (builtin_pwd(),0);
-	// }
-	
-	// if (!ft_strncmp((char *)(tk_lst->content), CD, len))
-	// {
-	// 	printf("entra en CD\n");
-	// 	return (builtin_cd((char *)(tk_lst->content), shell),0);
-	// }
-	// if (!ft_strncmp((char *)(tk_lst->content), EXPORT, len))
-	// 	return (builtin_export(shell, /*VARIABLE*/));
-	// if (!ft_strncmp(node->cmd_all[0], UNSET, len))
-	// // 	return (builtin_unset(shell, /*VARIABLE*/));
+	}
+	else if (!ft_strncmp(node->cmd_all[0], PWD, len))
+	{
+		printf("ENTRA EN PWD\n\n");
+		builtin_pwd();
+	}
+	else if (!ft_strncmp(node->cmd_all[0], CD, len))
+	{
+		printf("ENTRA EN CD\n\n");
+		builtin_cd(node, shell);
+	}
+	else if (!ft_strncmp(node->cmd_all[0], EXPORT, len))
+	{
+		printf("ENTRA EN EXPORT\n\n");
+		builtin_export(node, shell);
+	}
+	if (!ft_strncmp(node->cmd_all[0], UNSET, len))
+	{
+		printf("ENTRA EN UNSET\n\n");
+		builtin_unset(node, shell);
+	}
 	return(EXIT_SUCCESS);
 }

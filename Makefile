@@ -6,7 +6,7 @@
 #    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/24 02:44:55 by binary           ###   ########.fr        #
+#    Updated: 2024/11/24 14:09:19 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ SRC_ARITZ =	main_parse.c \
 			parse.c \
 
 # para borrar
-SRC_BET = main.c \
+SRC_BET = main_bet.c \
 		environment.c \
 		signals.c \
 		handle_error.c \

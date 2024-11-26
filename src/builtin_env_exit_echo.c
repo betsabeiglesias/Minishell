@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:53:50 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/24 02:54:36 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/25 20:22:02 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,20 @@ void	builtin_env(t_mini *shell)
 	int	i;
 
 	i = 0;
+	//print_env(shell);
+	//printf("Dirección de shell->env EN BUILTIN: %p\n\n\n", shell->env);
 	while (shell->env[i])
 	{
+		// printf("env[%d]: %s (Dirección: %p)\n", i, shell->env[i], (void *)shell->env[i]);
 		ft_putstr_fd(shell->env[i], STDOUT_FILENO);
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		i++;
 	}
 }
 
-void	builtin_exit()
+void	builtin_exit(t_exec *node)
 {
-	//if (!ft_strncmp(node->cmd_all[0], "exit", ft_strlen(node->cmd_all[0])))
+	if (!ft_strncmp(node->cmd_all[0], "exit", ft_strlen(node->cmd_all[0])))
 		exit(EXIT_SUCCESS);
 }
 

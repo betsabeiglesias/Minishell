@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:20:13 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 18:39:33 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:24:05 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_list	*parse(t_mini *shell)
 	if (!tk_lst)
 		return (NULL);
 	exe_lst = create_execution_list(tk_lst, shell);
-	ft_print_lst(tk_lst);
-	printf("print en parse...\n");
-	ft_print_cmd_lst(exe_lst);
+	// ft_print_lst(tk_lst);
+	// printf("print en parse...\n");
+	// ft_print_cmd_lst(exe_lst);
 	//lst_clear_token_content(tk_lst); LIBERAR AL FINAL EN EL MAIN
 	//ft_lstclear(&tk_lst, &free); LIBERAR AL FINAL
    // aclarar bien el flujo de información

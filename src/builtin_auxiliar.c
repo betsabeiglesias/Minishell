@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_auxiliar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:39:30 by binary            #+#    #+#             */
-/*   Updated: 2024/11/23 17:50:21 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:24:37 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,51 @@ void concatenate_strings(int num_args, va_list args, char *result)
     }
 }
 
-char *ft_strjoin_variadic(int num_args, ...) 
+char *ft_strjoin_variadic(int count, ...)
 {
     va_list args;
-    size_t len;
+    size_t total_len;
     char *result;
-	
-    va_start(args, num_args);
-    len = ft_strlen_variadic(num_args, args);
+    int i;
+    
+    i = 0;
+    total_len = 0;
+    va_start(args, count);
+    while(i < count)
+    {
+        total_len += ft_strlen(va_arg(args, char *));
+        i++;
+    }
     va_end(args);
-    result = (char *)malloc((len + 1) * sizeof(char));
+    result = malloc(total_len + 1);
     if (!result)
-		return (NULL);
-	va_start(args, num_args);
-	concatenate_strings(num_args, args, result);
-	va_end(args);
+        return NULL;
+    result[0] = '\0';
+    va_start(args, count);
+    i = 0;
+    while(i < count)
+    {
+        ft_strlcat(result, va_arg(args, char *), total_len + 1);
+        i++;
+    }
+    va_end(args);
     return (result);
 }
+
 
 int     is_builtin(char *cmd)
 {
     if (!ft_strncmp(cmd, ENV, ft_strlen(ENV)) && (ft_strlen(cmd) == ft_strlen(ENV)))
 		return (1);
+    if (!ft_strncmp(cmd, EXIT, ft_strlen(EXIT)) && (ft_strlen(cmd) == ft_strlen(EXIT)))
+        return (1);
+    if (!ft_strncmp(cmd, "echo", ft_strlen("echo")) && (ft_strlen(cmd) == ft_strlen("echo")))
+        return (1);
+    if (!ft_strncmp(cmd, PWD, ft_strlen(PWD)) && (ft_strlen(cmd) == ft_strlen(PWD)))
+        return (1);
+     if (!ft_strncmp(cmd, CD, ft_strlen(CD)) && (ft_strlen(cmd) == ft_strlen(CD)))
+        return (1);
+    if (!ft_strncmp(cmd, EXPORT, ft_strlen(CD)) && (ft_strlen(cmd) == ft_strlen(EXPORT)))
+        return (1);
     return (0);
 }
