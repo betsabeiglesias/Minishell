@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:30:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 10:59:29 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 15:55:46 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,12 @@ typedef struct	s_varparse
     int		i;
 	int		old_len;
 }				t_varparse;
+
+typedef struct	s_fd
+{
+    int     in;
+    int     out;
+}				t_fd;
+
 
 #endif

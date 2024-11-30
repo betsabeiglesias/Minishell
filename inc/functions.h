@@ -6,9 +6,11 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 17:23:43 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 17:35:24 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 
 #ifndef FUNCTIONS_H
@@ -92,19 +94,22 @@ void	clean_varen (t_varenv *var);
 int		len_var(char *cmd_line, int i);
 
 // ENVIROMENT
-int		init_env(char **envp, t_mini *mini);
-int		get_my_env(char **envp, t_mini *mini);
-void	free_env(t_mini *mini);
-void	free_mini(t_mini *mini);
+int		init_env(char **envp, t_mini *shell);
+int		get_my_env(char **envp, t_mini *shell);
+int	    exist_oldpwd(char **env);
+void	free_env(t_mini *shell);
+void	free_mini(t_mini *shell);
 
 // BUILT_ENV_EXIT_ECHO (en archivos separados)
-void	builtin_echo(char **cmd_all);
-void	builtin_exit(char *cmd_all);
-void	builtin_env(t_mini *shell);
+void	builtin_echo(t_exec *node);
+void	builtin_exit(t_exec *node);
+void	builtin_env(t_mini *shell, int fd);
 
 // BUILTIN_PWD
 int		builtin_pwd(void);
+int		handle_exec_built(t_exec *node, t_mini *shell);
 int     execute_builtin(t_exec *node, t_mini *shell);
+t_fd	*do_redir_built(t_exec *node);
 
 
 // BUILTIN_AUXILIAR
@@ -114,26 +119,31 @@ char    *ft_strjoin_variadic(int num_args, ...);
 int		is_builtin(char *cmd);
 
 // BUILTIN_CD_1
-int     builtin_cd(char **cmd_all, t_mini *shell);
-int     cd_to_home(t_mini *shell);
-char    *find_env(char *str, t_mini *shell);
+int		builtin_cd(t_exec *node, t_mini *shell);
+int     cd_to_home(t_mini *shell);  
+char    *find_value_varenv(char *str, t_mini *shell);
+int	    change_value_varenv(char *varen, char *new_value, t_mini *shell);
 int     update_dir_env(char *dir, char *new_value, t_mini *shell);
+int	    update_env(char *var_name, char *new, t_mini *shell);
+
+// BUILTIN_AUXILIAR
 size_t  ft_strlen_variadic(int num_args,...);
 void    concatenate_strings(int num_args, va_list args, char *result);
 char    *ft_strjoin_variadic(int num_args, ...);
+void print_env(t_mini *shell);
 
 // BUILTIN_CD_2
-int     cd_especial_cases(char **cmd_all, t_mini *shell);
+int 	cd_especial_cases(t_exec *node, t_mini *shell);
 int     go_to_oldpwd(t_mini *shell);
 int     go_to_previousdir(t_mini *shell);
 char	*get_previous_dir(char *str);
 
 // BUILTIN_UNSET
-int     builtin_unset(char *var_name, t_mini *shell);
-int     new_reduced_size_env(char *var_name, t_mini *shell);
+int     builtin_unset(t_exec *node, t_mini *shell);
+int	    new_reduced_size_env(t_exec *node, t_mini *shell);
 
 // BUILTIN_EXPORT
-int		builtin_export(t_mini *shell, t_list *tk_lst);
+int     builtin_export(t_exec *node, t_mini *shell);
 int		export_args(char *str, t_mini *shell);
 void	export_no_args(t_mini *shell);
 void	print_export(char *str);

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 16:53:53 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 17:37:17 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
     int     num_procs;
 	int		num_builts;
 
+	// print_env(shell);
 	num_procs = ft_lstsize(exe_lst);
 	num_builts = builtin_count(exe_lst);
 	shell->num_pipes = num_procs - 1;
@@ -29,7 +30,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 		return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
 	i = 0;
 	if (num_procs == 1 && is_builtin(((t_exec *)exe_lst->content)->cmd_all[0]))
-		execute_builtin((t_exec *)exe_lst->content, shell);
+		handle_exec_built((t_exec *)exe_lst->content, shell);
 	else
 	{
 		while (i < num_procs)

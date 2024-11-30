@@ -1,10 +1,10 @@
 # include "../inc/minishell.h"
-/*
-int cd_especial_cases(char **cmd_all, t_mini *shell)
+
+int cd_especial_cases(t_exec *node, t_mini *shell)
 {
-	if (!ft_strncmp(cmd_all[1], "-", 1))
+	if (!ft_strncmp(node->cmd_all[1], "-", 1))
 		return(go_to_oldpwd(shell), EXIT_SUCCESS);
-	if (!ft_strncmp(cmd_all[1], "..", 2))
+	if (!ft_strncmp(node->cmd_all[1], "..", 2))
 		return(go_to_previousdir(shell), EXIT_SUCCESS);
 	return(EXIT_FAILURE);
 }
@@ -15,7 +15,7 @@ int go_to_oldpwd(t_mini *shell)
     char *oldpwd_dir;
 
 	dir_to_save = getcwd(NULL, 0);
-	oldpwd_dir = find_env("OLDPWD", shell);
+	oldpwd_dir = find_value_varenv("OLDPWD", shell);
 	if(!dir_to_save)
 		return(printf("ERROR AL GUARDAR DIR\n"), EXIT_FAILURE);
 	if (chdir(oldpwd_dir) != 0)
@@ -31,7 +31,7 @@ int go_to_previousdir(t_mini *shell)
     char *previous_dir;
 
 	dir_to_save = getcwd(NULL, 0);
-	previous_dir = get_previous_dir(find_env("OLDPWD", shell));
+	previous_dir = get_previous_dir(find_value_varenv("OLDPWD", shell));
 	if(!dir_to_save)
 		return(printf("ERROR AL GUARDAR DIR\n"), EXIT_FAILURE);
 	if (chdir(previous_dir) != 0)
@@ -65,4 +65,5 @@ char	*get_previous_dir(char *str)
 	}
 	result[i] = '\0';
 	return(result);
-}*/
+}
+

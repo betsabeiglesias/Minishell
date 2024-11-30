@@ -3,29 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:56:51 by binary            #+#    #+#             */
-/*   Updated: 2024/11/16 13:41:57 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:27:39 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	builtin_export(t_mini *shell, t_list *tk_lst)
+int	builtin_export(t_exec *node, t_mini *shell)
 {
 	int	args;
 
 	args = 1;
-	if (((char *)(tk_lst->content))[args])
+	if (node->cmd_all[args])
 	{
-		printf("Aquí añadir variable\n");
-		// str es la variable nueva, modificar cuando esté full_cmd
-		if (export_args(tk_lst->content, shell))
+		/* MODIFICAR A CMD */		
+		if (export_args(node->cmd_all[1], shell))
 			return (EXIT_FAILURE);
 		return (EXIT_SUCCESS);
 	}
-	//export_no_args(shell);
+	export_no_args(shell);
 	return (EXIT_SUCCESS);
 }
 
@@ -35,7 +34,6 @@ int	export_args(char *str, t_mini *shell)
 	size_t	i;
 	char	**new_env;
 
-	printf("entra %s\n", str);
 	len = ft_matsize(shell->env);
 	i = 0;
 	new_env = malloc(sizeof(char *) * (len + 2));
@@ -54,6 +52,7 @@ int	export_args(char *str, t_mini *shell)
 	new_env[i + 1] = NULL;
 	ft_free_mat_str(shell->env, len);
 	shell->env = new_env;
+	print_env(shell);
 	return (EXIT_SUCCESS);
 }
 

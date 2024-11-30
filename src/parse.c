@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:20:13 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/24 01:29:57 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:51:54 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ t_list	*parse(t_mini *shell)
 	if (!tk_lst)
 		return (NULL);
 	exe_lst = create_execution_list(tk_lst, shell);
-	//ft_print_lst(tk_lst); PRINT LISTA TOKENS
-	//printf("print en parse...\n");
-	//ft_print_cmd_lst(exe_lst); PRINT LISTA DE EXECUTION
+	//ft_print_lst(tk_lst);
+	//ft_print_cmd_lst(exe_lst);
 	//lst_clear_token_content(tk_lst); LIBERAR AL FINAL EN EL MAIN
 	ft_lstclear(&tk_lst, &free); // LIBERAR aqui solo la lista
 	return (exe_lst);
