@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 13:21:36 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:55:21 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 	}
 	if (!ft_strncmp(redir, REDIR_OUT_S, ft_strlen(redir)) || !ft_strncmp(redir, REDIR_OUT_D, ft_strlen(redir)))
 	{
-		fd =  open(node->filename_out, O_CREAT | O_RDWR, 644);
+		fd =  open(node->filename_out, O_CREAT, 0644);
 		close(fd);
 	}
 	return (1);

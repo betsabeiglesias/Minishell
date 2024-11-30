@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 13:43:04 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:53:53 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	wait_childs(t_mini *shell, int num_procs)
 	i = 0;
 	while (i < num_procs)
 	{
-		//wait(NULL);
 		if (waitpid(shell->pid[i], &(status[i]), 0) == ERROR)
 		{
 			free(status);
