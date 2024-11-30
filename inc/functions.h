@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 19:51:53 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 20:37:29 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void	print_export(char *str);
 int     init_shell(t_mini *shell);
 int     get_all_paths(t_mini *shell);
 t_exec  *init_cmd_node(void);
-int	**ft_malloc_mat_int(int x, int y, int size);
+int     **ft_malloc_mat_int(int x, int y, int size);
 
 //COMMAND_LIST_1
 
@@ -160,6 +160,8 @@ int     handle_redir(t_list *tk_lst, t_exec *node, char *redir);
 int     read_stdin(t_exec *node, char *delimiter);
 t_list	*create_execution_list(t_list *tk_lst, t_mini *shell);
 int     create_outfile(t_exec *node, char *redir);
+//int     handle_save_node(t_exec *node, t_mini *shell, t_list **exe_lst);
+void handle_all_redir(t_list *tk_lst, int *is_redir, t_exec *node);
 
 //COMMAND_LIST_2
 char	*get_path(char **all_paths, char *cmd);

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 17:52:18 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 20:33:15 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ t_exec *init_cmd_node(void)
 	node = malloc(sizeof(t_exec));
 	if (!node)
 		return (handle_error(ERR_MALLOC), NULL);
-	//node->env = NULL;
-	//node->cmd = NULL;
 	node->cmd_all = NULL;
 	node->path = NULL;
 	node->filename_in = NULL;

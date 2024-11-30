@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 19:53:57 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 20:42:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,7 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 		is_redir = 0;
 		if (!node)
 			node = init_cmd_node();
-		if (is_str_redir((char *)(tk_lst->content), REDIR_IN_S))
-			is_redir = handle_redir(tk_lst, node, REDIR_IN_S);
-		else if (is_str_redir((char *)(tk_lst->content), REDIR_IN_D))
-			is_redir = handle_redir(tk_lst, node, REDIR_IN_D);
-		else if (is_str_redir((char *)(tk_lst->content), REDIR_OUT_S))
-			is_redir = handle_redir(tk_lst, node, REDIR_OUT_S);
-		else if (is_str_redir((char *)(tk_lst->content), REDIR_OUT_D))
-			is_redir = handle_redir(tk_lst, node, REDIR_OUT_D);
+		handle_all_redir(tk_lst, &is_redir, node);
 		if (create_outfile(node, (char *)(tk_lst->content)))
 			return (NULL);
 		if (is_redir == 0 && is_str_pipe((char *)(tk_lst->content)))
@@ -58,6 +51,35 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 	if (handle_last_save_node(&exe_lst, &node, shell))
 		return (NULL);
 	return (exe_lst);
+}
+
+/*
+int handle_save_node(t_exec *node, t_mini *shell, t_list **exe_lst)
+{
+	if (!is_builtin(node->cmd_all[0]))
+	{
+		node->path = get_path(shell->all_paths, node->cmd_all[0]);
+		if (!node->path)
+			return (EXIT_FAILURE);
+	}
+	if (save_exe_node(exe_lst, node))
+		return (EXIT_FAILURE);
+	node = NULL;
+	return (EXIT_SUCCESS);
+}
+*/
+
+void handle_all_redir(t_list *tk_lst, int *is_redir, t_exec *node)
+{
+	if (is_str_redir((char *)(tk_lst->content), REDIR_IN_S))
+		*is_redir = handle_redir(tk_lst, node, REDIR_IN_S);
+	else if (is_str_redir((char *)(tk_lst->content), REDIR_IN_D))
+		*is_redir = handle_redir(tk_lst, node, REDIR_IN_D);
+	else if (is_str_redir((char *)(tk_lst->content), REDIR_OUT_S))
+		*is_redir = handle_redir(tk_lst, node, REDIR_OUT_S);
+	else if (is_str_redir((char *)(tk_lst->content), REDIR_OUT_D))
+		*is_redir = handle_redir(tk_lst, node, REDIR_OUT_D);
+	return ;
 }
 
 int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
