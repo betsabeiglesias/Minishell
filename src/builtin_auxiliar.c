@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_auxiliar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:39:30 by binary            #+#    #+#             */
-/*   Updated: 2024/11/25 12:24:37 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/30 18:40:43 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ int     is_builtin(char *cmd)
 		return (1);
     if (!ft_strncmp(cmd, EXIT, ft_strlen(EXIT)) && (ft_strlen(cmd) == ft_strlen(EXIT)))
         return (1);
-    if (!ft_strncmp(cmd, "echo", ft_strlen("echo")) && (ft_strlen(cmd) == ft_strlen("echo")))
-        return (1);
+    //if (!ft_strncmp(cmd, "echo", ft_strlen("echo")) && (ft_strlen(cmd) == ft_strlen("echo")))
+    //    return (1);
     if (!ft_strncmp(cmd, PWD, ft_strlen(PWD)) && (ft_strlen(cmd) == ft_strlen(PWD)))
         return (1);
      if (!ft_strncmp(cmd, CD, ft_strlen(CD)) && (ft_strlen(cmd) == ft_strlen(CD)))

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 16:55:21 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 19:53:57 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 			is_redir = handle_redir(tk_lst, node, REDIR_OUT_S);
 		else if (is_str_redir((char *)(tk_lst->content), REDIR_OUT_D))
 			is_redir = handle_redir(tk_lst, node, REDIR_OUT_D);
+		if (create_outfile(node, (char *)(tk_lst->content)))
+			return (NULL);
 		if (is_redir == 0 && is_str_pipe((char *)(tk_lst->content)))
 		{
+			ft_free((char *)(tk_lst->content));
 			if (!is_builtin(node->cmd_all[0]))
 			{
 				node->path = get_path(shell->all_paths, node->cmd_all[0]);
@@ -79,12 +82,22 @@ int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 		node->filename_out = (char *)tk_lst->next->content;
 		node->out_append = 1;
 	}
+	ft_free(tk_lst->content);
+	return (1);
+}
+
+int create_outfile(t_exec *node, char *redir)
+{
+	int fd;
+	
 	if (!ft_strncmp(redir, REDIR_OUT_S, ft_strlen(redir)) || !ft_strncmp(redir, REDIR_OUT_D, ft_strlen(redir)))
 	{
-		fd =  open(node->filename_out, O_CREAT, 0644);
+		fd = open(node->filename_out, O_CREAT, 0644);
+		if (fd == ERROR)
+		    return (handle_error(ERR_OPEN), EXIT_FAILURE);
 		close(fd);
 	}
-	return (1);
+	return (EXIT_SUCCESS);
 }
 
 int	read_stdin(t_exec *node, char *delimiter)
@@ -112,30 +125,5 @@ int	read_stdin(t_exec *node, char *delimiter)
 	return (EXIT_SUCCESS);
 }
 
-int	save_exe_node(t_list **exe_lst, t_exec *exe_node)
-{
-	t_list * node;	
 
-	node = ft_lstnew((void *)exe_node);
-	if(!node)
-		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
-	ft_lstadd_back(exe_lst, node);
-	return (EXIT_SUCCESS);
-}
-
-int	handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell)
-{
-	if (!*node)
-		return (EXIT_FAILURE);
-	if (!is_builtin((*node)->cmd_all[0]))
-	{
-		(*node)->path = get_path(shell->all_paths, (*node)->cmd_all[0]);
-		if (!(*node)->path)
-			return (EXIT_FAILURE);
-	}
-	if (save_exe_node(exe_lst, *node))
-		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
-	*node = NULL;
-	return (EXIT_SUCCESS);
-}
 

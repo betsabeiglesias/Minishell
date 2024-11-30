@@ -23,6 +23,7 @@ void	ft_free_mat_str(char **mat, size_t size)
 	{
 		if (mat[i])
 			free(mat[i]);
+		mat[i] = NULL;
 		i++;
 	}
 	free(mat);

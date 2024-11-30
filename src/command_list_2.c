@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:18:03 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/24 13:52:04 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 19:41:23 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ int handle_commands(t_list *tk_lst, t_exec *node)
 {
 	if (!node->cmd_all)
 	{
-		node->cmd_all = malloc(sizeof(char *));
+		node->cmd_all = ft_calloc(1, sizeof(char *));
 		if (!node->cmd_all)
 			return(handle_error(ERR_MALLOC), EXIT_FAILURE);
-		node->cmd_all = NULL;
 	}
 	node->cmd_all = add_token_to_cmd(node->cmd_all, (char *)tk_lst->content);
 	if (!node->cmd_all)
@@ -34,7 +33,9 @@ char **add_token_to_cmd(char **cmd_all, char *str)
 	size_t	i;
 
 	dst = NULL;
-	size = ft_matsize(cmd_all);
+	size = 0;
+	if (cmd_all)
+		size = ft_matsize(cmd_all);
 	dst = malloc(sizeof(char *) * (size + 2));
 	if (!dst)
 	{
@@ -49,6 +50,7 @@ char **add_token_to_cmd(char **cmd_all, char *str)
 	}
 	dst[i] = str;
 	dst[i + 1] = NULL;
+	free(cmd_all);
 	return (dst);
 }
 
@@ -77,5 +79,32 @@ char	*get_path(char **all_paths, char *cmd)
 	if (!pathname)
 		return (handle_error(ERR_ACCESS), NULL);
 	return (pathname);
+}
+
+int	save_exe_node(t_list **exe_lst, t_exec *exe_node)
+{
+	t_list * node;	
+
+	node = ft_lstnew((void *)exe_node);
+	if(!node)
+		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+	ft_lstadd_back(exe_lst, node);
+	return (EXIT_SUCCESS);
+}
+
+int	handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell)
+{
+	if (!*node)
+		return (EXIT_FAILURE);
+	if (!is_builtin((*node)->cmd_all[0]))
+	{
+		(*node)->path = get_path(shell->all_paths, (*node)->cmd_all[0]);
+		if (!(*node)->path)
+			return (EXIT_FAILURE);
+	}
+	if (save_exe_node(exe_lst, *node))
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+	*node = NULL;
+	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 17:25:46 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 19:22:47 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(int argc, char **argv, char **envp)
 		if (exe_lst)
 			init_execution(exe_lst, &shell);
 		//FREES
-		//free_to_prompt(exe_lst, &shell);
+		free_to_prompt(exe_lst, &shell);
 	}
 	//liberar shell
 	rl_clear_history();
@@ -53,29 +53,21 @@ int main(int argc, char **argv, char **envp)
 
 void free_to_prompt(t_list *exe_lst, t_mini *shell)
 {
-	printf("Prueba A\n");
 	lst_clear_exec(exe_lst);
-	printf("Prueba B\n");
 	ft_lstclear(&exe_lst, &free);
-	printf("Prueba C\n");
 	if (shell->input)
 		ft_free(shell->input);
-	printf("Prueba D: %p\n", *shell->paths);
-	//if (shell->paths)
-	//	ft_free_mat_str(shell->paths, ft_matsize(shell->paths));
-	printf("Prueba E\n");
-	if (shell->delimiter)
-		ft_free(shell->delimiter);
-	printf("Prueba F\n");
+	//printf("Prueba D\n");
+	//ft_free(shell->delimiter);
+	//printf("Prueba F\n");
 	if (shell->pid)
 		ft_free_v((void *)shell->pid);
-	printf("Prueba G\n");
+	//printf("Prueba G\n");
 	if (shell->pipes)
 		ft_free_mat_int(shell->pipes, shell->num_pipes);
 	shell->num_pipes = 0;
 	exe_lst = NULL;
 	shell->input = NULL;
-	shell->paths = NULL;
 	shell->delimiter = NULL;
 	shell->pid  = NULL;
 	shell->pipes  = NULL;

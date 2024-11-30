@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:43:08 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/24 14:20:05 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 17:52:58 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	free_shell(t_mini *shell)
 		ft_free_mat_str(shell->env, ft_matsize(shell->env));
 	if (shell->all_paths)
 		ft_free_mat_str(shell->all_paths, ft_matsize(shell->all_paths));
-	if (shell->paths)
-		ft_free_mat_str(shell->paths, ft_matsize(shell->paths));
+	//if (shell->paths)
+	//	ft_free_mat_str(shell->paths, ft_matsize(shell->paths));
 	if (shell->delimiter)
 		ft_free(shell->delimiter);
 	if (shell->input)
@@ -60,7 +60,7 @@ void	free_shell(t_mini *shell)
 	shell->env = NULL;
 	shell->input = NULL;
 	shell->all_paths = NULL;
-	shell->paths = NULL;
+	//shell->paths = NULL;
 	shell->delimiter = NULL;
 	shell->pid = NULL;
 	shell->pipes = NULL;
