@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 17:51:15 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 13:21:36 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 			{
 				node->path = get_path(shell->all_paths, node->cmd_all[0]);
 				if (!node->path)
-					return (handle_error(ERR_ACCESS), NULL);
+					return (NULL);
 			}
 			if (save_exe_node(&exe_lst, node))
-				return (handle_error(ERR_MALLOC), NULL);
+				return (NULL);
 			node = NULL;
 		}
 		else if (is_redir == 0)
@@ -61,7 +61,8 @@ int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 {
 	char	*delimiter;
 	int		fd;
-
+	
+	(void)fd;
 	if (!ft_strncmp(redir, REDIR_IN_S, ft_strlen(redir)))
 		node->filename_in = (char *)tk_lst->next->content;
 	else if (!ft_strncmp(redir, REDIR_IN_D, ft_strlen(redir)))
@@ -80,7 +81,7 @@ int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 	}
 	if (!ft_strncmp(redir, REDIR_OUT_S, ft_strlen(redir)) || !ft_strncmp(redir, REDIR_OUT_D, ft_strlen(redir)))
 	{
-		fd = open(node->filename_out, O_CREAT);
+		fd =  open(node->filename_out, O_CREAT | O_RDWR, 644);
 		close(fd);
 	}
 	return (1);
@@ -130,7 +131,7 @@ int	handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell)
 	{
 		(*node)->path = get_path(shell->all_paths, (*node)->cmd_all[0]);
 		if (!(*node)->path)
-			return (handle_error(ERR_ACCESS), EXIT_FAILURE);
+			return (EXIT_FAILURE);
 	}
 	if (save_exe_node(exe_lst, *node))
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);

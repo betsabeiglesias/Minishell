@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/25 20:23:18 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/30 14:08:30 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
+
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
+
+//MAIN
+void free_to_prompt(t_list *exe_lst, t_mini *shell);
 
 //AUX
 int     ft_print_lst(t_list *list);
@@ -67,7 +71,8 @@ void	free_shell(t_mini *shell);
 void    handle_free(t_mini shell, int error);
 void	ft_free_mat_int(int **mat, int size);
 void    lst_clear_exec(t_list *lst);
-void	ft_free_exec(t_exec *str);
+void	ft_free_mat(void **mat, int size);
+void	ft_free_v(void *str);
 
 // SIGNALS
 void	setup_signal_handlers(void);
@@ -163,9 +168,11 @@ int     handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell);
 // EXECUTION
 int     init_execution(t_list *exe_lst, t_mini *shell);
 int     exe_child(t_exec *node, int child, int num_procs, t_mini *shell);
-void	wait_childs(t_mini *shell, int num_procs);
+int     wait_childs(t_mini *shell, int num_procs);
 int     **create_pipes(int num_procs);
 void	close_pipes(t_mini *shell, int num_procs);
+int     builtin_count(t_list *exe_lst);
+int     do_redirections(t_exec *node, int child, int num_procs, t_mini *shell);
 
 
 //COMMAND_LIST_AUX

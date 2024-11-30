@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 17:33:34 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 11:39:54 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **envp)
 	if (argc != 1)
 		return(handle_error(ERR_ARG), EXIT_FAILURE);
 	(void)argv;
-
+	exe_lst = NULL;
 	init_shell(&shell);
 	if (get_my_env(envp, &shell))
 		return(handle_error(ERR_ENVP), EXIT_FAILURE);
@@ -35,23 +35,42 @@ int main(int argc, char **argv, char **envp)
 			ft_free(shell.input);
 			exit(EXIT_SUCCESS);
 		}
-		if(handle_eof_interactive(shell.input))
+		if(handle_eof_interactive(shell.input)) // quitar if
 			continue ;
 		if (shell.input && *shell.input)
 			add_history(shell.input);
 		exe_lst = parse(&shell);
-		// analizar si exe_lst = NULL
-		init_execution(exe_lst, &shell);
-		//PRINTS
-		//printf("%s\n", shell.input);
-		
+		if (exe_lst)
+			init_execution(exe_lst, &shell);
 		//FREES
-		//lst_clear_exec(exe_lst);
-		//ft_lstclear(&exe_lst, &free);
-		ft_free(shell.input);
+		//free_to_prompt(exe_lst, &shell);
 	}
 	//liberar shell
 	rl_clear_history();
 	free_shell(&shell);
 	return (EXIT_SUCCESS);
+}
+
+void free_to_prompt(t_list *exe_lst, t_mini *shell)
+{
+	lst_clear_exec(exe_lst);
+	ft_lstclear(&exe_lst, &free);
+	if (shell->input)
+		ft_free(shell->input);
+	if (shell->paths)
+		ft_free_mat_str(shell->paths, ft_matsize(shell->paths));
+	if (shell->delimiter)
+		ft_free(shell->delimiter);
+	if (shell->pid)
+		ft_free_v((void *)shell->pid);
+	if (shell->pipes)
+		ft_free_mat_int(shell->pipes, shell->num_pipes);
+	shell->num_pipes = 0;
+	exe_lst = NULL;
+	shell->input = NULL;
+	shell->paths = NULL;
+	shell->delimiter = NULL;
+	shell->pid  = NULL;
+	shell->pipes  = NULL;
+	return ;
 }

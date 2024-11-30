@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:18:03 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 16:25:40 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:52:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ char	*get_path(char **all_paths, char *cmd)
 		pathname = ft_strjoin_freed(pathname, cmd);
 		if (!pathname)
 			return (handle_error(ERR_MALLOC), NULL);
-		// if (is_builtin (cmd) == 0)
-		// 	break;
 		if (access(pathname, X_OK) == ACCESS)
 			break ;
 		ft_free(pathname);

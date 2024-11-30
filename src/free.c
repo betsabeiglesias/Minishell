@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:43:08 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 15:27:09 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/24 14:20:05 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,30 @@ void handle_free(t_mini shell, int error)
 	return ;
 }
 void	free_shell(t_mini *shell)
-{	
-	//printf("Prueba A: %p\t%p\t%s\n", shell->env, shell->env[0], shell->env[0]);
-	//printf("Prueba B: %ld\n", ft_matsize(shell->env));
+{
 	if (shell->env)
 		ft_free_mat_str(shell->env, ft_matsize(shell->env));
+	if (shell->all_paths)
+		ft_free_mat_str(shell->all_paths, ft_matsize(shell->all_paths));
+	if (shell->paths)
+		ft_free_mat_str(shell->paths, ft_matsize(shell->paths));
+	if (shell->delimiter)
+		ft_free(shell->delimiter);
 	if (shell->input)
 		ft_free(shell->input);
+	if (shell->pid)
+		ft_free_v((void *)shell->pid);
+	if (shell->pipes)
+		ft_free_mat_int(shell->pipes, shell->num_pipes);
 	shell->env = NULL;
 	shell->input = NULL;
+	shell->all_paths = NULL;
+	shell->paths = NULL;
+	shell->delimiter = NULL;
+	shell->pid = NULL;
+	shell->pipes = NULL;
+	free(shell);
+	shell = NULL;
 	return ;
 }
 
@@ -67,7 +82,7 @@ void	ft_free_mat_int(int **mat, int size)
 	mat = NULL;
 	return ;
 }
-void lst_clear_exec(t_list *lst) // meter int num_procs)
+void lst_clear_exec(t_list *lst)
 {
 	t_exec *node;
 	
@@ -79,15 +94,14 @@ void lst_clear_exec(t_list *lst) // meter int num_procs)
 		ft_free(node->filename_in);
 		ft_free(node->filename_out);
 		ft_free(node->heredoc_content);
-		ft_free_exec(node);
+		ft_free_v((void *)node);
 		node = NULL;
-		//ft_free_mat_int(node->pipes, num_procs);
 		lst = lst->next;
 	}
 	return ;
 }
 
-void	ft_free_exec(t_exec *str)
+void	ft_free_v(void *str)
 {
 	if (str)
 		free(str);

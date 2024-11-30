@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:30:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 17:19:41 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 10:59:29 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 typedef struct s_exec
 {
-	//char	**env;
-	//char	*cmd;
 	char	**cmd_all;
 	char	*path;
 	char	*filename_in;
@@ -35,6 +33,7 @@ typedef struct	s_mini
    char		*delimiter;
    pid_t	*pid;
    int		**pipes;
+   int		num_pipes;
 }				t_mini;
 
 typedef struct s_varenv
@@ -59,30 +58,4 @@ typedef struct	s_varparse
 	int		old_len;
 }				t_varparse;
 
-/*
-typedef enum	e_type
-{
-    CMD,
-	RDS_IN,
-	RDS_OUT,
-	RDD_IN,
-	RDD_OUT,
-	PIPE,
-	FILENAME,
-	STR,
-	EIT_CODE,
-	NO_TYPE
-}				t_type;
-
-
-typedef struct s_token
-{
-   t_token_type     type;
-   char             *cmd;
-   char             **cmd_av;
-   char             *str;
-   struct t_token   *next;
-   struct t_token   *prev;
-}				t_token;
-*/
 #endif

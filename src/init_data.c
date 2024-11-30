@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 17:20:03 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/24 00:49:10 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int    init_shell(t_mini *shell)
 	shell->delimiter = NULL;
 	shell->pid = NULL;
 	shell->pipes = NULL;
+	shell->num_pipes = 0;
 	return (EXIT_SUCCESS);
 }
 

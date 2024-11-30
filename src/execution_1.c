@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/25 14:07:24 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/30 14:08:28 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,132 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 {
 	int		i;
     int     num_procs;
+	int		num_builts;
 
 	// print_env(shell);
 	num_procs = ft_lstsize(exe_lst);
+	num_builts = builtin_count(exe_lst);
+	shell->num_pipes = num_procs - 1;
 	shell->pipes = create_pipes(num_procs);
-    shell->pid = malloc(num_procs * sizeof(pid_t *));
+	if (!shell->pipes)
+		return(EXIT_FAILURE);
+    shell->pid = malloc((num_procs - num_builts) * sizeof(pid_t *));
+	if (!shell->pid)
+		return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
 	i = 0;
-	while (i < num_procs)
+	if (num_procs == 1 && is_builtin(((t_exec *)exe_lst->content)->cmd_all[0]))
+		execute_builtin((t_exec *)exe_lst->content, shell);
+	else
 	{
-		shell->pid[i] = fork();
-		if (shell->pid[i] == ERROR)
-			return (handle_error(ERR_FORK), EXIT_FAILURE);
-		else if (shell->pid[i] == 0)
+		while (i < num_procs)
 		{
-			exe_child((t_exec *)exe_lst->content, i, num_procs, shell);
+			shell->pid[i] = fork();
+			if (shell->pid[i] == ERROR)
+				return (handle_error(ERR_FORK), EXIT_FAILURE);
+			else if (shell->pid[i] == 0)
+			{
+				if (exe_child((t_exec *)exe_lst->content, i, num_procs, shell))
+					return (EXIT_FAILURE);
+			}
+			i++;
+			exe_lst = exe_lst->next;
 		}
-		i++;
-        exe_lst = exe_lst->next;
 	}
 	close_pipes(shell, num_procs);
 	wait_childs(shell, num_procs);
-    free(shell->pid);
+    ft_free_v((void *)shell->pid);
     shell->pid = NULL;
 	return (EXIT_SUCCESS);
 }
 
 int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 {
-    int fd_in;
+	if (do_redirections(node, child, num_procs, shell))
+		return (EXIT_FAILURE);
+	if (is_builtin((node->cmd_all[0])))
+	{
+		execute_builtin(node, shell);
+		exit(EXIT_SUCCESS);
+	}
+	else
+		execve(node->path, node->cmd_all, shell->env);
+	handle_error(ERR_EXECVE);
+    return (EXIT_FAILURE);
+}
+
+int	wait_childs(t_mini *shell, int num_procs)
+{
+	int	i;
+	int	*status;
+
+	(void)shell;
+	status = malloc(sizeof(int) * num_procs);
+	if (!status)
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+	i = 0;
+	while (i < num_procs)
+	{
+		//wait(NULL);
+		if (waitpid(shell->pid[i], &(status[i]), 0) == ERROR)
+		{
+			free(status);
+			handle_error(ERR_WAIT);
+			return (EXIT_FAILURE);
+		}
+		i++;
+	}
+	free(status);
+	return (EXIT_SUCCESS);
+}
+
+int	**create_pipes(int num_procs)
+{
+	int		i;
+	int		**pipes;
+
+	i = 0;
+	pipes = ft_malloc_mat_int(num_procs - 1, 2, sizeof(int));
+	if (!pipes)
+		return (handle_error(ERR_MALLOC), NULL);
+	while (i < num_procs - 1)
+	{
+		if (pipe(pipes[i]) == ERROR)
+			return (ft_free_v((void *)pipes), handle_error(ERR_PIPE), NULL);
+		i++;
+	}
+	return (pipes);
+}
+
+void	close_pipes(t_mini *shell, int num_procs)
+{
+	int	i;
+
+	i = 0;
+	while (i < num_procs - 1)
+	{
+		close(shell->pipes[i][RD_END]);
+		close(shell->pipes[i][WR_END]);
+		i++;
+	}
+	return ;
+}
+
+int	builtin_count(t_list *exe_lst)
+{
+	int count;
+
+	count = 0;
+	while(exe_lst != NULL)
+	{
+		if (is_builtin(((t_exec *)exe_lst->content)->cmd_all[0]))
+			count ++;
+		exe_lst = exe_lst->next;
+	}
+	return (count);
+}
+int do_redirections(t_exec *node, int child, int num_procs, t_mini *shell)
+{
+	int fd_in;
     int fd_out;
 
 	fd_in = 0;
@@ -68,75 +166,7 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
         dup2(fd_in, STDIN_FILENO);
 	 if (node->filename_out != NULL)
         dup2(fd_out, STDOUT_FILENO);
-    close_pipes(shell, num_procs); // entender esto bien!
-	if (is_builtin(node->cmd_all[0]))
-	{
-		execute_builtin(node, shell);
-		exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		execve(node->path, node->cmd_all, shell->env);
-		handle_error(ERR_EXECVE);
-	}
-    return (EXIT_SUCCESS);
-}
-
-void	wait_childs(t_mini *shell, int num_procs)
-{
-	int	i;
-	int	*status;
-
-	(void)shell;
-	status = malloc(sizeof(int) * num_procs);
-	if (!status)
-		handle_error(ERR_MALLOC);
-	i = 0;
-	while (i < num_procs)
-	{
-		wait(NULL);
-		/*
-		if (waitpid(shell->pid[i], &(status[i]), 0) == ERROR)
-		{
-			//free(status);
-			handle_error(ERR_WAIT);
-		}
-		*/
-		i++;
-	}
-	//free(status);
-	return ;
-}
-
-int	**create_pipes(int num_procs)
-{
-	int		i;
-	int		**pipes;
-
-	i = 0;
-	pipes = ft_malloc_mat_int(num_procs - 1, 2, sizeof(int));
-	if (!pipes)
-		return (handle_error(ERR_MALLOC), NULL);
-	while (i < num_procs - 1)
-	{
-		if (pipe(pipes[i]) == ERROR)
-			return (free(pipes), handle_error(ERR_PIPE), NULL);
-		i++;
-	}
-	return (pipes);
-}
-
-void	close_pipes(t_mini *shell, int num_procs)
-{
-	int	i;
-
-	i = 0;
-	while (i < num_procs - 1)
-	{
-		close(shell->pipes[i][RD_END]);
-		close(shell->pipes[i][WR_END]);
-		i++;
-	}
-	return ;
+	close_pipes(shell, num_procs);
+	return (EXIT_SUCCESS);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/25 14:07:23 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/30 14:07:03 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	execute_builtin(t_exec *node, t_mini *shell)
 {
 	int	len;
 
+	printf("Prueba A\n");
 	len = ft_strlen(node->cmd_all[0]);
 	if (!ft_strncmp(node->cmd_all[0], ENV, len))
 	{
