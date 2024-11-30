@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 13:05:37 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 13:43:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 	if (!shell->pid)
 		return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
 	i = 0;
-	while (i < num_procs)
+	if (num_procs == 1 && is_builtin(((t_exec *)exe_lst->content)->cmd_all[0]))
+		execute_builtin((t_exec *)exe_lst->content, shell);
+	else
 	{
-		
+		while (i < num_procs)
 		{
 			shell->pid[i] = fork();
 			if (shell->pid[i] == ERROR)
@@ -40,9 +42,9 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 				if (exe_child((t_exec *)exe_lst->content, i, num_procs, shell))
 					return (EXIT_FAILURE);
 			}
+			i++;
+			exe_lst = exe_lst->next;
 		}
-		i++;
-        exe_lst = exe_lst->next;
 	}
 	close_pipes(shell, num_procs);
 	wait_childs(shell, num_procs);
@@ -154,9 +156,9 @@ int do_redirections(t_exec *node, int child, int num_procs, t_mini *shell)
 		    return (handle_error(ERR_OPEN), EXIT_FAILURE);
     }
     if (node->filename_out != NULL && node->out_append == 0)
-        fd_out =  open(node->filename_out, O_CREAT | O_RDWR | O_TRUNC, 644);
+        fd_out =  open(node->filename_out, O_CREAT | O_RDWR | O_TRUNC, 0644);
     else if (node->filename_out != NULL && node->out_append == 1)
-        fd_out = open(node->filename_out, O_CREAT | O_RDWR | O_APPEND, 644);
+        fd_out = open(node->filename_out, O_CREAT | O_RDWR | O_APPEND, 0644);
     if (fd_out == ERROR)
 		return (handle_error(ERR_OPEN), EXIT_FAILURE);
     if (node->filename_in != NULL)
