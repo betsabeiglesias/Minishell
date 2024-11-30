@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:43:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/16 20:38:34 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:31:21 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	handle_error(int error_type)
 		ft_putendl_fd(ERR_MSG_MALLOC, STDOUT_FILENO);
 	if (error_type == ERR_ACCESS)
 		ft_putendl_fd(ERR_MSG_ACCESS, STDOUT_FILENO);
+	if (error_type == ERR_OPEN)
+		ft_putendl_fd(ERR_MSG_OPEN, STDOUT_FILENO);
 	return (EXIT_FAILURE);
 }

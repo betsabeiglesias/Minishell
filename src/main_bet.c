@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bet.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/25 20:25:38 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/30 16:49:33 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,20 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		shell.input = readline(MINISHELL);
-		if(handle_eof_interactive(shell.input))
-			continue ;
 		if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
 		{
 			ft_free(shell.input);
 			exit(EXIT_SUCCESS);
 		}
+		if(handle_eof_interactive(shell.input)) // quitar if
+			continue ;
 		if (shell.input && *shell.input)
 			add_history(shell.input);
 		exe_lst = parse(&shell);
-		// analizar si exe_lst = NULL
-		init_execution(exe_lst, &shell);
-		//PRINTS
-		//printf("%s\n", shell.input);
-		
+		if (exe_lst)
+			init_execution(exe_lst, &shell);
 		//FREES
-		//lst_clear_exec(exe_lst);
-		//ft_lstclear(&exe_lst, &free);
-		ft_free(shell.input);
+		//free_to_prompt(exe_lst, &shell);
 	}
 	//liberar shell
 	rl_clear_history();

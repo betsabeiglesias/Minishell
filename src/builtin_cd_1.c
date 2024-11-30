@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/25 12:43:31 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/30 17:06:58 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	cd_to_home(t_mini *shell)
         free(dir_to_save);
         return EXIT_FAILURE;
     }
-	print_env(shell);
+	//print_env(shell);
     free(dir_to_save);
     return EXIT_SUCCESS;
 }
@@ -178,6 +178,5 @@ int	change_value_varenv(char *varen, char *new_value, t_mini *shell)
 	free(temp);
 	if (update_env(varen, new_var, shell))
 		return (EXIT_FAILURE);
-	print_env(shell);
 	return (free(set_new), EXIT_SUCCESS);
 }

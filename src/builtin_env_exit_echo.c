@@ -3,27 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env_exit_echo.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:53:50 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/25 20:22:02 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/30 16:55:35 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	builtin_env(t_mini *shell)
+void	builtin_env(t_mini *shell, int fd)
 {
 	int	i;
 
 	i = 0;
 	//print_env(shell);
 	//printf("Dirección de shell->env EN BUILTIN: %p\n\n\n", shell->env);
+	// printf("FD de ENV %i, dir %p\n", fd, &fd);
 	while (shell->env[i])
 	{
-		// printf("env[%d]: %s (Dirección: %p)\n", i, shell->env[i], (void *)shell->env[i]);
-		ft_putstr_fd(shell->env[i], STDOUT_FILENO);
-		ft_putstr_fd("\n", STDOUT_FILENO);
+		//printf("env[%d]: %s (Dirección: %p)\n", i, shell->env[i], (void *)shell->env[i]);
+		
+		ft_putstr_fd(shell->env[i], fd);
+		ft_putstr_fd("\n", fd);
 		i++;
 	}
 }
