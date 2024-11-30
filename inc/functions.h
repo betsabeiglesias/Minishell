@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/24 01:55:40 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 11:29:06 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,8 @@ int     exe_child(t_exec *node, int child, int num_procs, t_mini *shell);
 int     wait_childs(t_mini *shell, int num_procs);
 int     **create_pipes(int num_procs);
 void	close_pipes(t_mini *shell, int num_procs);
+int     builtin_count(t_list *exe_lst);
+int     do_redirections(t_exec *node, int child, int num_procs, t_mini *shell);
 
 
 //COMMAND_LIST_AUX

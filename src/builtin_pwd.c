@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/23 18:12:43 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 11:33:57 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	execute_builtin(t_exec *node, t_mini *shell)
 {
 	int	len;
 
-	printf("Prueba A\n");
+	//printf("Prueba A\n");
 	len = ft_strlen(node->cmd_all[0]);
 	if (!ft_strncmp(node->cmd_all[0], ENV, len))
 		builtin_env(shell);
