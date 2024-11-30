@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:43:08 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/24 01:55:16 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/24 14:20:05 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ void handle_free(t_mini shell, int error)
 }
 void	free_shell(t_mini *shell)
 {
-	/*	
-
-   pid_t	*pid;
-   int		**pipes;
-   */
 	if (shell->env)
 		ft_free_mat_str(shell->env, ft_matsize(shell->env));
 	if (shell->all_paths)
@@ -62,9 +57,13 @@ void	free_shell(t_mini *shell)
 		ft_free_v((void *)shell->pid);
 	if (shell->pipes)
 		ft_free_mat_int(shell->pipes, shell->num_pipes);
-
 	shell->env = NULL;
 	shell->input = NULL;
+	shell->all_paths = NULL;
+	shell->paths = NULL;
+	shell->delimiter = NULL;
+	shell->pid = NULL;
+	shell->pipes = NULL;
 	free(shell);
 	shell = NULL;
 	return ;
@@ -83,7 +82,7 @@ void	ft_free_mat_int(int **mat, int size)
 	mat = NULL;
 	return ;
 }
-void lst_clear_exec(t_list *lst) // meter int num_procs)
+void lst_clear_exec(t_list *lst)
 {
 	t_exec *node;
 	
@@ -97,7 +96,6 @@ void lst_clear_exec(t_list *lst) // meter int num_procs)
 		ft_free(node->heredoc_content);
 		ft_free_v((void *)node);
 		node = NULL;
-		//ft_free_mat_int(node->pipes, num_procs);
 		lst = lst->next;
 	}
 	return ;

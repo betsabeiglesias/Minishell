@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/24 01:34:41 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:59:35 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 	}
 	close_pipes(shell, num_procs);
 	wait_childs(shell, num_procs);
-    free(shell->pid);
+    ft_free_v((void *)shell->pid);
     shell->pid = NULL;
 	return (EXIT_SUCCESS);
 }

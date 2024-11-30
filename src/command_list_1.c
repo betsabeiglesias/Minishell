@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/24 00:38:14 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:46:55 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int	handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell)
 	{
 		(*node)->path = get_path(shell->all_paths, (*node)->cmd_all[0]);
 		if (!(*node)->path)
-			return (handle_error(ERR_ACCESS), EXIT_FAILURE);
+			return (EXIT_FAILURE);
 	}
 	if (save_exe_node(exe_lst, *node))
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
