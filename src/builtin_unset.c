@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:06:14 by binary            #+#    #+#             */
-/*   Updated: 2024/11/25 14:05:08 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/30 18:56:48 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ int builtin_unset(t_exec *node, t_mini *shell)
 
 	i = 0;
 	j = 0;
-	arg = ft_matsize(node->cmd_all);
-    new_len = new_reduced_size_env(node, shell);
+	arg = ft_matsize(node->cmd_all) - 1;
+	new_len = new_reduced_size_env(node, shell);
 	new_env = malloc(sizeof(char *) * (new_len + 1));
     if (!new_env)
 		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
-    while (arg != 0)
+	while (arg > 0)
 	{
 		while(shell->env[i])
     	{
-        	if(!ft_strncmp(node->cmd_all[arg], shell->env[i], ft_strlen(node->cmd_all[arg])))
+			if(ft_strncmp(node->cmd_all[arg], shell->env[i], ft_strlen(node->cmd_all[arg])))
 			{
 				new_env[j] = ft_strdup(shell->env[i]);
 				if(!new_env[j])
@@ -42,9 +42,10 @@ int builtin_unset(t_exec *node, t_mini *shell)
 					ft_free_mat_str(new_env, new_len);
 					return(handle_error(ERR_MALLOC), EXIT_FAILURE);
 				}
+				j++;
 			}
 			i++;
-			j++;
+			
 		}
 		arg--;
 	}
@@ -67,9 +68,9 @@ int	new_reduced_size_env(t_exec *node, t_mini *shell)
 		while(shell->env[j])
 	    {	   
     	    if(!ft_strncmp(node->cmd_all[i], shell->env[j], ft_strlen(node->cmd_all[i])))
-				j++;
-    	    else
-        		size++;
+				break;
+			j++;
+    	    size++;
     	}
 		i++;
 	}

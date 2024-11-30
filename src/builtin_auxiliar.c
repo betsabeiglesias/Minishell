@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_auxiliar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:39:30 by binary            #+#    #+#             */
-/*   Updated: 2024/11/25 12:24:37 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/30 18:31:09 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char *ft_strjoin_variadic(int count, ...)
 
 int     is_builtin(char *cmd)
 {
-    if (!ft_strncmp(cmd, ENV, ft_strlen(ENV)) && (ft_strlen(cmd) == ft_strlen(ENV)))
+	if (!ft_strncmp(cmd, ENV, ft_strlen(ENV)) && (ft_strlen(cmd) == ft_strlen(ENV)))
 		return (1);
     if (!ft_strncmp(cmd, EXIT, ft_strlen(EXIT)) && (ft_strlen(cmd) == ft_strlen(EXIT)))
         return (1);
@@ -90,9 +90,11 @@ int     is_builtin(char *cmd)
         return (1);
     if (!ft_strncmp(cmd, PWD, ft_strlen(PWD)) && (ft_strlen(cmd) == ft_strlen(PWD)))
         return (1);
-     if (!ft_strncmp(cmd, CD, ft_strlen(CD)) && (ft_strlen(cmd) == ft_strlen(CD)))
+    if (!ft_strncmp(cmd, CD, ft_strlen(CD)) && (ft_strlen(cmd) == ft_strlen(CD)))
         return (1);
-    if (!ft_strncmp(cmd, EXPORT, ft_strlen(CD)) && (ft_strlen(cmd) == ft_strlen(EXPORT)))
-        return (1);
+    if (!ft_strncmp(cmd, EXPORT, ft_strlen(EXPORT)) && (ft_strlen(cmd) == ft_strlen(EXPORT)))
+    	return (1);
+    if (!ft_strncmp(cmd, UNSET, ft_strlen(UNSET)) && (ft_strlen(cmd) == ft_strlen(UNSET)))
+    	return (1);
     return (0);
 }

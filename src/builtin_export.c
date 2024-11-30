@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:56:51 by binary            #+#    #+#             */
-/*   Updated: 2024/11/25 12:27:39 by binary           ###   ########.fr       */
+/*   Updated: 2024/11/30 17:23:10 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	export_args(char *str, t_mini *shell)
 	new_env[i + 1] = NULL;
 	ft_free_mat_str(shell->env, len);
 	shell->env = new_env;
-	print_env(shell);
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 16:08:07 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/30 18:34:40 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
     int     num_procs;
 	int		num_builts;
 
-	// print_env(shell);
 	num_procs = ft_lstsize(exe_lst);
 	num_builts = builtin_count(exe_lst);
 	shell->num_pipes = num_procs - 1;

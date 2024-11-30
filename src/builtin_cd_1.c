@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/30 17:06:58 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/11/30 17:20:36 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,8 @@ int	update_dir_env(char *dir, char *new_value, t_mini *shell)
 	int		len;
 	char	*new_var;
 	
-	// printf("entra en update\n");
 	i = 0;
 	len = ft_strlen(dir);
-	printf("%i LEN \n", len);
 	while (shell->env[i])
 	{
 		if(!ft_strncmp(dir, shell->env[i], len) && shell->env[i][len] == '=')
