@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 11:39:54 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 17:25:46 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,23 @@ int main(int argc, char **argv, char **envp)
 
 void free_to_prompt(t_list *exe_lst, t_mini *shell)
 {
+	printf("Prueba A\n");
 	lst_clear_exec(exe_lst);
+	printf("Prueba B\n");
 	ft_lstclear(&exe_lst, &free);
+	printf("Prueba C\n");
 	if (shell->input)
 		ft_free(shell->input);
-	if (shell->paths)
-		ft_free_mat_str(shell->paths, ft_matsize(shell->paths));
+	printf("Prueba D: %p\n", *shell->paths);
+	//if (shell->paths)
+	//	ft_free_mat_str(shell->paths, ft_matsize(shell->paths));
+	printf("Prueba E\n");
 	if (shell->delimiter)
 		ft_free(shell->delimiter);
+	printf("Prueba F\n");
 	if (shell->pid)
 		ft_free_v((void *)shell->pid);
+	printf("Prueba G\n");
 	if (shell->pipes)
 		ft_free_mat_int(shell->pipes, shell->num_pipes);
 	shell->num_pipes = 0;

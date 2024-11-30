@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 11:29:06 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/11/30 17:23:43 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ int     handle_redir(t_list *tk_lst, t_exec *node, char *redir);
 int     read_stdin(t_exec *node, char *delimiter);
 t_list	*create_execution_list(t_list *tk_lst, t_mini *shell);
 int     save_exe_node(t_list **exe_lst, t_exec *exe_node);
-
 
 //COMMAND_LIST_2
 char	*get_path(char **all_paths, char *cmd);
