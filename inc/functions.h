@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 16:11:53 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:51:39 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ t_fd	*do_redir_built(t_exec *node);
 size_t  ft_strlen_variadic(int num_args,...);
 void    concatenate_strings(int num_args, va_list args, char *result);
 char    *ft_strjoin_variadic(int num_args, ...);
-int		is_builtin(char *cmd);
+int		is_builtin(char **cmd);
 
 // BUILTIN_CD_1
 int		builtin_cd(t_exec *node, t_mini *shell);
