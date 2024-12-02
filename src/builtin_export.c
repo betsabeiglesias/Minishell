@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:56:51 by binary            #+#    #+#             */
-/*   Updated: 2024/11/30 17:23:10 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/02 13:25:12 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	export_args(char *str, t_mini *shell)
 	size_t	i;
 	char	**new_env;
 
+	if(!check_namevar(str))
+		return(handle_error(ERR_EXPORT), EXIT_FAILURE);
 	len = ft_matsize(shell->env);
 	i = 0;
 	new_env = malloc(sizeof(char *) * (len + 2));
@@ -53,6 +55,31 @@ int	export_args(char *str, t_mini *shell)
 	ft_free_mat_str(shell->env, len);
 	shell->env = new_env;
 	return (EXIT_SUCCESS);
+}
+
+int	check_namevar(char *str)
+{
+	int	i;
+	int last;
+	
+	i = 0;
+	last = ft_strlen(str) - 1;
+	while (is_space(str[i]))
+		i++;
+	if((str[i] >= 65 && str[i] <= 90) || str[i] == '_')
+		i++;
+	while (str[i] != '\0' && str[i] != '=')
+	{
+		if (str[i] >= 48 && str[i] <= 57)
+			i++;
+		else if ((str[i] >= 65 && str[i] <= 90) || str[i] == '_')
+			i++;
+		else
+			return (0);
+	}
+	if (str[last] != '=')
+		return(0);	
+	return (1);
 }
 
 void	export_no_args(t_mini *shell)

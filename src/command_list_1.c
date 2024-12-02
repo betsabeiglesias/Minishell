@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_list_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 13:21:36 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:53:03 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 			is_redir = handle_redir(tk_lst, node, REDIR_OUT_D);
 		if (is_redir == 0 && is_str_pipe((char *)(tk_lst->content)))
 		{
-			if (!is_builtin(node->cmd_all[0]))
+			if (!is_builtin(node->cmd_all))
 			{
 				node->path = get_path(shell->all_paths, node->cmd_all[0]);
 				if (!node->path)
@@ -127,7 +127,7 @@ int	handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell)
 {
 	if (!*node)
 		return (EXIT_FAILURE);
-	if (!is_builtin((*node)->cmd_all[0]))
+	if (!is_builtin((*node)->cmd_all))
 	{
 		(*node)->path = get_path(shell->all_paths, (*node)->cmd_all[0]);
 		if (!(*node)->path)

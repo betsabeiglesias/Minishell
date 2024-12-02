@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:43:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 16:31:21 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/02 13:09:13 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,9 @@ int	handle_error(int error_type)
 		ft_putendl_fd(ERR_MSG_ACCESS, STDOUT_FILENO);
 	if (error_type == ERR_OPEN)
 		ft_putendl_fd(ERR_MSG_OPEN, STDOUT_FILENO);
+	if (error_type == ERR_BUILT)
+		ft_putendl_fd(ERR_MSG_BUILT, STDOUT_FILENO);
+	if (error_type == ERR_EXPORT)
+		ft_putendl_fd(ERR_MSG_EXPORT, STDOUT_FILENO);
 	return (EXIT_FAILURE);
 }

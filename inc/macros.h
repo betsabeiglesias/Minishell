@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/23 16:55:57 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/02 13:09:19 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # define ERR_EXECVE         11
 # define ERR_WAIT           12
 # define ERR_PIPE           13
+# define ERR_BUILT			14
+# define ERR_EXPORT			15
+
 
 # define ERR_MSG_QUOTE		    "SYNTAX ERROR: open quotes"
 # define ERR_MSG_EXTREM		    "SYNTAX ERROR: nothing after or before metachar"
@@ -42,6 +45,8 @@
 # define ERR_MSG_FORK			"FAILED FORK"
 # define ERR_MSG_EXECVE			"FAILED EXECVE"
 # define ERR_MSG_PIPE			"FAILED PIPE"
+# define ERR_MSG_BUILT			"FAILED BUILT"
+# define ERR_MSG_EXPORT			"FAILED EXPORT"
 
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
