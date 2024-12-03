@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/02 13:06:23 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/03 10:31:32 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,10 @@ int	    new_reduced_size_env(t_exec *node, t_mini *shell);
 
 // BUILTIN_EXPORT
 int     builtin_export(t_exec *node, t_mini *shell);
+int     change_var_value(char *str, t_mini *shell);
+int     len_var_name(char *str);
 int		export_args(char *str, t_mini *shell);
+int     add_newvar(char *str, t_mini *shell);
 void	export_no_args(t_mini *shell);
 void	print_export(char *str);
 int     check_namevar(char *str);
