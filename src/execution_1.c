@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/05 15:46:03 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 19:31:33 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 	shell->pipes = create_pipes(num_procs);
 	if (!shell->pipes)
 		return(EXIT_FAILURE);
-    shell->pid = malloc((num_procs - num_builts) * sizeof(pid_t *));
+    shell->pid = malloc((num_procs - num_builts) * sizeof(pid_t)); // verificar
 	if (!shell->pid)
 		return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
 	i = 0;
@@ -51,8 +51,6 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 	}
 	close_pipes(shell, num_procs);
 	wait_childs(shell, num_procs);
-    ft_free_v((void *)shell->pid);
-    shell->pid = NULL;
 	return (EXIT_SUCCESS);
 }
 
@@ -66,9 +64,13 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 		exit(EXIT_SUCCESS);
 	}
 	else
-		execve(node->path, node->cmd_all, shell->env);
-	handle_error(ERR_EXECVE);
-    return (EXIT_FAILURE);
+	{
+		if (node->path == NULL)
+			handle_error(ERR_ACCESS);
+		else if(execve(node->path, node->cmd_all, shell->env) == ERROR)
+			handle_error(ERR_EXECVE);
+		exit(EXIT_FAILURE);
+    }
 }
 
 int	wait_childs(t_mini *shell, int num_procs)

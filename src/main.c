@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/05 17:37:10 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 19:34:53 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ void free_to_prompt(t_list *exe_lst, t_mini *shell)
 	ft_lstclear(&exe_lst, &free);
 	if (shell->input)
 		ft_free(shell->input);
-	printf("Prueba F: %p\n", shell->pid);
-	//if (shell->pid)
-	//	ft_free_v((void *)shell->pid); DA SEG FAULT
-	printf("Prueba G: %p\n", shell->pipes);
-	//if (shell->pipes)
-	//	ft_free_mat_int(shell->pipes, shell->num_pipes);
+	//printf("Prueba F: %p %ld\n", shell->pid, (long int)shell->pid);
+	if (shell->pid)
+		ft_free_v((void *)shell->pid); //DA SEG FAULT
+	//printf("Prueba G: %p\n", shell->pipes);
+	if (shell->pipes)
+		ft_free_mat_int(shell->pipes, shell->num_pipes);
 	shell->num_pipes = 0;
 	exe_lst = NULL;
 	shell->input = NULL;

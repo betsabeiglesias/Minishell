@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/05 17:51:22 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:59:32 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 			return (NULL);
 		if (is_redir == 0 && is_str_pipe((char *)(tk_lst->content)))
 		{
-			ft_free((char *)(tk_lst->content));
+			ft_free_v(tk_lst->content);
 			if (!is_builtin(node->cmd_all))
 			{
 				if (!is_cmd_executable(node->cmd_all[0]))
 				{
 					node->path = get_path(shell->all_paths, node->cmd_all[0]);
-					if (!node->path)
-						return (free_node_exec(node), NULL);
+					//if (!node->path)
+					//	return (free_node_exec(node), NULL);
 				}
 			}
 			if (save_exe_node(&exe_lst, node))
@@ -49,7 +49,7 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 				return(NULL);
 		if (is_redir)
 		{
-			ft_free((char *)(tk_lst->content));
+			ft_free_v(tk_lst->content);
 			tk_lst = tk_lst->next;
 		}
 			
@@ -110,7 +110,6 @@ int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 		node->filename_out = (char *)tk_lst->next->content;
 		node->out_append = 1;
 	}
-	ft_free(tk_lst->content);
 	return (1);
 }
 

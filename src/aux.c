@@ -17,15 +17,6 @@ int    ft_print_lst(t_list *list)
 }
 int ft_print_cmd_lst(t_list *cmd_lst)
 {
-    /*
-    char	**env;
-	char	*cmd;
-	char	**cmd_all;
-	char	*path;
-	char	*filename_in;
-	char	*filename_out;
-	char	*heredoc_content;
-    */
     printf("\nLISTA DE EXEC\n");
     while (cmd_lst != NULL)
     {

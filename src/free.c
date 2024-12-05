@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:43:08 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/05 17:49:03 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:55:26 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,6 @@ void lst_clear_exec(t_list *lst)
 	{
 		free_node_exec((t_exec *)lst->content);
 		lst->content = NULL;
-		/*
-		ft_free_mat_str(node->cmd_all, ft_matsize(node->cmd_all));
-		ft_free(node->path);
-		ft_free(node->filename_in);
-		ft_free(node->filename_out);
-		ft_free(node->heredoc_content);
-		ft_free_v((void *)node);
-		node = NULL;
-		*/
 		lst = lst->next;
 	}
 	return ;
