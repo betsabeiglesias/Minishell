@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/05 19:31:33 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 19:58:24 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 	}
 	else
 	{
-		if (node->path == NULL)
-			handle_error(ERR_ACCESS);
+		if (node->path == NULL && !is_cmd_executable(node->cmd_all[0]))
+			exit(EXIT_FAILURE);
 		else if(execve(node->path, node->cmd_all, shell->env) == ERROR)
 			handle_error(ERR_EXECVE);
 		exit(EXIT_FAILURE);

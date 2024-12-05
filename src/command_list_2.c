@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:18:03 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/05 19:07:13 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 20:10:34 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ char	*get_path(char **all_paths, char *cmd)
 		pathname = NULL;
 		i++;
 	}
-	//if (!pathname)
-	//	return (handle_error(ERR_ACCESS), NULL);
+	if (!pathname)
+		return (handle_error(ERR_ACCESS), NULL);
 	return (pathname);
 }
 

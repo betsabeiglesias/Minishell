@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:43:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/05 19:24:01 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 19:50:19 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	handle_error(int error_type)
 	if (error_type == ERR_MALLOC)
 		ft_putendl_fd(ERR_MSG_MALLOC, STDOUT_FILENO);
 	if (error_type == ERR_ACCESS)
-		ft_putendl_fd(ERR_MSG_ACCESS, STDOUT_FILENO);
+		perror(ERR_MSG_ACCESS);
 	if (error_type == ERR_OPEN)
 		ft_putendl_fd(ERR_MSG_OPEN, STDOUT_FILENO);
 	if (error_type == ERR_EXECVE)
