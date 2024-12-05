@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/05 15:51:23 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:39:54 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 		{
 			if (!is_builtin(node->cmd_all))
 			{
-				node->path = get_path(shell->all_paths, node->cmd_all[0]);
-				if (!node->path)
-					return (NULL);
+				if (!is_cmd_executable(node->cmd_all[0]))
+				{
+					node->path = get_path(shell->all_paths, node->cmd_all[0]);
+					if (!node->path)
+						return (NULL);
+				}
 			}
 			if (save_exe_node(&exe_lst, node))
 				return (NULL);
@@ -145,7 +148,14 @@ int	read_stdin(t_exec *node, char *delimiter)
 	}
 	return (EXIT_SUCCESS);
 }
-/*
+
+int is_cmd_executable(char *str)
+{
+	if (str[0] == POINT && str[1] == SLASH_CHAR)
+		return (1);
+	return (0);
+}
+/* ESTAS FUNCIONES ESTAN DUPLICADAS EN COMMAND_LIST_2.C
 int	save_exe_node(t_list **exe_lst, t_exec *exe_node)
 {
 	t_list * node;	

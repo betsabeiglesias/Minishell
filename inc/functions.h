@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/05 15:45:19 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:19:33 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell);
 int     create_outfile(t_exec *node, char *redir);
 //int     handle_save_node(t_exec *node, t_mini *shell, t_list **exe_lst);
 void handle_all_redir(t_list *tk_lst, int *is_redir, t_exec *node);
+int     is_cmd_executable(char *str);
 
 //COMMAND_LIST_2
 char	*get_path(char **all_paths, char *cmd);

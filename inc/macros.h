@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/02 11:54:40 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/05 16:21:15 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define ERR_MSG_ARG		    "ningun argumento"
 # define ERR_MSG_ATTR           "UNABLE TO ACCESS TERMINAL ATTRIBUTES"
 # define ERR_MSG_OPEN           "OPEN ERROR"
-# define ERR_MSG_ACCESS			"FAILED TO ACCESS DIRECTORY"
+# define ERR_MSG_ACCESS			"COMMAND NOT FOUND"
 # define ERR_MSG_FORK			"FAILED FORK"
 # define ERR_MSG_EXECVE			"FAILED EXECVE"
 # define ERR_MSG_PIPE			"FAILED PIPE"
@@ -48,9 +48,11 @@
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
 # define SPACE				' '
+# define POINT              '.'
 # define PIPE				'|'
 # define DOTS	            58
 # define SLASH		        "/"
+# define SLASH_CHAR		    '/'
 # define NEW_LINE            "\n"
 # define EMPTY              ""
 # define EXIT               "exit"

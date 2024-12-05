@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:39:30 by binary            #+#    #+#             */
-/*   Updated: 2024/12/05 15:55:25 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:29:33 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char *ft_strjoin_variadic(int count, ...)
 int     is_builtin(char **cmd)
 {
     if(cmd == NULL)
-        return(handle_error(ERR_BUILT), 0);
+        return(0); // ERROR BUILT NO TIENE SENTIDO NO?????
     if (!ft_strncmp(cmd[0], ENV, ft_strlen(ENV)) && (ft_strlen(cmd[0]) == ft_strlen(ENV)))
 		return (1);
     if (!ft_strncmp(cmd[0], EXIT, ft_strlen(EXIT)) && (ft_strlen(cmd[0]) == ft_strlen(EXIT)))
