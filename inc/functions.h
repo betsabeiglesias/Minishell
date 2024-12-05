@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 20:37:29 by aolabarr         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/12/05 15:45:19 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 
@@ -116,7 +117,7 @@ t_fd	*do_redir_built(t_exec *node);
 size_t  ft_strlen_variadic(int num_args,...);
 void    concatenate_strings(int num_args, va_list args, char *result);
 char    *ft_strjoin_variadic(int num_args, ...);
-int		is_builtin(char *cmd);
+int		is_builtin(char **cmd);
 
 // BUILTIN_CD_1
 int		builtin_cd(t_exec *node, t_mini *shell);

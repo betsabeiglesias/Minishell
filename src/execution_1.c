@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 18:56:38 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 18:16:37 by aolabarr         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/12/05 15:46:03 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../inc/minishell.h"
 
@@ -29,7 +30,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 	if (!shell->pid)
 		return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
 	i = 0;
-	if (num_procs == 1 && is_builtin(((t_exec *)exe_lst->content)->cmd_all[0]))
+	if (num_procs == 1 && is_builtin(((t_exec *)exe_lst->content)->cmd_all))
 		handle_exec_built((t_exec *)exe_lst->content, shell);
 	else
 	{
@@ -59,7 +60,7 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 {
 	if (do_redirections(node, child, num_procs, shell))
 		return (EXIT_FAILURE);
-	if (is_builtin((node->cmd_all[0])))
+	if (is_builtin((node->cmd_all)))
 	{
 		execute_builtin(node, shell);
 		exit(EXIT_SUCCESS);
@@ -133,7 +134,7 @@ int	builtin_count(t_list *exe_lst)
 	count = 0;
 	while(exe_lst != NULL)
 	{
-		if (is_builtin(((t_exec *)exe_lst->content)->cmd_all[0]))
+		if (is_builtin(((t_exec *)exe_lst->content)->cmd_all))
 			count ++;
 		exe_lst = exe_lst->next;
 	}
