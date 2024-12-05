@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/05 16:39:54 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:51:22 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 			return (NULL);
 		if (is_redir == 0 && is_str_pipe((char *)(tk_lst->content)))
 		{
+			ft_free((char *)(tk_lst->content));
 			if (!is_builtin(node->cmd_all))
 			{
 				if (!is_cmd_executable(node->cmd_all[0]))
 				{
 					node->path = get_path(shell->all_paths, node->cmd_all[0]);
 					if (!node->path)
-						return (NULL);
+						return (free_node_exec(node), NULL);
 				}
 			}
 			if (save_exe_node(&exe_lst, node))
@@ -47,7 +48,11 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 			if (handle_commands(tk_lst, node))
 				return(NULL);
 		if (is_redir)
+		{
+			ft_free((char *)(tk_lst->content));
 			tk_lst = tk_lst->next;
+		}
+			
 		tk_lst = tk_lst->next;
 	}
 	if (handle_last_save_node(&exe_lst, &node, shell))
@@ -87,9 +92,7 @@ void handle_all_redir(t_list *tk_lst, int *is_redir, t_exec *node)
 int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 {
 	char	*delimiter;
-	int		fd;
 	
-	(void)fd;
 	if (!ft_strncmp(redir, REDIR_IN_S, ft_strlen(redir)))
 		node->filename_in = (char *)tk_lst->next->content;
 	else if (!ft_strncmp(redir, REDIR_IN_D, ft_strlen(redir)))
@@ -98,6 +101,7 @@ int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 		delimiter = ft_strjoin_freed(delimiter, NEW_LINE);
 		node->filename_in = HERE_DOC;
 		read_stdin(node, delimiter);
+		ft_free(delimiter);
 	}
 	else if (!ft_strncmp(redir, REDIR_OUT_S, ft_strlen(redir)))
 		node->filename_out = (char *)tk_lst->next->content;

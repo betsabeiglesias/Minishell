@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:43:08 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 17:52:58 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:49:03 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	free_shell(t_mini *shell)
 		ft_free_mat_str(shell->all_paths, ft_matsize(shell->all_paths));
 	//if (shell->paths)
 	//	ft_free_mat_str(shell->paths, ft_matsize(shell->paths));
-	if (shell->delimiter)
-		ft_free(shell->delimiter);
 	if (shell->input)
 		ft_free(shell->input);
 	if (shell->pid)
@@ -61,7 +59,6 @@ void	free_shell(t_mini *shell)
 	shell->input = NULL;
 	shell->all_paths = NULL;
 	//shell->paths = NULL;
-	shell->delimiter = NULL;
 	shell->pid = NULL;
 	shell->pipes = NULL;
 	free(shell);
@@ -84,11 +81,13 @@ void	ft_free_mat_int(int **mat, int size)
 }
 void lst_clear_exec(t_list *lst)
 {
-	t_exec *node;
+	//t_exec *node;
 	
 	while (lst)
 	{
-		node = (t_exec *)lst->content;
+		free_node_exec((t_exec *)lst->content);
+		lst->content = NULL;
+		/*
 		ft_free_mat_str(node->cmd_all, ft_matsize(node->cmd_all));
 		ft_free(node->path);
 		ft_free(node->filename_in);
@@ -96,8 +95,22 @@ void lst_clear_exec(t_list *lst)
 		ft_free(node->heredoc_content);
 		ft_free_v((void *)node);
 		node = NULL;
+		*/
 		lst = lst->next;
 	}
+	return ;
+}
+void free_node_exec(t_exec *node)
+{
+	if (!node)
+		return ;
+	ft_free_mat_str(node->cmd_all, ft_matsize(node->cmd_all));
+	ft_free(node->path);
+	ft_free(node->filename_in);
+	ft_free(node->filename_out);
+	ft_free(node->heredoc_content);
+	ft_free_v((void *)node);
+	node = NULL;
 	return ;
 }
 

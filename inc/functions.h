@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/05 16:19:33 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:48:06 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ void	free_shell(t_mini *shell);
 void    handle_free(t_mini shell, int error);
 void	ft_free_mat_int(int **mat, int size);
 void    lst_clear_exec(t_list *lst);
-void	ft_free_mat(void **mat, int size);
+//void	ft_free_mat(void **mat, int size);
 void	ft_free_v(void *str);
+void    free_node_exec(t_exec *node);
 
 // SIGNALS
 void	setup_signal_handlers(void);

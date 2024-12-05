@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 20:33:15 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:31:45 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int    init_shell(t_mini *shell)
 	shell->oldpwd = true;
 	if (get_all_paths(shell))
 		return(EXIT_FAILURE);
-	//shell->paths = NULL;
-	shell->delimiter = NULL;
+	//shell->paths = NULL;		BORRAR
+	//shell->delimiter = NULL;  BORRAR
 	shell->pid = NULL;
 	shell->pipes = NULL;
 	shell->num_pipes = 0;
