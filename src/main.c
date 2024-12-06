@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/05 19:34:53 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:58:59 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(int argc, char **argv, char **envp)
 		if (exe_lst)
 			init_execution(exe_lst, &shell);
 		//FREES
-		free_to_prompt(exe_lst, &shell);
+		//free_to_prompt(exe_lst, &shell);
 	}
 	//liberar shell
 	rl_clear_history();

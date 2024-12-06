@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/05 20:19:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:39:24 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 			ft_free_v(tk_lst->content);
 			if (!is_builtin(node->cmd_all))
 			{
-				if (!is_cmd_executable(node->cmd_all[0]))
+				if (!is_cmd_executable(node->cmd_all))
 				{
-					node->path = get_path(shell->all_paths, node->cmd_all[0]);
+					if (node->cmd_all != NULL)
+						node->path = get_path(shell->all_paths, node->cmd_all[0]);
 					//if (!node->path)
 					//	return (free_node_exec(node), NULL);
 				}
@@ -152,9 +153,11 @@ int	read_stdin(t_exec *node, char *delimiter)
 	return (EXIT_SUCCESS);
 }
 
-int is_cmd_executable(char *str)
+int is_cmd_executable(char **cmd_all)
 {
-	if (str[0] == POINT && str[1] == SLASH_CHAR)
+	if (cmd_all == NULL)
+		return (0);
+	if (*cmd_all[0] == POINT && *cmd_all[1] == SLASH_CHAR)
 		return (1);
 	return (0);
 }

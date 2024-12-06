@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/06 10:48:44 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:07:59 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 	}
 	else
 	{
-		if (node->path == NULL && !is_cmd_executable(node->cmd_all[0]))
+		if (node->path == NULL && !is_cmd_executable(node->cmd_all))
 			exit(EXIT_FAILURE);
 		else if(execve(node->path, node->cmd_all, shell->env) == ERROR)
 			handle_error(ERR_EXECVE);
