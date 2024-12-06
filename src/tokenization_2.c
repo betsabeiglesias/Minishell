@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:46:17 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/03 14:24:28 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:16:34 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	save_token(t_varparse *data)
 {
 	t_list	*node;
 	char	*aux;
-	
+
+	if (!data->tmp || data->tmp[0] == '\0')
+		return (EXIT_SUCCESS);
 	aux = ft_strdup(data->tmp);
 	if(!aux)
 		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
@@ -33,6 +35,8 @@ int	handle_final_token(t_varparse *data)
 	t_list	*node;
 	char	*aux;
 
+	if (!data->tmp || data->tmp[0] == '\0')
+		return (EXIT_SUCCESS);
 	aux = ft_strdup(data->tmp);
 	ft_free2(&data->tmp);
 	if (!aux)

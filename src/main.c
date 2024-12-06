@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 12:40:08 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 12:55:31 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,16 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		shell.input = readline(MINISHELL);
+		/* parte del exit BORRAR
 		if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
 		{
 			ft_free(shell.input);
 			exit(EXIT_SUCCESS);
 		}
-		if(handle_eof_interactive(shell.input)) // quitar if
-			continue ;
+		*/
+		handle_eof_interactive(shell.input);
+		//if(handle_eof_interactive(shell.input)) // quitar if
+		//	continue ;
 		if (shell.input && *shell.input)
 			add_history(shell.input);
 		exe_lst = parse(&shell);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/06 11:22:46 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:08:15 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ int	execute_builtin(t_exec *node, t_mini *shell)
 		printf("ENTRA EN ENV\n\n");
 		builtin_env(shell, STDOUT_FILENO);
 	}
-	// else if (!ft_strncmp(node->cmd_all[0], EXIT, len))
-	// {
-	// 	printf("ENTRA EN EXIT\n\n");
-	// 	builtin_exit();
-	// }
+	else if (!ft_strncmp(node->cmd_all[0], EXIT, len))
+	{
+		printf("ENTRA EN EXIT\n\n");
+		builtin_exit(node);
+	}
 	else if (!ft_strncmp(node->cmd_all[0], "echo", len))
 	{
 		builtin_echo(node);

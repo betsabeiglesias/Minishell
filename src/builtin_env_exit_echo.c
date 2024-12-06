@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env_exit_echo.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:53:50 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/06 12:31:38 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:04:55 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,14 @@ void	builtin_echo(t_exec *node)
 {
 	int		i;
 	bool	flag;
-
+	int	   	arg;	
 	i = 1;
 	flag = false;
+	arg = ft_matsize(node->cmd_all) - 1;
+	if(arg == 0)
+	{
+		return ;
+	}
 	if (!ft_strncmp(node->cmd_all[i], "-n", ft_strlen(node->cmd_all[1])))
 	{
 		i++;
