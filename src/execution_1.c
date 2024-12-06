@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/06 12:38:47 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 19:04:54 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,14 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 	}
 	else
 	{
-		if (node->path == NULL)
+		if (node->path == NULL && node->cmd_all != NULL)
 		{
+			printf("path: %s\n", node->path);
 			handle_error(ERR_ACCESS);
 			exit(EXIT_FAILURE);
 		}
+		else if (node->path == NULL && node->cmd_all == NULL)
+			exit(EXIT_FAILURE);
 		else if(execve(node->path, node->cmd_all, shell->env) == ERROR)
 			handle_error(ERR_EXECVE);
 		exit(EXIT_FAILURE);
@@ -155,12 +158,23 @@ int do_redirections(t_exec *node, int child, int num_procs, t_mini *shell)
 		dup2(shell->pipes[child - 1][RD_END], STDIN_FILENO);
 	if (child != num_procs - 1)
 		dup2(shell->pipes[child][WR_END], STDOUT_FILENO);
-    if (node->filename_in != NULL)
+    if (node->filename_in != NULL && ft_strncmp(node->filename_in, HERE_DOC, ft_strlen(HERE_DOC)))
     {
         fd_in = open(node->filename_in, O_RDONLY);
         if (fd_in == ERROR)
-		    return (handle_error(ERR_OPEN), EXIT_FAILURE);
+			return (handle_error(ERR_OPEN), EXIT_FAILURE);
     }
+	else if(node->filename_in != NULL && !ft_strncmp(node->filename_in, HERE_DOC, ft_strlen(HERE_DOC)))
+	{
+		fd_in = open(HERE_DOC, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		if (fd_in == ERROR)
+		{
+			return (handle_error(ERR_OPEN), EXIT_FAILURE);
+		}
+		ft_putstr_fd(node->heredoc_content, fd_in);
+		close(fd_in);
+		fd_in = open(HERE_DOC, O_CREAT | O_RDONLY, 0644);
+	}
     if (node->filename_out != NULL && node->out_append == 0)
         fd_out =  open(node->filename_out, O_CREAT | O_RDWR | O_TRUNC, 0644);
     else if (node->filename_out != NULL && node->out_append == 1)
@@ -168,9 +182,9 @@ int do_redirections(t_exec *node, int child, int num_procs, t_mini *shell)
     if (fd_out == ERROR)
 		return (handle_error(ERR_OPEN), EXIT_FAILURE);
     if (node->filename_in != NULL)
-        dup2(fd_in, STDIN_FILENO);
-	 if (node->filename_out != NULL)
-        dup2(fd_out, STDOUT_FILENO);
+		dup2(fd_in, STDIN_FILENO);
+	if (node->filename_out != NULL)
+		dup2(fd_out, STDOUT_FILENO);
 	close_pipes(shell, num_procs);
 	return (EXIT_SUCCESS);
 }

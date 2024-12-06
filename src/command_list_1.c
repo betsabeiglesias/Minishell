@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 12:31:18 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 18:43:00 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ int	handle_redir(t_list *tk_lst, t_exec *node, char *redir)
 	{
 		delimiter = (char *)tk_lst->next->content;
 		delimiter = ft_strjoin_freed(delimiter, NEW_LINE);
-		node->filename_in = HERE_DOC;
+		node->filename_in = ft_strdup(HERE_DOC);
 		read_stdin(node, delimiter);
-		ft_free(delimiter);
+		//ft_free(delimiter);
 	}
 	else if (!ft_strncmp(redir, REDIR_OUT_S, ft_strlen(redir)))
 		node->filename_out = (char *)tk_lst->next->content;
@@ -123,7 +123,7 @@ int create_outfile(t_exec *node, char *redir)
 	{
 		fd = open(node->filename_out, O_CREAT, 0644);
 		if (fd == ERROR)
-		    return (handle_error(ERR_OPEN), EXIT_FAILURE);
+			return (handle_error(ERR_OPEN), EXIT_FAILURE);
 		close(fd);
 	}
 	return (EXIT_SUCCESS);
@@ -132,6 +132,7 @@ int create_outfile(t_exec *node, char *redir)
 int	read_stdin(t_exec *node, char *delimiter)
 {
 	char	*buffer;
+	//int		fd;
 
 	node->heredoc_content = ft_strdup(EMPTY);
 	buffer = ft_strdup(EMPTY);
@@ -151,6 +152,11 @@ int	read_stdin(t_exec *node, char *delimiter)
 		if (buffer)
 			node->heredoc_content = ft_strjoin_freed(node->heredoc_content, buffer);
 	}
+	// fd = open(HERE_DOC, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	// if (fd == ERROR)
+	// 	return (handle_error(ERR_OPEN), EXIT_FAILURE);
+	// ft_putstr_fd(node->heredoc_content, fd);
+	// close (fd);
 	return (EXIT_SUCCESS);
 }
 
