@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 12:33:44 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/06 12:45:57 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell);
 int     create_outfile(t_exec *node, char *redir);
 //int     handle_save_node(t_exec *node, t_mini *shell, t_list **exe_lst);
 void handle_all_redir(t_list *tk_lst, int *is_redir, t_exec *node);
-int     is_cmd_executable(char *str);
+int     is_cmd_executable(char **cmd_all);
 
 //COMMAND_LIST_2
 char	*get_path(char **all_paths, char *cmd);

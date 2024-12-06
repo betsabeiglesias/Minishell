@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/06 10:48:44 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/06 12:38:47 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 	shell->pipes = create_pipes(num_procs);
 	if (!shell->pipes)
 		return(EXIT_FAILURE);
-    shell->pid = malloc((num_procs - num_builts) * sizeof(pid_t)); // verificar
+    shell->pid = malloc((num_procs - num_builts) * sizeof(pid_t));
 	if (!shell->pid)
 		return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
 	i = 0;
@@ -64,8 +64,11 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 	}
 	else
 	{
-		if (node->path == NULL && !is_cmd_executable(node->cmd_all[0]))
+		if (node->path == NULL)
+		{
+			handle_error(ERR_ACCESS);
 			exit(EXIT_FAILURE);
+		}
 		else if(execve(node->path, node->cmd_all, shell->env) == ERROR)
 			handle_error(ERR_EXECVE);
 		exit(EXIT_FAILURE);
