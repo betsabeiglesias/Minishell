@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/06 10:48:19 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:04:32 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int handle_exec_built(t_exec *node, t_mini *shell)
 		builtin_export(node, shell);
 	else if (!ft_strncmp(node->cmd_all[0], UNSET, len))
 		builtin_unset(node, shell);
+	else if (!ft_strncmp(node->cmd_all[0], "echo", len))
+		builtin_echo(node);
 	return(EXIT_SUCCESS);
 }
 
@@ -72,7 +74,6 @@ int	execute_builtin(t_exec *node, t_mini *shell)
 	// }
 	else if (!ft_strncmp(node->cmd_all[0], "echo", len))
 	{
-		printf("ENTRA EN ECHO\n\n");
 		builtin_echo(node);
 	}
 	else if (!ft_strncmp(node->cmd_all[0], PWD, len))
@@ -85,12 +86,10 @@ int	execute_builtin(t_exec *node, t_mini *shell)
 	}
 	else if (!ft_strncmp(node->cmd_all[0], EXPORT, len))
 	{
-		printf("ENTRA EN EXPORT\n\n");
 		builtin_export(node, shell);
 	}
-	if (!ft_strncmp(node->cmd_all[0], UNSET, len))
+	else if (!ft_strncmp(node->cmd_all[0], UNSET, len))
 	{
-		printf("ENTRA EN UNSET\n\n");
 		builtin_unset(node, shell);
 	}
 	return(EXIT_SUCCESS);

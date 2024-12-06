@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:39:30 by binary            #+#    #+#             */
-/*   Updated: 2024/12/06 10:47:42 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:59:21 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int     is_builtin(char **cmd)
 		return (1);
     if (!ft_strncmp(cmd[0], EXIT, ft_strlen(EXIT)) && (ft_strlen(cmd[0]) == ft_strlen(EXIT)))
         return (1);
-    //if (!ft_strncmp(cmd[0], "echo", ft_strlen("echo")) && (ft_strlen(cmd[0]) == ft_strlen("echo")))
-    //    return (1);
+    if (!ft_strncmp(cmd[0], "echo", ft_strlen("echo")) && (ft_strlen(cmd[0]) == ft_strlen("echo")))
+		return (1);
     if (!ft_strncmp(cmd[0], PWD, ft_strlen(PWD)) && (ft_strlen(cmd[0]) == ft_strlen(PWD)))
         return (1);
      if (!ft_strncmp(cmd[0], CD, ft_strlen(CD)) && (ft_strlen(cmd[0]) == ft_strlen(CD)))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:06:14 by binary            #+#    #+#             */
-/*   Updated: 2024/12/04 13:40:39 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/06 10:57:47 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ int is_var_name(char *str, char *mini_var)
 			return(1);
 	return (0);
 }
-
-
 
 int	new_reduced_size_env(t_exec *node, t_mini *shell)
 {
