@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/06 13:59:13 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:59:20 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	builtin_pwd(int fd)
 
 int handle_exec_built(t_exec *node, t_mini *shell)
 {
-	t_fd *fd;
+	t_fd	*fd;
 	int		len;
 
 	len = ft_strlen(node->cmd_all[0]);
@@ -48,7 +48,7 @@ int handle_exec_built(t_exec *node, t_mini *shell)
 	else if (!ft_strncmp(node->cmd_all[0], PWD, len))
 		builtin_pwd(fd->out);
 	else if (!ft_strncmp(node->cmd_all[0], EXPORT, len))
-		builtin_export(node, shell);
+		builtin_export(node, shell, fd->out);
 	else if (!ft_strncmp(node->cmd_all[0], UNSET, len))
 		builtin_unset(node, shell);
 	else if (!ft_strncmp(node->cmd_all[0], "echo", len))
@@ -88,7 +88,7 @@ int	execute_builtin(t_exec *node, t_mini *shell)
 	}
 	else if (!ft_strncmp(node->cmd_all[0], EXPORT, len))
 	{
-		builtin_export(node, shell);
+		builtin_export(node, shell, STDOUT_FILENO);
 	}
 	else if (!ft_strncmp(node->cmd_all[0], UNSET, len))
 	{

@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:56:51 by binary            #+#    #+#             */
-/*   Updated: 2024/12/03 10:53:32 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/06 17:00:28 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	builtin_export(t_exec *node, t_mini *shell)
+int	builtin_export(t_exec *node, t_mini *shell, int fd)
 {
 	int	args;
 
 	args = 1;
 	if (!node->cmd_all[args])
-		export_no_args(shell);
+		export_no_args(shell, fd);
 	while(node->cmd_all[args])
 	{
 		if(!check_namevar(node->cmd_all[args]))
@@ -117,31 +117,31 @@ int	check_namevar(char *str)
 	return (0);
 }
 
-void	export_no_args(t_mini *shell)
+void	export_no_args(t_mini *shell, int fd)
 {
 	int	i;
 
 	i = 0;
 	while (shell->env[i])
 	{
-		ft_putstr_fd("declare -x ", STDIN_FILENO);
-		print_export(shell->env[i]);
-		ft_putstr_fd("\n", STDIN_FILENO);
+		ft_putstr_fd("declare -x ", fd);
+		print_export(shell->env[i], fd);
+		ft_putstr_fd("\n", fd);
 		i++;
 	}
 }
 
-void	print_export(char *str)
+void	print_export(char *str, int fd)
 {
 	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		ft_putchar_fd(str[i], STDIN_FILENO);
+		ft_putchar_fd(str[i], fd);
 		if (str[i] == '=')
-			ft_putchar_fd('\"', STDIN_FILENO);
+			ft_putchar_fd('\"', fd);
 		i++;
 	}
-	ft_putchar_fd('\"', STDIN_FILENO);
+	ft_putchar_fd('\"', fd);
 }

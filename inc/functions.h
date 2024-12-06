@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 13:59:38 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:59:51 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ int 	cd_especial_cases(t_exec *node, t_mini *shell);
 int     go_to_oldpwd(t_mini *shell);
 int     go_to_previousdir(t_mini *shell);
 char	*get_previous_dir(char *str);
+int		relative_route(t_exec *node, t_mini *shell);
 
 // BUILTIN_UNSET
 int     builtin_unset(t_exec *node, t_mini *shell);
@@ -153,13 +154,13 @@ int		is_var_name(char *str, char *mini_var);
 int	    new_reduced_size_env(t_exec *node, t_mini *shell);
 
 // BUILTIN_EXPORT
-int     builtin_export(t_exec *node, t_mini *shell);
+int     builtin_export(t_exec *node, t_mini *shell, int fd);
 int     change_var_value(char *str, t_mini *shell);
 int     len_var_name(char *str);
 int		export_args(char *str, t_mini *shell);
 int     add_newvar(char *str, t_mini *shell);
-void	export_no_args(t_mini *shell);
-void	print_export(char *str);
+void	export_no_args(t_mini *shell, int fd);
+void	print_export(char *str, int fd);
 int     check_namevar(char *str);
 
 // INIT_DATA
