@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 12:55:31 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 19:17:41 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(int argc, char **argv, char **envp)
 		if (exe_lst)
 			init_execution(exe_lst, &shell);
 		//FREES
-		//free_to_prompt(exe_lst, &shell);
+		free_to_prompt(exe_lst, &shell);
 	}
 	//liberar shell
 	rl_clear_history();
@@ -66,6 +66,12 @@ void free_to_prompt(t_list *exe_lst, t_mini *shell)
 	//printf("Prueba G: %p\n", shell->pipes);
 	if (shell->pipes)
 		ft_free_mat_int(shell->pipes, shell->num_pipes);
+	
+	if (access("./here_doc", F_OK) == ACCESS)
+	{
+		if (unlink("./here_doc") == ERROR)
+        	perror("Error deleting here_doc");
+	}
 	shell->num_pipes = 0;
 	exe_lst = NULL;
 	shell->input = NULL;
