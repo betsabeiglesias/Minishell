@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 11:39:24 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 12:31:18 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 					//if (!node->path)
 					//	return (free_node_exec(node), NULL);
 				}
+				else
+					node->path = node->cmd_all[0];
 			}
 			if (save_exe_node(&exe_lst, node))
 				return (NULL);
@@ -53,7 +55,6 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 			ft_free_v(tk_lst->content);
 			tk_lst = tk_lst->next;
 		}
-			
 		tk_lst = tk_lst->next;
 	}
 	if (handle_last_save_node(&exe_lst, &node, shell))
@@ -157,36 +158,9 @@ int is_cmd_executable(char **cmd_all)
 {
 	if (cmd_all == NULL)
 		return (0);
-	if (*cmd_all[0] == POINT && *cmd_all[1] == SLASH_CHAR)
+	if (ft_strlen(*cmd_all) < 3)
+		return (0);
+	if ((*cmd_all)[0] == POINT && (*cmd_all)[1] == SLASH_CHAR)
 		return (1);
 	return (0);
 }
-/* ESTAS FUNCIONES ESTAN DUPLICADAS EN COMMAND_LIST_2.C
-int	save_exe_node(t_list **exe_lst, t_exec *exe_node)
-{
-	t_list * node;	
-
-	node = ft_lstnew((void *)exe_node);
-	if(!node)
-		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
-	ft_lstadd_back(exe_lst, node);
-	return (EXIT_SUCCESS);
-}
-
-int	handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell)
-{
-	if (!*node)
-		return (EXIT_FAILURE);
-	if (!is_builtin((*node)->cmd_all))
-	{
-		(*node)->path = get_path(shell->all_paths, (*node)->cmd_all[0]);
-		if (!(*node)->path)
-			return (EXIT_FAILURE);
-	}
-	if (save_exe_node(exe_lst, *node))
-		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
-	*node = NULL;
-	return (EXIT_SUCCESS);
-}
-*/
-
