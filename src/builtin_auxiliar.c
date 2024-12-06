@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_auxiliar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:39:30 by binary            #+#    #+#             */
-/*   Updated: 2024/12/05 16:29:33 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:47:42 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../inc/minishell.h"
 
@@ -95,6 +96,8 @@ int     is_builtin(char **cmd)
      if (!ft_strncmp(cmd[0], CD, ft_strlen(CD)) && (ft_strlen(cmd[0]) == ft_strlen(CD)))
         return (1);
     if (!ft_strncmp(cmd[0], EXPORT, ft_strlen(CD)) && (ft_strlen(cmd[0]) == ft_strlen(EXPORT)))
+        return (1);
+    if (!ft_strncmp(cmd[0], UNSET, ft_strlen(UNSET)) && (ft_strlen(cmd[0]) == ft_strlen(UNSET)))
         return (1);
     return (0);
 }

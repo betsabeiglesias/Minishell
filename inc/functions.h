@@ -3,11 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/05 17:55:21 by aolabarr         ###   ########.fr       */
+/*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/12/06 10:42:39 by beiglesi         ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
+
 /* ************************************************************************** */
 
 
@@ -142,13 +144,18 @@ char	*get_previous_dir(char *str);
 
 // BUILTIN_UNSET
 int     builtin_unset(t_exec *node, t_mini *shell);
+int		is_var_name(char *str, char *mini_var);
 int	    new_reduced_size_env(t_exec *node, t_mini *shell);
 
 // BUILTIN_EXPORT
 int     builtin_export(t_exec *node, t_mini *shell);
+int     change_var_value(char *str, t_mini *shell);
+int     len_var_name(char *str);
 int		export_args(char *str, t_mini *shell);
+int     add_newvar(char *str, t_mini *shell);
 void	export_no_args(t_mini *shell);
 void	print_export(char *str);
+int     check_namevar(char *str);
 
 // INIT_DATA
 int     init_shell(t_mini *shell);

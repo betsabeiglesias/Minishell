@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/05 19:58:24 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:48:44 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
     int     num_procs;
 	int		num_builts;
 
-	// print_env(shell);
 	num_procs = ft_lstsize(exe_lst);
 	num_builts = builtin_count(exe_lst);
 	shell->num_pipes = num_procs - 1;

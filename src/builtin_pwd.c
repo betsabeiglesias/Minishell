@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/05 17:06:10 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:48:19 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int handle_exec_built(t_exec *node, t_mini *shell)
 {
 	t_fd *fd;
 	int		len;
-	
+
 	len = ft_strlen(node->cmd_all[0]);
 	fd = do_redir_built(node);
 	if (!fd)
@@ -47,6 +47,10 @@ int handle_exec_built(t_exec *node, t_mini *shell)
 		builtin_cd(node, shell);
 	else if (!ft_strncmp(node->cmd_all[0], PWD, len))
 		builtin_pwd();
+	else if (!ft_strncmp(node->cmd_all[0], EXPORT, len))
+		builtin_export(node, shell);
+	else if (!ft_strncmp(node->cmd_all[0], UNSET, len))
+		builtin_unset(node, shell);
 	return(EXIT_SUCCESS);
 }
 
