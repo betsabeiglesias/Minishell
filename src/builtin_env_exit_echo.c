@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:53:50 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/06 13:04:55 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:33:05 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ void	builtin_exit(t_exec *node)
 	}
 }
 
-void	builtin_echo(t_exec *node)
+void	builtin_echo(t_exec *node, int fd)
 {
 	int		i;
 	bool	flag;
 	int	   	arg;	
+
 	i = 1;
 	flag = false;
 	arg = ft_matsize(node->cmd_all) - 1;
@@ -72,10 +73,10 @@ void	builtin_echo(t_exec *node)
 	}
 	while (node->cmd_all[i])
 	{
-		ft_putstr_fd(node->cmd_all[i], STDOUT_FILENO);
+		ft_putstr_fd(node->cmd_all[i], fd);
 		i++;
-		ft_putchar_fd(' ', STDOUT_FILENO);
+		ft_putchar_fd(' ', fd);
 	}
 	if (flag == false)
-		ft_putchar_fd('\n', STDOUT_FILENO);
+		ft_putchar_fd('\n', fd);
 }

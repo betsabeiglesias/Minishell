@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 10:44:24 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:52:02 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define ERR_PIPE           13
 # define ERR_BUILT			14
 # define ERR_EXPORT			15
+# define ERR_CHDIR          16
 
 
 # define ERR_MSG_QUOTE		    "SYNTAX ERROR: open quotes"
@@ -48,6 +49,7 @@
 # define ERR_MSG_PIPE			"FAILED PIPE"
 # define ERR_MSG_BUILT			"FAILED BUILT"
 # define ERR_MSG_EXPORT			"FAILED EXPORT"
+# define ERR_MSG_CHDIR			"ERROR CHDIR"
 
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
@@ -78,9 +80,7 @@
 
 # define REDIR_SINGLE       0
 # define REDIR_DOUBLE       1
-/*
-# define ECHO				"echo"
-*/
+
 # define CD					"cd"
 # define PWD				"pwd"
 # define EXPORT				"export"

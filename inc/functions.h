@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 12:45:57 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:59:38 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	free_env(t_mini *shell);
 void	free_mini(t_mini *shell);
 
 // BUILT_ENV_EXIT_ECHO (en archivos separados)
-void	builtin_echo(t_exec *node);
+void	builtin_echo(t_exec *node, int fd);
 void	builtin_exit(t_exec *node);
 void	builtin_env(t_mini *shell, int fd);
 
@@ -115,7 +115,7 @@ int		ft_atoi_exit(char *str);
 int		ft_str_hasalpha(char *str);
 
 // BUILTIN_PWD
-int		builtin_pwd(void);
+int		builtin_pwd(int fd);
 int		handle_exec_built(t_exec *node, t_mini *shell);
 int     execute_builtin(t_exec *node, t_mini *shell);
 t_fd	*do_redir_built(t_exec *node);

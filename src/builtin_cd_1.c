@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/02 12:12:30 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/06 13:54:21 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	builtin_cd(t_exec *node, t_mini *shell)
 		return(cd_especial_cases(node, shell), EXIT_SUCCESS);
 	if(chdir(node->cmd_all[1]) == 0)
 		return(EXIT_SUCCESS);
-	return (handle_error(ERR_ACCESS), EXIT_FAILURE); 
+	return (handle_error(ERR_CHDIR), EXIT_FAILURE); 
 }
 
 // REVISAR MENSAJES DE ERRORES DE RETORNO
@@ -62,7 +62,7 @@ int	cd_to_home(t_mini *shell)
     }
     if (chdir(home_path) != 0)
     {
-        handle_error(ERR_ACCESS);
+        handle_error(ERR_CHDIR);
         free(dir_to_save);
         return EXIT_FAILURE;
     }

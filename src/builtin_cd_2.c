@@ -19,7 +19,7 @@ int go_to_oldpwd(t_mini *shell)
 	if(!dir_to_save)
 		return(printf("ERROR AL GUARDAR DIR\n"), EXIT_FAILURE);
 	if (chdir(oldpwd_dir) != 0)
-		return (handle_error(ERR_ACCESS), EXIT_FAILURE);
+		return (handle_error(ERR_CHDIR), EXIT_FAILURE);
 	update_dir_env("OLDPWD", dir_to_save, shell);
 	update_dir_env("PWD", oldpwd_dir, shell);
 	return(EXIT_SUCCESS);
@@ -35,7 +35,7 @@ int go_to_previousdir(t_mini *shell)
 	if(!dir_to_save)
 		return(printf("ERROR AL GUARDAR DIR\n"), EXIT_FAILURE);
 	if (chdir(previous_dir) != 0)
-		return (handle_error(ERR_ACCESS), EXIT_FAILURE);
+		return (handle_error(ERR_CHDIR), EXIT_FAILURE);
 	update_dir_env("OLDPWD", dir_to_save, shell);
 	update_dir_env("PWD", previous_dir, shell);
 	return(EXIT_SUCCESS);
