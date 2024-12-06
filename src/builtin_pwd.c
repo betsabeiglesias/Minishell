@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/06 11:04:32 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:22:46 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int handle_exec_built(t_exec *node, t_mini *shell)
 		builtin_unset(node, shell);
 	else if (!ft_strncmp(node->cmd_all[0], "echo", len))
 		builtin_echo(node);
+	else if (!ft_strncmp(node->cmd_all[0], EXIT, len))
+		builtin_exit(node);
 	return(EXIT_SUCCESS);
 }
 

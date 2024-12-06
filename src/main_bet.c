@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 11:02:59 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:20:40 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		shell.input = readline(MINISHELL);
-		if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
-		{
-			ft_free(shell.input);
-			exit(EXIT_SUCCESS);
-		}
+		// if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
+		// {
+		// 	ft_free(shell.input);
+		// 	exit(EXIT_SUCCESS);
+		// }
 		if(handle_eof_interactive(shell.input)) // quitar if
 			continue ;
 		if (shell.input && *shell.input)

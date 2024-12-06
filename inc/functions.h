@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 10:42:39 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/06 12:33:44 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,11 @@ void	free_mini(t_mini *shell);
 void	builtin_echo(t_exec *node);
 void	builtin_exit(t_exec *node);
 void	builtin_env(t_mini *shell, int fd);
+
+// BUILT_AUX_EXIT
+void	only_exit();
+int		ft_atoi_exit(char *str);
+int		ft_str_hasalpha(char *str);
 
 // BUILTIN_PWD
 int		builtin_pwd(void);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
+#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/11/24 14:09:19 by binary           ###   ########.fr        #
+#    Updated: 2024/12/06 12:33:59 by beiglesi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRC =	main.c \
 		builtin_cd_2.c \
 		builtin_cd_1.c \
 		builtin_auxiliar.c \
+		builtin_aux_exit.c \
 
 SRC_ARITZ =	main_parse.c \
 			check_syntax_1.c \
@@ -94,6 +95,7 @@ SRC_BET = main_bet.c \
 		builtin_cd_2.c \
 		builtin_cd_1.c \
 		builtin_auxiliar.c \
+		builtin_aux_exit.c \
 				
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
