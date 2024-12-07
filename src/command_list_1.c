@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/07 18:52:34 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:16:57 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 				{
 					if (node->cmd_all != NULL)
 						node->path = get_path(shell->all_paths, node->cmd_all[0]);
-					//if (!node->path)
-					//	return (free_node_exec(node), NULL);
 				}
 				else
 					node->path = ft_strdup(node->cmd_all[0]);
@@ -61,22 +59,6 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 		return (NULL);
 	return (exe_lst);
 }
-
-/*
-int handle_save_node(t_exec *node, t_mini *shell, t_list **exe_lst)
-{
-	if (!is_builtin(node->cmd_all[0]))
-	{
-		node->path = get_path(shell->all_paths, node->cmd_all[0]);
-		if (!node->path)
-			return (EXIT_FAILURE);
-	}
-	if (save_exe_node(exe_lst, node))
-		return (EXIT_FAILURE);
-	node = NULL;
-	return (EXIT_SUCCESS);
-}
-*/
 
 void handle_all_redir(t_list *tk_lst, int *is_redir, t_exec *node)
 {
@@ -152,11 +134,6 @@ int	read_stdin(t_exec *node, char *delimiter)
 		if (buffer)
 			node->heredoc_content = ft_strjoin_freed(node->heredoc_content, buffer);
 	}
-	// fd = open(HERE_DOC, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	// if (fd == ERROR)
-	// 	return (handle_error(ERR_OPEN), EXIT_FAILURE);
-	// ft_putstr_fd(node->heredoc_content, fd);
-	// close (fd);
 	return (EXIT_SUCCESS);
 }
 
