@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 13:52:02 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:13:40 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define ERR_BUILT			14
 # define ERR_EXPORT			15
 # define ERR_CHDIR          16
-
+# define ERR_HERE           17
 
 # define ERR_MSG_QUOTE		    "SYNTAX ERROR: open quotes"
 # define ERR_MSG_EXTREM		    "SYNTAX ERROR: nothing after or before metachar"
@@ -50,6 +50,7 @@
 # define ERR_MSG_BUILT			"FAILED BUILT"
 # define ERR_MSG_EXPORT			"FAILED EXPORT"
 # define ERR_MSG_CHDIR			"ERROR CHDIR"
+# define ERR_MSG_HERE          "Error deleting here_doc"
 
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
@@ -76,6 +77,7 @@
 # define WR_END		        1
 # define PATH		        "PATH="
 # define HERE_DOC           "here_doc"
+# define HERE_DOC_DIR       "./here_doc"
 # define ERROR			    -1
 
 # define REDIR_SINGLE       0

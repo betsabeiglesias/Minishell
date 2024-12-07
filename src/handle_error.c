@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:43:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 13:52:09 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:11:32 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,16 @@ int	handle_error(int error_type)
 	if (error_type == ERR_ATTR)
 		ft_putendl_fd(ERR_MSG_ATTR, STDOUT_FILENO);
 	if (error_type == ERR_MALLOC)
-		ft_putendl_fd(ERR_MSG_MALLOC, STDOUT_FILENO);
+		perror(ERR_MSG_MALLOC);
+	handle_error_continue(error_type);
+	return (EXIT_FAILURE);
+}
+void handle_error_continue(int error_type)
+{
 	if (error_type == ERR_ACCESS)
 		perror(ERR_MSG_ACCESS);
 	if (error_type == ERR_OPEN)
-		ft_putendl_fd(ERR_MSG_OPEN, STDOUT_FILENO);
+		perror(ERR_MSG_OPEN);
 	if (error_type == ERR_BUILT)
 		ft_putendl_fd(ERR_MSG_BUILT, STDOUT_FILENO);
 	if (error_type == ERR_EXPORT)
@@ -40,6 +45,7 @@ int	handle_error(int error_type)
 		perror(ERR_MSG_EXECVE);
 	if (error_type == ERR_CHDIR)
 		perror(ERR_MSG_CHDIR);
-
-	return (EXIT_FAILURE);
+	if (error_type == ERR_HERE)
+		perror(ERR_MSG_HERE);
+	return;
 }

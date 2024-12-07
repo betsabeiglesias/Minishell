@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/07 18:52:37 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:08:32 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ int main(int argc, char **argv, char **envp)
 	setup_signal_handlers();
 	while (1)
 	{
+		new_prompt(&shell, exe_lst);
+		/*
 		shell.input = readline(MINISHELL);
-		/* parte del exit BORRAR
+		// parte del exit BORRAR
 		if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
 		{
 			ft_free(shell.input);
 			exit(EXIT_SUCCESS);
 		}
-		*/
 		handle_eof_interactive(shell.input);
 		if (shell.input && *shell.input)
 			add_history(shell.input);
@@ -45,11 +46,33 @@ int main(int argc, char **argv, char **envp)
 			init_execution(exe_lst, &shell);
 		//FREES
 		free_to_prompt(exe_lst, &shell);
+		*/
 	}
 	//liberar shell
 	rl_clear_history();
 	free_shell(&shell);
 	return (EXIT_SUCCESS);
+}
+
+void	new_prompt(t_mini *shell, t_list *exe_lst)
+{
+	shell->input = readline(MINISHELL);
+	/* parte del exit BORRAR
+	if (shell.input && !ft_strncmp(shell.input, EXIT, 4))
+	{
+		ft_free(shell.input);
+		exit(EXIT_SUCCESS);
+	}
+	*/
+	handle_eof_interactive(shell->input);
+	if (shell->input && *shell->input)
+		add_history(shell->input);
+	exe_lst = parse(shell);
+	if (exe_lst)
+		init_execution(exe_lst, shell);
+	//FREES
+	free_to_prompt(exe_lst, shell);
+	return ;
 }
 
 void free_to_prompt(t_list *exe_lst, t_mini *shell)
@@ -58,17 +81,14 @@ void free_to_prompt(t_list *exe_lst, t_mini *shell)
 	ft_lstclear(&exe_lst, &free);
 	if (shell->input)
 		ft_free(shell->input);
-	//printf("Prueba F: %p %ld\n", shell->pid, (long int)shell->pid);
 	if (shell->pid)
 		ft_free_v((void *)shell->pid); //DA SEG FAULT
-	//printf("Prueba G: %p\n", shell->pipes);
 	if (shell->pipes)
 		ft_free_mat_int(shell->pipes, shell->num_pipes);
-	
 	if (access("./here_doc", F_OK) == ACCESS)
 	{
-		if (unlink("./here_doc") == ERROR)
-        	perror("Error deleting here_doc");
+		if (unlink(HERE_DOC_DIR) == ERROR)
+        	perror(ERR_MSG_HERE);
 	}
 	shell->num_pipes = 0;
 	exe_lst = NULL;

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 19:18:00 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:37:22 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define FUNCTIONS_H
 
 //MAIN
+void	new_prompt(t_mini *shell, t_list *exe_lst);
 void free_to_prompt(t_list *exe_lst, t_mini *shell);
 
 //AUX
@@ -38,6 +39,7 @@ int     is_redir_metachar(char c);
 
 // HANDLE ERROR
 int		handle_error(int error_type);
+void    handle_error_continue(int error_type);
 
 //PARSE
 t_list	*parse(t_mini *shell);
@@ -190,7 +192,8 @@ int     **create_pipes(int num_procs);
 void	close_pipes(t_mini *shell, int num_procs);
 int     builtin_count(t_list *exe_lst);
 int     do_redirections(t_exec *node, int child, int num_procs, t_mini *shell);
-
+int     create_here_doc_file(char *heredoc_content);
+int     do_redirections_continue(t_exec *node, int fd_in, int fd_out);
 
 //COMMAND_LIST_AUX
 int     is_str_pipe(char *str);
