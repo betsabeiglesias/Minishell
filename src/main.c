@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 19:17:41 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/07 18:52:37 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int main(int argc, char **argv, char **envp)
 		}
 		*/
 		handle_eof_interactive(shell.input);
-		//if(handle_eof_interactive(shell.input)) // quitar if
-		//	continue ;
 		if (shell.input && *shell.input)
 			add_history(shell.input);
 		exe_lst = parse(&shell);

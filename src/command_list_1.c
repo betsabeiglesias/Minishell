@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 18:43:00 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/07 18:52:34 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 					//	return (free_node_exec(node), NULL);
 				}
 				else
-					node->path = node->cmd_all[0];
+					node->path = ft_strdup(node->cmd_all[0]);
 			}
 			if (save_exe_node(&exe_lst, node))
 				return (NULL);

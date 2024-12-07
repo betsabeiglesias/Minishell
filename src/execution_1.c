@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/06 19:04:54 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/07 17:55:26 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 	{
 		if (node->path == NULL && node->cmd_all != NULL)
 		{
-			printf("path: %s\n", node->path);
+			//printf("path: %s\n", node->path);
 			handle_error(ERR_ACCESS);
 			exit(EXIT_FAILURE);
 		}
