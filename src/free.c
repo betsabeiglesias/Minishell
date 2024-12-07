@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:43:08 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 17:06:20 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/07 18:53:46 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void free_node_exec(t_exec *node)
 	if (!node)
 		return ;
 	ft_free_mat_str(node->cmd_all, ft_matsize(node->cmd_all));
+	//printf("info dir: %p %s\n", node->path, node->path);
 	ft_free(node->path);
 	ft_free(node->filename_in);
 	ft_free(node->filename_out);
