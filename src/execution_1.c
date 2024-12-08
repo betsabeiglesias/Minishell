@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/06 12:38:47 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/08 11:28:08 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,12 @@ int	wait_childs(t_mini *shell, int num_procs)
 	while (i < num_procs)
 	{
 		if (waitpid(shell->pid[i], &(status[i]), 0) == ERROR)
-		{
+		{			
 			free(status);
 			handle_error(ERR_WAIT);
 			return (EXIT_FAILURE);
 		}
+		get_exit_status(status, i, shell);
 		i++;
 	}
 	free(status);

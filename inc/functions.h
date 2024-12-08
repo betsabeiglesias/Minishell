@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 16:59:51 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/08 12:22:57 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,12 @@ void	free_env(t_mini *shell);
 void	free_mini(t_mini *shell);
 
 // BUILT_ENV_EXIT_ECHO (en archivos separados)
-void	builtin_echo(t_exec *node, int fd);
-void	builtin_exit(t_exec *node);
-void	builtin_env(t_mini *shell, int fd);
+int		builtin_echo(t_exec *node, int fd);
+int		builtin_exit(t_exec *node, t_mini *shell);
+int		builtin_env(t_mini *shell, int fd);
 
 // BUILT_AUX_EXIT
-void	only_exit();
+void	print_exit();
 int		ft_atoi_exit(char *str);
 int		ft_str_hasalpha(char *str);
 
@@ -195,6 +195,7 @@ void	close_pipes(t_mini *shell, int num_procs);
 int     builtin_count(t_list *exe_lst);
 int     do_redirections(t_exec *node, int child, int num_procs, t_mini *shell);
 
+void	get_exit_status(int *status, int i, t_mini *shell);
 
 //COMMAND_LIST_AUX
 int     is_str_pipe(char *str);
