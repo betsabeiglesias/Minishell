@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/08 12:45:26 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/08 13:07:32 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,10 +173,12 @@ int     handle_redir(t_list *tk_lst, t_exec *node, char *redir);
 int     read_stdin(t_exec *node, char *delimiter);
 t_list	*create_execution_list(t_list *tk_lst, t_mini *shell);
 int     create_outfile(t_exec *node, char *redir);
-void handle_all_redir(t_list *tk_lst, int *is_redir, t_exec *node);
+void    handle_all_redir(t_list *tk_lst, int *is_redir, t_exec *node);
 int     is_cmd_executable(char **cmd_all);
-//int     handle_pipe_and_cmds(t_list *tk_lst, t_exec *node, t_list *exe_lst, t_mini *shell);
 void	handle_get_path(t_exec *node, t_mini *shell);
+int     handle_pipe(t_list *tk_lst, t_exec *node, t_mini *shell, t_list **exe_lst);
+t_list  *jump_to_next_token(int is_redir, t_list *tk_lst);
+void    init_variables(t_exec *node, t_mini *shell);
 /* ************************************************************************** */
 
 //COMMAND_LIST_2

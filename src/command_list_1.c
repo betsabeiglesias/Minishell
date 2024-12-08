@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/08 12:46:24 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/08 13:08:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,53 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 	node = NULL;
 	while(tk_lst != NULL)
 	{
-		shell->is_redir = 0;
-		if (!node)
-			node = init_cmd_node();
+		init_variables(node, shell);
 		handle_all_redir(tk_lst, &shell->is_redir, node);
 		if (create_outfile(node, (char *)(tk_lst->content)))
 			return (NULL);
 		if (shell->is_redir == 0 && is_str_pipe((char *)(tk_lst->content)))
 		{
-			ft_free_v(tk_lst->content);
-			if (!is_builtin(node->cmd_all))
-				handle_get_path(node, shell);
-			if (save_exe_node(&exe_lst, node))
-				return (NULL);
+			if (handle_pipe(tk_lst, node, shell, &exe_lst))
+				return(NULL);
 			node = NULL;
 		}
 		else if (shell->is_redir == 0)
 			if (handle_commands(tk_lst, node))
 				return(NULL);
-		if (shell->is_redir)
-		{
-			ft_free_v(tk_lst->content);
-			tk_lst = tk_lst->next;
-		}
-		tk_lst = tk_lst->next;
+		tk_lst = jump_to_next_token(shell->is_redir, tk_lst);
 	}
 	if (handle_last_save_node(&exe_lst, &node, shell))
 		return (NULL);
 	return (exe_lst);
+}
+
+void init_variables(t_exec *node, t_mini *shell)
+{
+	shell->is_redir = 0;
+	if (!node)
+		node = init_cmd_node();
+	return ;
+}
+
+t_list *jump_to_next_token(int is_redir, t_list *tk_lst)
+{
+	if (is_redir)
+	{
+		ft_free_v(tk_lst->content);
+		tk_lst = tk_lst->next;
+	}
+	tk_lst = tk_lst->next;
+	return(tk_lst);
+}
+
+int	handle_pipe(t_list *tk_lst, t_exec *node, t_mini *shell, t_list **exe_lst)
+{
+	ft_free_v(tk_lst->content);
+	if (!is_builtin(node->cmd_all))
+		handle_get_path(node, shell);
+	if (save_exe_node(exe_lst, node))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 void	handle_get_path(t_exec *node, t_mini *shell)
