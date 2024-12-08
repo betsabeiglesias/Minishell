@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/08 12:17:34 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/08 12:46:24 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 {
 	t_list	*exe_lst;
 	t_exec	*node;
-	//int		is_redir;
 
 	exe_lst = NULL;
 	node = NULL;
@@ -28,22 +27,11 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 		handle_all_redir(tk_lst, &shell->is_redir, node);
 		if (create_outfile(node, (char *)(tk_lst->content)))
 			return (NULL);
-		//if (handle_pipe_and_cmds(tk_lst, node, exe_lst, shell))
-		//	return (NULL);
-		
 		if (shell->is_redir == 0 && is_str_pipe((char *)(tk_lst->content)))
 		{
 			ft_free_v(tk_lst->content);
 			if (!is_builtin(node->cmd_all))
-			{
-				if (!is_cmd_executable(node->cmd_all))
-				{
-					if (node->cmd_all != NULL)
-						node->path = get_path(shell->all_paths, node->cmd_all[0]);
-				}
-				else
-					node->path = ft_strdup(node->cmd_all[0]);
-			}
+				handle_get_path(node, shell);
 			if (save_exe_node(&exe_lst, node))
 				return (NULL);
 			node = NULL;
@@ -51,7 +39,6 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 		else if (shell->is_redir == 0)
 			if (handle_commands(tk_lst, node))
 				return(NULL);
-		
 		if (shell->is_redir)
 		{
 			ft_free_v(tk_lst->content);
@@ -64,29 +51,16 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 	return (exe_lst);
 }
 
-int	handle_pipe_and_cmds(t_list *tk_lst, t_exec *node, t_list *exe_lst, t_mini *shell)
+void	handle_get_path(t_exec *node, t_mini *shell)
 {
-	if (shell->is_redir == 0 && is_str_pipe((char *)(tk_lst->content)))
+	if (!is_cmd_executable(node->cmd_all))
 	{
-		ft_free_v(tk_lst->content);
-		if (!is_builtin(node->cmd_all))
-		{
-			if (!is_cmd_executable(node->cmd_all))
-			{
-				if (node->cmd_all != NULL)
-					node->path = get_path(shell->all_paths, node->cmd_all[0]);
-			}
-			else
-				node->path = ft_strdup(node->cmd_all[0]);
-		}
-		if (save_exe_node(&exe_lst, node))
-			return (EXIT_FAILURE);
-		node = NULL;
+		if (node->cmd_all != NULL)
+			node->path = get_path(shell->all_paths, node->cmd_all[0]);
 	}
-	else if (shell->is_redir == 0)
-		if (handle_commands(tk_lst, node))
-			return(EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	else
+	node->path = ft_strdup(node->cmd_all[0]);
+	return ;
 }
 
 void handle_all_redir(t_list *tk_lst, int *is_redir, t_exec *node)
