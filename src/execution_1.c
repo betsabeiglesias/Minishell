@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/07 19:40:00 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/08 13:15:35 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 			i++;
 			exe_lst = exe_lst->next;
 		}
-		
 	}
 	close_pipes(shell, num_procs);
 	wait_childs(shell, num_procs);
