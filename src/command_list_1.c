@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/09 19:24:41 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/09 19:30:47 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_exec *init_variables(t_exec *node, t_mini *shell)
 
 t_list *jump_to_next_token(int is_redir, t_list *tk_lst)
 {
-	if (!is_builtin(node->cmd_all[0]))
+	if (is_redir)
 	{
 		ft_free_v(tk_lst->content);
 		tk_lst = tk_lst->next;
