@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/07 19:12:40 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/09 19:25:27 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_all_paths(t_mini *shell)
 t_exec *init_cmd_node(void)
 {
 	t_exec *node;
-	
+
 	node = malloc(sizeof(t_exec));
 	if (!node)
 		return (handle_error(ERR_MALLOC), NULL);

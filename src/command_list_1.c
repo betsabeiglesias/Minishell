@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/08 13:08:04 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/09 19:24:41 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 	node = NULL;
 	while(tk_lst != NULL)
 	{
-		init_variables(node, shell);
+		node = init_variables(node, shell);
 		handle_all_redir(tk_lst, &shell->is_redir, node);
 		if (create_outfile(node, (char *)(tk_lst->content)))
 			return (NULL);
@@ -41,17 +41,17 @@ t_list	*create_execution_list(t_list *tk_lst, t_mini *shell)
 	return (exe_lst);
 }
 
-void init_variables(t_exec *node, t_mini *shell)
+t_exec *init_variables(t_exec *node, t_mini *shell)
 {
 	shell->is_redir = 0;
 	if (!node)
 		node = init_cmd_node();
-	return ;
+	return (node);
 }
 
 t_list *jump_to_next_token(int is_redir, t_list *tk_lst)
 {
-	if (is_redir)
+	if (!is_builtin(node->cmd_all[0]))
 	{
 		ft_free_v(tk_lst->content);
 		tk_lst = tk_lst->next;

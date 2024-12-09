@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/08 13:07:32 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/09 19:22:14 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,8 @@ int     is_cmd_executable(char **cmd_all);
 void	handle_get_path(t_exec *node, t_mini *shell);
 int     handle_pipe(t_list *tk_lst, t_exec *node, t_mini *shell, t_list **exe_lst);
 t_list  *jump_to_next_token(int is_redir, t_list *tk_lst);
-void    init_variables(t_exec *node, t_mini *shell);
+//void    init_variables(t_exec *node, t_mini *shell);
+t_exec  *init_variables(t_exec *node, t_mini *shell);
 /* ************************************************************************** */
 
 //COMMAND_LIST_2
