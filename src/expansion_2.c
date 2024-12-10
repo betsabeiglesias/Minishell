@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/09 18:12:35 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:59:37 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,33 @@ char	*do_expansion(t_mini *shell)
 	{
 		if ((*input)[i] == '$' && is_expansible(*input, i))
         {
-			i++;
-            if(init_varen(&var, *input, i))
-				return(NULL);
-            if(get_var_env(shell, &var) == 0)
-			{
-    			if(insert_expanded_var(input, &var))
-					return (NULL);
-			// if (var.var_expanded != NULL)
-			// 	i += ft_strlen(var.var_expanded);
-			// else 
-			// 	i += var.len;
+			if((*input)[i+1] == ' ' || (*input)[i+1] =='\0')
+			{	
+				i++;
+				continue;
 			}
-			clean_varen(&var);
-			i = 0;
+			else if((*input)[i+1] == '?')
+			{
+				print_exitstatus(input, i, shell);
+				i = 0;
+			}
+			else
+			{
+				i++;
+				if(init_varen(&var, *input, i))
+					return(NULL);
+				if(get_var_env(shell, &var) == 0)
+				{
+					if(insert_expanded_var(input, &var))
+						return (NULL);
+				// if (var.var_expanded != NULL)
+				// 	i += ft_strlen(var.var_expanded);
+				// else 
+				// 	i += var.len;
+				}
+				clean_varen(&var);
+				i = 0;
+			}
 		}
         i++;
 	}
@@ -70,4 +83,25 @@ void	clean_varen(t_varenv *var)
 	// }
 }
 
+int print_exitstatus(char **input, int i, t_mini *shell)
+{
+	char	*prev;
+	char	*post;
+	char	*status;
+	char	*temp;
+
+	prev = ft_substr(*input, 0, i);
+	if (!prev)
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+	post = ft_substr(*input, i+2, ft_strlen(*input));
+	if (!post)
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+	status = ft_itoa(shell->exit_status);
+	temp = ft_strjoin_variadic(3, prev, status, post);
+	if (!temp)
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+	free(*input);
+	*input = temp;
+	return (EXIT_SUCCESS);
+}
 

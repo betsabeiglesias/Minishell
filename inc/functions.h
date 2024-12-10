@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/09 19:22:14 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/10 09:29:20 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 /* ************************************************************************** */
 
@@ -95,6 +96,7 @@ char	*do_expansion(t_mini *shell);
 int		init_varen (t_varenv *var, char *cmd_line, int i);
 void	clean_varen (t_varenv *var);
 int		len_var(char *cmd_line, int i);
+int     print_exitstatus(char **input, int i, t_mini *shell);
 
 // ENVIROMENT
 int		init_env(char **envp, t_mini *shell);
@@ -104,12 +106,12 @@ void	free_env(t_mini *shell);
 void	free_mini(t_mini *shell);
 
 // BUILT_ENV_EXIT_ECHO (en archivos separados)
-void	builtin_echo(t_exec *node, int fd);
-void	builtin_exit(t_exec *node);
-void	builtin_env(t_mini *shell, int fd);
+int		builtin_echo(t_exec *node, int fd);
+int		builtin_exit(t_exec *node, t_mini *shell);
+int		builtin_env(t_mini *shell, int fd);
 
 // BUILT_AUX_EXIT
-void	only_exit();
+void	print_exit();
 int		ft_atoi_exit(char *str);
 int		ft_str_hasalpha(char *str);
 
@@ -145,6 +147,7 @@ int 	cd_especial_cases(t_exec *node, t_mini *shell);
 int     go_to_oldpwd(t_mini *shell);
 int     go_to_previousdir(t_mini *shell);
 char	*get_previous_dir(char *str);
+int		relative_route(t_exec *node, t_mini *shell);
 
 // BUILTIN_UNSET
 int     builtin_unset(t_exec *node, t_mini *shell);
@@ -152,13 +155,13 @@ int		is_var_name(char *str, char *mini_var);
 int	    new_reduced_size_env(t_exec *node, t_mini *shell);
 
 // BUILTIN_EXPORT
-int     builtin_export(t_exec *node, t_mini *shell);
+int     builtin_export(t_exec *node, t_mini *shell, int fd);
 int     change_var_value(char *str, t_mini *shell);
 int     len_var_name(char *str);
 int		export_args(char *str, t_mini *shell);
 int     add_newvar(char *str, t_mini *shell);
-void	export_no_args(t_mini *shell);
-void	print_export(char *str);
+void	export_no_args(t_mini *shell, int fd);
+void	print_export(char *str, int fd);
 int     check_namevar(char *str);
 
 // INIT_DATA
@@ -199,6 +202,7 @@ int     builtin_count(t_list *exe_lst);
 int     do_redirections(t_exec *node, int child, int num_procs, t_mini *shell);
 int     create_here_doc_file(char *heredoc_content);
 int     do_redirections_continue(t_exec *node, int fd_in, int fd_out);
+void	get_exit_status(int *status, int i, t_mini *shell);
 
 //COMMAND_LIST_AUX
 int     is_str_pipe(char *str);

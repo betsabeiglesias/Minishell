@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+         #
+#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/12/06 12:33:59 by beiglesi         ###   ########.fr        #
+#    Updated: 2024/12/09 13:02:02 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC =	main.c \
 		command_list_2.c \
 		command_list_aux.c \
 		execution_1.c \
+		execution_2.c \
 		aux.c \
 		builtin_export.c \
 		builtin_env_exit_echo.c \
@@ -87,6 +88,7 @@ SRC_BET = main_bet.c \
 		command_list_2.c \
 		command_list_aux.c \
 		execution_1.c \
+		execution_2.c \
 		aux.c \
 		builtin_export.c \
 		builtin_env_exit_echo.c \

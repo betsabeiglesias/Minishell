@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_aux_exit.c                                 :+:      :+:    :+:   */
+/*   execution_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 12:24:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/08 12:22:55 by binary           ###   ########.fr       */
+/*   Created: 2024/12/06 17:25:23 by beiglesi          #+#    #+#             */
+/*   Updated: 2024/12/08 12:29:41 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	print_exit()
+void	get_exit_status(int *status, int i, t_mini *shell)
 {
-	ft_putstr_fd(EXIT, STDOUT_FILENO);
-	ft_putstr_fd("\n", STDOUT_FILENO);
-}
-
-int	ft_atoi_exit(char *str)
-{
-	int	nb;
-	
-	nb = ft_atoi(str);
-	nb = nb % 256;
-	return(nb);
-}
-
-int	ft_str_hasalpha(char *str)
-{
-	int	i;
-
-	i = 0;
-	while(str[i])
+    if (WIFEXITED(status[i]))
 	{
-		if(ft_isalpha(str[i]))
-			return (1);
-		i++;
+		shell->exit_status = WEXITSTATUS(status[i]);
+        // printf("Proceso %d: ", i);
+		// printf("CÓDIGO SALIDA %d\n", shell->exit_status);
 	}
-	return (0);
+	else if (WIFSIGNALED(status[i]))
+	{
+		shell->exit_status = WTERMSIG(status[i]) + 128;
+        // printf("Proceso %d: ", i);
+		// printf("CÓDIGO SALIDA SEÑAL %d\n", shell->exit_status);
+	}
 }
