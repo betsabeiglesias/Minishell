@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/09 12:59:37 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/10 09:46:36 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int print_exitstatus(char **input, int i, t_mini *shell)
 	if (!post)
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	status = ft_itoa(shell->exit_status);
+	// printf("INT STATUS %d\n", shell->exit_status);
+	// printf("ITOA %s\n", status);
 	temp = ft_strjoin_variadic(3, prev, status, post);
 	if (!temp)
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);

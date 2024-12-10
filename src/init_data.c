@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/05 17:31:45 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/10 09:39:11 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int    init_shell(t_mini *shell)
 	shell->pid = NULL;
 	shell->pipes = NULL;
 	shell->num_pipes = 0;
+	shell->exit_status = 0;
 	return (EXIT_SUCCESS);
 }
 
