@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/10 09:29:20 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/10 18:31:25 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void    handle_error_continue(int error_type);
 
 //PARSE
 t_list	*parse(t_mini *shell);
+int syntax_check_on_tokens(t_list *tk_lst);
+int is_str_metachar(char *str);
 
 //SYNTAX CHECK 2
 int		check_metachar_separate(char *str);
