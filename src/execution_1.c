@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/10 09:27:06 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/11 13:00:40 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 		return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
 	i = 0;
 	if (num_procs == 1 && is_builtin(((t_exec *)exe_lst->content)->cmd_all))
-		handle_exec_built((t_exec *)exe_lst->content, shell);
+		handle_exec_onlybuilt((t_exec *)exe_lst->content, shell);
 	else
 	{
+		setup_signal_handlers_notinteract();
 		while (i < num_procs)
 		{
 			shell->pid[i] = fork();
@@ -94,7 +95,7 @@ int	wait_childs(t_mini *shell, int num_procs)
 			handle_error(ERR_WAIT);
 			return (EXIT_FAILURE);
 		}
-		get_exit_status(status, i, shell);
+		get_exit_status(status, i);
 		i++;
 	}
 	free(status);

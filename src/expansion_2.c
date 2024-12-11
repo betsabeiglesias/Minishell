@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/10 09:57:56 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/11 12:35:34 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*do_expansion(t_mini *shell)
 			}
 			else if((*input)[i+1] == '?')
 			{
-				print_exitstatus(input, i, shell);
+				print_exitstatus(input, i);
 				i = 0;
 			}
 			else
@@ -83,7 +83,7 @@ void	clean_varen(t_varenv *var)
 	// }
 }
 
-int print_exitstatus(char **input, int i, t_mini *shell)
+int print_exitstatus(char **input, int i)
 {
 	char	*prev;
 	char	*post;
@@ -96,8 +96,8 @@ int print_exitstatus(char **input, int i, t_mini *shell)
 	post = ft_substr(*input, i+2, ft_strlen(*input));
 	if (!post)
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
-	status = ft_itoa(shell->exit_status);
-	// printf("INT STATUS %d\n", shell->exit_status);
+	status = ft_itoa(g_status);
+	// printf("INT STATUS %d\n", g_status);
 	// printf("ITOA %s\n", status);
 	temp = ft_strjoin_variadic(3, prev, status, post);
 	if (!temp)
