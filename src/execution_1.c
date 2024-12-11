@@ -6,7 +6,7 @@
 /*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/11 13:00:40 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:13:51 by beiglesi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
     int     num_procs;
 	int		num_builts;
 
+	setup_signal_handlers_notinteract();
 	num_procs = ft_lstsize(exe_lst);
 	num_builts = builtin_count(exe_lst);
 	shell->num_pipes = num_procs - 1;
@@ -33,7 +34,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 		handle_exec_onlybuilt((t_exec *)exe_lst->content, shell);
 	else
 	{
-		setup_signal_handlers_notinteract();
+		
 		while (i < num_procs)
 		{
 			shell->pid[i] = fork();
