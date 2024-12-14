@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/14 20:47:20 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/14 20:55:35 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,6 @@ int main(int argc, char **argv, char **envp)
 	init_shell(&shell);
 	if (handle_enviroment(envp, &shell))
 		return (EXIT_FAILURE);
-	/*
-	if (get_my_env(envp, &shell))
-		return(handle_error(ERR_ENVP), EXIT_FAILURE);
-	if (get_all_paths(&shell))
-	{
-		ft_free_mat_str(shell.env, ft_matsize(shell.env));
-		return(handle_error(ERR_ENVP), EXIT_FAILURE);
-	}
-	*/
 	setup_signal_handlers_shell();
 	while (1)
 	{
