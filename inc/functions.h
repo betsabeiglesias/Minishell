@@ -6,7 +6,11 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/16 16:03:20 by binary           ###   ########.fr       */
+<<<<<<< HEAD
+/*   Updated: 2024/12/14 20:47:49 by aolabarr         ###   ########.fr       */
+=======
+/*   Updated: 2024/12/14 19:39:30 by binary           ###   ########.fr       */
+>>>>>>> 6ef7894 (Reorganización de get_my_env y get_all_paths, ahora en init_shell, pero igual tiene que ir en el main)
 /*                                                                            */
 /* ************************************************************************** */
 
