@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/09 19:25:43 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/14 09:23:42 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+int g_status = 0;
 
 int main(int argc, char **argv, char **envp)
 {
@@ -26,7 +28,7 @@ int main(int argc, char **argv, char **envp)
 		return(handle_error(ERR_ENVP), EXIT_FAILURE);
 	if (get_all_paths(&shell))
 		return(handle_error(ERR_ENVP), EXIT_FAILURE);
-	setup_signal_handlers();
+	setup_signal_handlers_shell();
 	while (1)
 	{
 		new_prompt(&shell, exe_lst);

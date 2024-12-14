@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/10 18:31:25 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/14 09:35:04 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 /* ************************************************************************** */
@@ -82,9 +83,13 @@ void	ft_free_v(void *str);
 void    free_node_exec(t_exec *node);
 
 // SIGNALS
-void	setup_signal_handlers(void);
-void    handle_signal_interactive(int signum);
+void	setup_signal_handlers_shell(void);
+void    setup_signal_handlers_fork(void);
+void    setup_signal_handlers_builtin(void);
+void    handle_signal_father(int signum);
 int		handle_eof_interactive(char *str);
+void    handle_signal_child(int signum);
+void	handle_signal_builtin(int signum);
 
 //EXPANSION_1
 int		insert_expanded_var (char **cmd_line, t_varenv *var);
@@ -98,7 +103,7 @@ char	*do_expansion(t_mini *shell);
 int		init_varen (t_varenv *var, char *cmd_line, int i);
 void	clean_varen (t_varenv *var);
 int		len_var(char *cmd_line, int i);
-int     print_exitstatus(char **input, int i, t_mini *shell);
+int     print_exitstatus(char **input, int i);
 
 // ENVIROMENT
 int		init_env(char **envp, t_mini *shell);
@@ -109,7 +114,7 @@ void	free_mini(t_mini *shell);
 
 // BUILT_ENV_EXIT_ECHO (en archivos separados)
 int		builtin_echo(t_exec *node, int fd);
-int		builtin_exit(t_exec *node, t_mini *shell);
+int		builtin_exit(t_exec *node);
 int		builtin_env(t_mini *shell, int fd);
 
 // BUILT_AUX_EXIT
@@ -119,7 +124,7 @@ int		ft_str_hasalpha(char *str);
 
 // BUILTIN_PWD
 int		builtin_pwd(int fd);
-int		handle_exec_built(t_exec *node, t_mini *shell);
+int		handle_exec_onlybuilt(t_exec *node, t_mini *shell);
 int     execute_builtin(t_exec *node, t_mini *shell);
 t_fd	*do_redir_built(t_exec *node);
 
@@ -204,7 +209,7 @@ int     builtin_count(t_list *exe_lst);
 int     do_redirections(t_exec *node, int child, int num_procs, t_mini *shell);
 int     create_here_doc_file(char *heredoc_content);
 int     do_redirections_continue(t_exec *node, int fd_in, int fd_out);
-void	get_exit_status(int *status, int i, t_mini *shell);
+void	get_exit_status(int *status, int i);
 
 //COMMAND_LIST_AUX
 int     is_str_pipe(char *str);
