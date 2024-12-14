@@ -6,9 +6,10 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/16 16:06:44 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/16 16:09:51 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #include "../inc/minishell.h"
@@ -30,6 +31,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 		handle_exec_onlybuilt((t_exec *)exe_lst->content, shell);
 	else
 	{
+		shell->pid = malloc(num_procs * sizeof(pid_t));
 		shell->pid = malloc((num_procs) * sizeof(pid_t));
 		if (!shell->pid)
 			return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
