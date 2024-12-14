@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/14 19:12:13 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/14 19:13:47 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 			i++;
 			exe_lst = exe_lst->next;
 		}
-	close_pipes(shell, num_procs);
-	wait_childs(shell, num_procs);
+		close_pipes(shell, num_procs);
+		wait_childs(shell, num_procs);
 	}
 	return (EXIT_SUCCESS);
 }
