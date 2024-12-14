@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/11/25 12:23:39 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/14 20:18:57 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	get_my_env(char **envp, t_mini *shell)
 	int	i;
 
 	i = 0;
+	shell->env = NULL;
 	if(init_env(envp, shell))
 	{
 		printf("Error en init_env\n");
