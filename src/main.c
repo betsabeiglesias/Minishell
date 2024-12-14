@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/11 12:30:50 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/14 09:23:42 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char **argv, char **envp)
 		return(handle_error(ERR_ENVP), EXIT_FAILURE);
 	if (get_all_paths(&shell))
 		return(handle_error(ERR_ENVP), EXIT_FAILURE);
-	setup_signal_handlers();
+	setup_signal_handlers_shell();
 	while (1)
 	{
 		new_prompt(&shell, exe_lst);

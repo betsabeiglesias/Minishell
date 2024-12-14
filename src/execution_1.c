@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/11 13:13:51 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/14 09:30:52 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
     int     num_procs;
 	int		num_builts;
 
-	setup_signal_handlers_notinteract();
 	num_procs = ft_lstsize(exe_lst);
 	num_builts = builtin_count(exe_lst);
 	shell->num_pipes = num_procs - 1;
@@ -42,7 +41,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 				return (handle_error(ERR_FORK), EXIT_FAILURE);
 			else if (shell->pid[i] == 0)
 			{
-				if (exe_child((t_exec *)exe_lst->content, i, num_procs, shell))
+					if (exe_child((t_exec *)exe_lst->content, i, num_procs, shell))
 					return (EXIT_FAILURE);
 			}
 			i++;
@@ -56,12 +55,16 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 
 int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 {
+	if (is_builtin(node->cmd_all))
+		setup_signal_handlers_builtin();
+	else
+		setup_signal_handlers_fork();	
 	if (do_redirections(node, child, num_procs, shell))
 		return (EXIT_FAILURE);
 	if (is_builtin((node->cmd_all)))
 	{
 		execute_builtin(node, shell);
-		exit(EXIT_SUCCESS);
+		exit(g_status);
 	}
 	else
 	{

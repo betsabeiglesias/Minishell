@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/11 12:52:07 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/14 09:27:48 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,13 @@ void	ft_free_v(void *str);
 void    free_node_exec(t_exec *node);
 
 // SIGNALS
-void	setup_signal_handlers(void);
-void    setup_signal_handlers_notinteract(void);
-void    handle_signal_interactive(int signum);
+void	setup_signal_handlers_shell(void);
+void    setup_signal_handlers_fork(void);
+void    setup_signal_handlers_builtin(void);
+void    handle_signal_father(int signum);
 int		handle_eof_interactive(char *str);
-void    handle_signal_notinteractive(int signum);
+void    handle_signal_child(int signum);
+void	handle_signal_builtin(int signum);
 
 //EXPANSION_1
 int		insert_expanded_var (char **cmd_line, t_varenv *var);
