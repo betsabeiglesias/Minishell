@@ -3,26 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/11 12:34:03 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:40:47 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int    init_shell(t_mini *shell)
+int    init_shell(t_mini *shell, char **envp)
 {
 	shell->env = NULL;
 	shell->input = NULL;
 	shell->oldpwd = true;
-	if (get_all_paths(shell))
-		return(EXIT_FAILURE);
+	shell->all_paths = NULL;
 	shell->pid = NULL;
 	shell->pipes = NULL;
 	shell->num_pipes = 0;
-	//shell->exit_status = 0;
+	if(get_my_env(envp, shell))
+		return(handle_error(ERR_ENVP), EXIT_FAILURE);
+	if (get_all_paths(shell))
+		return(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 

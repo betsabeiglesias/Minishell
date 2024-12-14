@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/14 09:23:42 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/14 19:40:21 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int main(int argc, char **argv, char **envp)
 		return(handle_error(ERR_ARG), EXIT_FAILURE);
 	(void)argv;
 	exe_lst = NULL;
-	init_shell(&shell);
-	if (get_my_env(envp, &shell))
-		return(handle_error(ERR_ENVP), EXIT_FAILURE);
-	if (get_all_paths(&shell))
-		return(handle_error(ERR_ENVP), EXIT_FAILURE);
+	init_shell(&shell, envp);
+	// if (get_my_env(envp, &shell))
+	// 	return(handle_error(ERR_ENVP), EXIT_FAILURE);
+	// if (get_all_paths(&shell))
+	// 	return(handle_error(ERR_ENVP), EXIT_FAILURE);
 	setup_signal_handlers_shell();
 	while (1)
 	{

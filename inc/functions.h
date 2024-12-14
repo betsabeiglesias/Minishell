@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/14 09:35:04 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/14 19:39:30 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ void	print_export(char *str, int fd);
 int     check_namevar(char *str);
 
 // INIT_DATA
-int     init_shell(t_mini *shell);
+int     init_shell(t_mini *shell, char **envp);
 int     get_all_paths(t_mini *shell);
 t_exec  *init_cmd_node(void);
 int     **ft_malloc_mat_int(int x, int y, int size);
