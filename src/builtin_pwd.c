@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/11 12:53:19 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/14 20:37:22 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int handle_exec_onlybuilt(t_exec *node, t_mini *shell)
 		g_status = builtin_echo(node, fd->out);
 	else if (!ft_strncmp(node->cmd_all[0], EXIT, len))
 		g_status= builtin_exit(node);
+	ft_free_v((void *)fd);
 	return(g_status);
 }
 

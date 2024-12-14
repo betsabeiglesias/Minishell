@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/14 09:35:04 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/14 20:47:49 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 //MAIN
 void	new_prompt(t_mini *shell, t_list *exe_lst);
 void free_to_prompt(t_list *exe_lst, t_mini *shell);
+int handle_enviroment(char **envp, t_mini *shell);
 
 //AUX
 int     ft_print_lst(t_list *list);
