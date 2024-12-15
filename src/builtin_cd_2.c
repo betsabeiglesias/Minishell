@@ -22,7 +22,7 @@ int go_to_oldpwd(t_mini *shell)
 	dir_to_save = getcwd(NULL, 0);
 	if(!dir_to_save)
 		return(handle_error(ERR_GETWD), EXIT_FAILURE);
-	oldpwd_dir = find_value_varenv("OLDPWD", shell);
+	oldpwd_dir = ft_strdup(find_value_varenv("OLDPWD", shell));
 	if(!oldpwd_dir)
 	{
 		free(dir_to_save);
