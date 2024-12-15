@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:56:51 by binary            #+#    #+#             */
-/*   Updated: 2024/12/06 17:00:28 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:33:46 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,24 @@ int	export_args(char *str, t_mini *shell)
 	return (EXIT_FAILURE);
 }
 
+// void	ft_free_mat_str2(char ***mat, size_t size)
+// {
+// 	size_t	i;
+
+// 	if (!mat || !(*mat))
+// 		return ;
+// 	i = 0;
+// 	while (i < size)
+// 	{
+// 		if ((*mat)[i])
+// 			free((*mat)[i]);
+// 		(*mat)[i] = NULL;
+// 		i++;
+// 	}
+// 	free(*mat);
+// 	*mat = NULL; // Ahora el puntero original se establece en NULL
+// }
+
 int add_newvar(char *str, t_mini *shell)
 {
 	size_t	len;
@@ -84,12 +102,22 @@ int add_newvar(char *str, t_mini *shell)
 	{
 		new_env[i] = ft_strdup(shell->env[i]);
 		if (!new_env[i])
-			return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+		{
+            while (i > 0)
+                free(new_env[--i]);
+            free(new_env);
+            return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+        }
 		i++;
 	}
 	new_env[i] = ft_strdup(str);
 	if (!new_env[i])
-		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+	{
+            while (i > 0)
+                free(new_env[--i]);
+            free(new_env);
+            return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+    }
 	new_env[i + 1] = NULL;
 	ft_free_mat_str(shell->env, len);
 	shell->env = new_env;

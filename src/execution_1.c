@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/15 00:20:36 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/15 17:04:47 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 {
 	int		i;
     int     num_procs;
-	int		num_builts;
+	// int		num_builts;
 
 	num_procs = ft_lstsize(exe_lst);
-	num_builts = builtin_count(exe_lst);
+	// num_builts = builtin_count(exe_lst);
 	shell->num_pipes = num_procs - 1;
 	shell->pipes = create_pipes(num_procs);
 	if (!shell->pipes)
