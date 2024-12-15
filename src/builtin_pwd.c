@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/11 12:53:19 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/14 23:39:49 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,24 @@ int	builtin_pwd(int fd)
 int handle_exec_onlybuilt(t_exec *node, t_mini *shell)
 {
 	t_fd	*fd;
-	int		len;
-
-	len = ft_strlen(node->cmd_all[0]);
+	
 	fd = do_redir_built(node);
 	if (!fd)
-		return(g_status = EXIT_FAILURE, EXIT_FAILURE);
-	else if (!ft_strncmp(node->cmd_all[0], ENV, len))
+	{
+		g_status = EXIT_FAILURE;
+		return (EXIT_FAILURE);
+	}
+	g_status = execute_uniquebuiltin(node, shell, fd);
+	ft_free_v((void *)fd);
+	return(g_status);
+}
+
+int	execute_uniquebuiltin(t_exec *node, t_mini *shell, t_fd *fd)
+{
+	int	len;
+
+	len = ft_strlen(node->cmd_all[0]);
+	if (!ft_strncmp(node->cmd_all[0], ENV, len))
 		g_status = builtin_env(shell, fd->out);
 	else if (!ft_strncmp(node->cmd_all[0], CD, len))
 		g_status = builtin_cd(node, shell);
@@ -88,21 +99,14 @@ t_fd *do_redir_built(t_exec *node)
 		return(handle_error(ERR_MALLOC), NULL);
 	fd->in = 0;
 	fd->out = 1;
-	// printf("FD IN REDIR %i\n", fd->in);
-	// printf("FD OUT REDIR %i\n", fd->out);
 	if (node->filename_in != NULL)
     {
         fd->in = open(node->filename_in, O_RDONLY);
-		// printf("FD2 IN REDIR %i\n", fd->in);
         if (fd->in == ERROR)
 		    return (handle_error(ERR_OPEN), NULL);
     }
     if (node->filename_out != NULL && node->out_append == 0)
-	{
-		// printf("fileout %s\n", node->filename_out);	
         fd->out =  open(node->filename_out, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-		// printf("FD2 OUT REDIR %i, dir %p\n", fd->out, &fd->out);
-	}
     else if (node->filename_out != NULL && node->out_append == 1)
         fd->out = open(node->filename_out, O_CREAT | O_RDWR | O_APPEND, 0644);
     if (fd->out == ERROR)

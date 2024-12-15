@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/14 19:39:30 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/14 23:37:27 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int		ft_str_hasalpha(char *str);
 // BUILTIN_PWD
 int		builtin_pwd(int fd);
 int		handle_exec_onlybuilt(t_exec *node, t_mini *shell);
+int     execute_uniquebuiltin(t_exec *node, t_mini *shell, t_fd *fd);
 int     execute_builtin(t_exec *node, t_mini *shell);
 t_fd	*do_redir_built(t_exec *node);
 

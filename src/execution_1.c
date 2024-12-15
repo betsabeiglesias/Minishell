@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/14 19:13:47 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/15 00:20:36 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 	shell->pipes = create_pipes(num_procs);
 	if (!shell->pipes)
 		return(EXIT_FAILURE);
-    shell->pid = malloc((num_procs - num_builts) * sizeof(pid_t));
-	if (!shell->pid)
-		return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
 	i = 0;
 	if (num_procs == 1 && is_builtin(((t_exec *)exe_lst->content)->cmd_all))
 		handle_exec_onlybuilt((t_exec *)exe_lst->content, shell);
 	else
 	{
+		shell->pid = malloc((num_procs) * sizeof(pid_t));
+		if (!shell->pid)
+			return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
 		while (i < num_procs)
 		{
 			shell->pid[i] = fork();
@@ -40,15 +40,16 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 				return (handle_error(ERR_FORK), EXIT_FAILURE);
 			else if (shell->pid[i] == 0)
 			{
-					if (exe_child((t_exec *)exe_lst->content, i, num_procs, shell))
+				if (exe_child((t_exec *)exe_lst->content, i, num_procs, shell))
 					return (EXIT_FAILURE);
 			}
 			i++;
 			exe_lst = exe_lst->next;
 		}
-		close_pipes(shell, num_procs);
-		wait_childs(shell, num_procs);
 	}
+	close_pipes(shell, num_procs);
+	if (shell->pid != NULL)
+		wait_childs(shell, num_procs);
 	return (EXIT_SUCCESS);
 }
 
