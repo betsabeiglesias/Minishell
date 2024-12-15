@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/15 17:04:47 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/15 22:52:50 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 		shell->pid = malloc((num_procs) * sizeof(pid_t));
 		if (!shell->pid)
 			return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
+		setup_signal_handlers_fork();
 		while (i < num_procs)
 		{
 			shell->pid[i] = fork();
@@ -50,6 +51,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 	close_pipes(shell, num_procs);
 	if (shell->pid != NULL)
 		wait_childs(shell, num_procs);
+	setup_signal_handlers_shell();
 	return (EXIT_SUCCESS);
 }
 
@@ -58,7 +60,7 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 	if (is_builtin(node->cmd_all))
 		setup_signal_handlers_builtin();
 	else
-		setup_signal_handlers_fork();	
+		setup_signal_handlers_fork();	/*se puede borrar */
 	if (do_redirections(node, child, num_procs, shell))
 		return (EXIT_FAILURE);
 	if (is_builtin((node->cmd_all)))

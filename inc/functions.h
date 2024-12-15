@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/15 20:16:56 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/15 22:18:31 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,9 @@ void	ft_free_v(void *str);
 void    free_node_exec(t_exec *node);
 
 // SIGNALS
+void sigtest (t_mini *shell);
 void	setup_signal_handlers_shell(void);
+void	setup_signal_handlers_noshell(void);
 void    setup_signal_handlers_fork(void);
 void    setup_signal_handlers_builtin(void);
 void    handle_signal_father(int signum);
