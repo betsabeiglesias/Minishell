@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 10:53:50 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/15 22:54:50 by binary           ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/12/16 16:13:40 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../inc/minishell.h"
 
@@ -27,8 +28,10 @@ int	builtin_env(t_mini *shell, int fd)
 }
 
 int	builtin_exit(t_exec *node, t_mini *shell)
+int	builtin_exit(t_exec *node, t_mini *shell)
 {
 	int	arg;
+	(void)shell;
 	(void)shell;
 	arg = ft_matsize(node->cmd_all) - 1;
 	if (arg == 0)
