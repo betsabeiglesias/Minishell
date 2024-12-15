@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/11 12:35:34 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:32:55 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,15 @@ int print_exitstatus(char **input, int i)
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	post = ft_substr(*input, i+2, ft_strlen(*input));
 	if (!post)
+	{	
+		free(prev);
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+	}
 	status = ft_itoa(g_status);
-	// printf("INT STATUS %d\n", g_status);
-	// printf("ITOA %s\n", status);
 	temp = ft_strjoin_variadic(3, prev, status, post);
+	free(prev);
+	free(status);
+	free(post);
 	if (!temp)
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	free(*input);

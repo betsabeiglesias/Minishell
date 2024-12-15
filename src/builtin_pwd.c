@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/14 23:39:49 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/15 20:18:29 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	execute_uniquebuiltin(t_exec *node, t_mini *shell, t_fd *fd)
 	else if (!ft_strncmp(node->cmd_all[0], "echo", len))
 		g_status = builtin_echo(node, fd->out);
 	else if (!ft_strncmp(node->cmd_all[0], EXIT, len))
-		g_status= builtin_exit(node);
+		g_status= builtin_exit(node, shell);
 	return(g_status);
 }
 
@@ -77,7 +77,7 @@ int	execute_builtin(t_exec *node, t_mini *shell)
 	if (!ft_strncmp(node->cmd_all[0], ENV, len))
 		g_status = builtin_env(shell, STDOUT_FILENO);
 	else if (!ft_strncmp(node->cmd_all[0], EXIT, len))
-		g_status = builtin_exit(node);
+		g_status = builtin_exit(node, shell);
 	else if (!ft_strncmp(node->cmd_all[0], "echo", len))
 		g_status = builtin_echo(node, STDOUT_FILENO);
 	else if (!ft_strncmp(node->cmd_all[0], PWD, len))

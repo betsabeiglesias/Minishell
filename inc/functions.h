@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/14 23:37:27 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/15 20:16:56 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,11 @@ void	free_mini(t_mini *shell);
 
 // BUILT_ENV_EXIT_ECHO (en archivos separados)
 int		builtin_echo(t_exec *node, int fd);
-int		builtin_exit(t_exec *node);
+int		builtin_exit(t_exec *node, t_mini *shell);
 int		builtin_env(t_mini *shell, int fd);
 
 // BUILT_AUX_EXIT
-void	print_exit();
+void	print_exit(void);
 int		ft_atoi_exit(char *str);
 int		ft_str_hasalpha(char *str);
 
