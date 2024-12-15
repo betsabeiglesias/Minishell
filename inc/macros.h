@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/10 18:07:20 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:02:02 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@
 # define ERR_PIPE           13
 # define ERR_BUILT			14
 # define ERR_EXPORT			15
-# define ERR_CHDIR          16
-# define ERR_HERE           17
+# define ERR_CHDIR			16
+# define ERR_HERE			17
+# define ERR_GETWD			18
+# define ERR_OLDPWD			19
 
 # define ERR_MSG_QUOTE		    "SYNTAX ERROR: open quotes"
 # define ERR_MSG_EXTREM		    "SYNTAX ERROR: nothing after or before metachar"
@@ -51,6 +53,8 @@
 # define ERR_MSG_EXPORT			"FAILED EXPORT"
 # define ERR_MSG_CHDIR			"ERROR CHDIR"
 # define ERR_MSG_HERE          "Error deleting here_doc"
+# define ERR_MSG_GETWD			"FAILED TO GET WORKING DIRECTORY"
+# define ERR_MSG_OLDPWD			"Error updating OLDPWD"
 
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'

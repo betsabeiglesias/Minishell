@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:43:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/07 19:11:32 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/15 19:29:15 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void handle_error_continue(int error_type)
 		perror(ERR_MSG_CHDIR);
 	if (error_type == ERR_HERE)
 		perror(ERR_MSG_HERE);
+	if (error_type == ERR_GETWD)
+		perror(ERR_MSG_GETWD);
 	return;
 }
