@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 12:18:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/16 16:14:45 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/16 16:29:14 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	execute_uniquebuiltin(t_exec *node, t_mini *shell, t_fd *fd)
 		g_status = builtin_echo(node, fd->out);
 	else if (!ft_strncmp(node->cmd_all[0], EXIT, len))
 		g_status= builtin_exit(node, shell);
-	ft_free_v((void *)fd);
 	return(g_status);
 }
 

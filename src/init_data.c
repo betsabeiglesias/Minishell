@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/16 16:15:20 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/16 16:30:18 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,10 @@ int    init_shell(t_mini *shell, char **envp, char **envp)
 	shell->env = NULL;
 	shell->input = NULL;
 	shell->oldpwd = true;
-	shell->all_paths = NULL;
 	shell->pid = NULL;
 	shell->pipes = NULL;
 	shell->num_pipes = 0;
-	if(get_my_env(envp, shell))
-		return(handle_error(ERR_ENVP), EXIT_FAILURE);
-	if (get_all_paths(shell))
-		return(EXIT_FAILURE);
-	if(get_my_env(envp, shell))
-		return(handle_error(ERR_ENVP), EXIT_FAILURE);
-	if (get_all_paths(shell))
-		return(EXIT_FAILURE);
+	shell->all_paths = NULL;
 	return (EXIT_SUCCESS);
 }
 

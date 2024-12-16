@@ -80,6 +80,7 @@ char	*get_previous_dir(char *str)
 	while (len >= 0)
 	{
 		if (str[len] == '/' && len == 0)
+		
 		{	
 			result = ft_strdup("/");
 			return (result);
