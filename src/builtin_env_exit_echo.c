@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/16 16:43:40 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/16 21:34:53 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	builtin_echo(t_exec *node, int fd)
 {
 	int		i;
 	bool	flag;
-	int	   	arg;	
+	int	   	arg;
 
 	i = 1;
 	flag = false;
