@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/16 16:14:34 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/16 22:14:38 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,22 @@ void	free_shell(t_mini *shell)
 		ft_free_mat_str(shell->env, ft_matsize(shell->env));
 	if (shell->all_paths)
 		ft_free_mat_str(shell->all_paths, ft_matsize(shell->all_paths));
-	// //if (shell->paths)
-	// //	ft_free_mat_str(shell->paths, ft_matsize(shell->paths));
-	// if (shell->input)
-	// 	ft_free(shell->input);
-	// //if (shell->pid)
-	// //	ft_free_v((void *)shell->pid);
-	// //if (shell->pipes)
-	// //	ft_free_mat_int(shell->pipes, shell->num_pipes);
-	// shell->env = NULL;
-	// shell->input = NULL;
-	// shell->all_paths = NULL;
-	// //shell->paths = NULL;
-	// //shell->pid = NULL;
-	// //shell->pipes = NULL;
-	// free(shell);
-	// shell = NULL;
+	//if (shell->paths)
+	//	ft_free_mat_str(shell->paths, ft_matsize(shell->paths));
+	if (shell->input)
+		ft_free(shell->input);
+	//if (shell->pid)
+	//	ft_free_v((void *)shell->pid);
+	//if (shell->pipes)
+	//	ft_free_mat_int(shell->pipes, shell->num_pipes);
+	shell->env = NULL;
+	shell->input = NULL;
+	shell->all_paths = NULL;
+	//shell->paths = NULL;
+	//shell->pid = NULL;
+	//shell->pipes = NULL;
+	free(shell);
+	shell = NULL;
 	return ;
 }
 
