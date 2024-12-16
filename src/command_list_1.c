@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_list_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/09 19:30:47 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/16 21:41:46 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,15 @@ int	read_stdin(t_exec *node, char *delimiter)
 		if (buffer)
 			ft_free(buffer);
 		buffer = get_next_line(STDIN_FILENO);
+		if (!buffer)
+		{
+			ft_free(delimiter);
+			ft_free(buffer);
+			ft_putstr_fd(ERR_MSG_EOF, STDOUT_FILENO);
+			ft_putstr_fd("\n", STDOUT_FILENO);
+			return (EXIT_FAILURE);
+
+		}
 		if (is_identical_str(buffer, delimiter))
 		{
 			ft_free(delimiter);

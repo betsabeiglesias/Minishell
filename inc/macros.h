@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/15 20:02:02 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/16 21:44:41 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@
 # define ERR_MSG_BUILT			"FAILED BUILT"
 # define ERR_MSG_EXPORT			"FAILED EXPORT"
 # define ERR_MSG_CHDIR			"ERROR CHDIR"
-# define ERR_MSG_HERE          "Error deleting here_doc"
+# define ERR_MSG_HERE			"Error deleting here_doc"
 # define ERR_MSG_GETWD			"FAILED TO GET WORKING DIRECTORY"
 # define ERR_MSG_OLDPWD			"Error updating OLDPWD"
+# define ERR_MSG_EOF			"Warning: here-document deilimited by end-of-file (wanted 'delimiter')"
 
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
