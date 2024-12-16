@@ -6,14 +6,14 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/16 16:37:17 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/16 16:42:37 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../inc/minishell.h"
 
-int    init_shell(t_mini *shell, char **envp, char **envp)
+int    init_shell(t_mini *shell)
 {
 	shell->env = NULL;
 	shell->input = NULL;

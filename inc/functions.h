@@ -3,21 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/12/14 20:47:49 by aolabarr         ###   ########.fr       */
-=======
-/*   Updated: 2024/12/14 19:39:30 by binary           ###   ########.fr       */
->>>>>>> 6ef7894 (Reorganización de get_my_env y get_all_paths, ahora en init_shell, pero igual tiene que ir en el main)
+/*   Updated: 2024/12/16 16:42:58 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-
-/* ************************************************************************** */
-
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
@@ -88,9 +79,7 @@ void	ft_free_v(void *str);
 void    free_node_exec(t_exec *node);
 
 // SIGNALS
-void sigtest (t_mini *shell);
 void	setup_signal_handlers_shell(void);
-void	setup_signal_handlers_noshell(void);
 void    setup_signal_handlers_fork(void);
 void    setup_signal_handlers_builtin(void);
 void    handle_signal_father(int signum);
@@ -180,7 +169,7 @@ void	print_export(char *str, int fd);
 int     check_namevar(char *str);
 
 // INIT_DATA
-int     init_shell(t_mini *shell, char **envp);
+int     init_shell(t_mini *shell);
 int     get_all_paths(t_mini *shell);
 t_exec  *init_cmd_node(void);
 int     **ft_malloc_mat_int(int x, int y, int size);
