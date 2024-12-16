@@ -6,7 +6,7 @@
 #    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/12/14 23:53:11 by binary           ###   ########.fr        #
+#    Updated: 2024/12/16 23:29:51 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRC =	main.c \
 		builtin_env_exit_echo.c \
 		builtin_unset.c \
 		builtin_pwd.c \
+		builtin_cd_3.c \
 		builtin_cd_2.c \
 		builtin_cd_1.c \
 		builtin_auxiliar.c \
