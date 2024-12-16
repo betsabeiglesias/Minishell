@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   execution_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/14 20:30:36 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:36:30 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #include "../inc/minishell.h"
@@ -17,10 +18,10 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 {
 	int		i;
     int     num_procs;
-	int		num_builts;
+	// int		num_builts;
 
 	num_procs = ft_lstsize(exe_lst);
-	num_builts = builtin_count(exe_lst);
+	// num_builts = builtin_count(exe_lst);
 	shell->num_pipes = num_procs - 1;
 	shell->pipes = create_pipes(num_procs);
 	if (!shell->pipes)
@@ -30,9 +31,10 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 		handle_exec_onlybuilt((t_exec *)exe_lst->content, shell);
 	else
 	{
-		shell->pid = malloc((num_procs - num_builts) * sizeof(pid_t));
+		shell->pid = malloc(num_procs * sizeof(pid_t));
 		if (!shell->pid)
 			return(handle_error(ERR_MALLOC), EXIT_FAILURE);	
+		setup_signal_handlers_fork();
 		while (i < num_procs)
 		{
 			shell->pid[i] = fork();
@@ -40,7 +42,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 				return (handle_error(ERR_FORK), EXIT_FAILURE);
 			else if (shell->pid[i] == 0)
 			{
-					if (exe_child((t_exec *)exe_lst->content, i, num_procs, shell))
+				if (exe_child((t_exec *)exe_lst->content, i, num_procs, shell))
 					return (EXIT_FAILURE);
 			}
 			i++;
@@ -50,6 +52,7 @@ int	init_execution(t_list *exe_lst, t_mini *shell)
 	close_pipes(shell, num_procs);
 	if (shell->pid != NULL)
 		wait_childs(shell, num_procs);
+	setup_signal_handlers_shell();
 	return (EXIT_SUCCESS);
 }
 
@@ -58,7 +61,7 @@ int exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 	if (is_builtin(node->cmd_all))
 		setup_signal_handlers_builtin();
 	else
-		setup_signal_handlers_fork();	
+		setup_signal_handlers_fork();	/*se puede borrar */
 	if (do_redirections(node, child, num_procs, shell))
 		return (EXIT_FAILURE);
 	if (is_builtin((node->cmd_all)))

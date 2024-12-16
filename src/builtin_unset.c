@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:06:14 by binary            #+#    #+#             */
-/*   Updated: 2024/12/06 10:57:47 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:33:45 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int builtin_unset(t_exec *node, t_mini *shell)
 		i++;
 	}
 	new_env[j] = NULL;
-	//free_env(shell);
+	free_env(shell);
 	shell->env = new_env;
 	return (EXIT_SUCCESS);
 }

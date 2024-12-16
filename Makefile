@@ -6,7 +6,7 @@
 #    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/12/09 13:02:02 by binary           ###   ########.fr        #
+#    Updated: 2024/12/14 23:53:11 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = minishell
 NAME_BET = mini_bet
 
 NO_LINK = -c
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -g
 SFLAGS =  -fsanitize=address
 
 SRC_DIR = ./src

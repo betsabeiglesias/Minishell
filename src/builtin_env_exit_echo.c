@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env_exit_echo.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 10:53:50 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/11 12:36:16 by beiglesi         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/12/16 16:13:40 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../inc/minishell.h"
 
@@ -26,10 +27,12 @@ int	builtin_env(t_mini *shell, int fd)
 	return (EXIT_SUCCESS);
 }
 
-int	builtin_exit(t_exec *node)
+int	builtin_exit(t_exec *node, t_mini *shell)
+int	builtin_exit(t_exec *node, t_mini *shell)
 {
 	int	arg;
-
+	(void)shell;
+	(void)shell;
 	arg = ft_matsize(node->cmd_all) - 1;
 	if (arg == 0)
 		g_status = 0;
@@ -49,6 +52,7 @@ int	builtin_exit(t_exec *node)
 	else
 		g_status = ft_atoi_exit(node->cmd_all[1]);
 	print_exit();
+	// free_shell(shell);
 	exit(g_status);
 }
 

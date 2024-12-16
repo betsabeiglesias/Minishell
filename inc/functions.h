@@ -6,7 +6,11 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/12/14 20:47:49 by aolabarr         ###   ########.fr       */
+=======
+/*   Updated: 2024/12/14 19:39:30 by binary           ###   ########.fr       */
+>>>>>>> 6ef7894 (Reorganización de get_my_env y get_all_paths, ahora en init_shell, pero igual tiene que ir en el main)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +88,9 @@ void	ft_free_v(void *str);
 void    free_node_exec(t_exec *node);
 
 // SIGNALS
+void sigtest (t_mini *shell);
 void	setup_signal_handlers_shell(void);
+void	setup_signal_handlers_noshell(void);
 void    setup_signal_handlers_fork(void);
 void    setup_signal_handlers_builtin(void);
 void    handle_signal_father(int signum);
@@ -115,17 +121,18 @@ void	free_mini(t_mini *shell);
 
 // BUILT_ENV_EXIT_ECHO (en archivos separados)
 int		builtin_echo(t_exec *node, int fd);
-int		builtin_exit(t_exec *node);
+int		builtin_exit(t_exec *node, t_mini *shell);
 int		builtin_env(t_mini *shell, int fd);
 
 // BUILT_AUX_EXIT
-void	print_exit();
+void	print_exit(void);
 int		ft_atoi_exit(char *str);
 int		ft_str_hasalpha(char *str);
 
 // BUILTIN_PWD
 int		builtin_pwd(int fd);
 int		handle_exec_onlybuilt(t_exec *node, t_mini *shell);
+int     execute_uniquebuiltin(t_exec *node, t_mini *shell, t_fd *fd);
 int     execute_builtin(t_exec *node, t_mini *shell);
 t_fd	*do_redir_built(t_exec *node);
 
@@ -173,7 +180,7 @@ void	print_export(char *str, int fd);
 int     check_namevar(char *str);
 
 // INIT_DATA
-int     init_shell(t_mini *shell);
+int     init_shell(t_mini *shell, char **envp);
 int     get_all_paths(t_mini *shell);
 t_exec  *init_cmd_node(void);
 int     **ft_malloc_mat_int(int x, int y, int size);

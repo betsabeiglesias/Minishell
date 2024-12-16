@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/14 20:21:17 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:37:17 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../inc/minishell.h"
 
-int    init_shell(t_mini *shell)
+int    init_shell(t_mini *shell, char **envp, char **envp)
 {
 	shell->env = NULL;
 	shell->input = NULL;
@@ -20,7 +21,7 @@ int    init_shell(t_mini *shell)
 	shell->pid = NULL;
 	shell->pipes = NULL;
 	shell->num_pipes = 0;
-	//shell->exit_status = 0;
+	shell->all_paths = NULL;
 	return (EXIT_SUCCESS);
 }
 

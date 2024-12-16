@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 12:50:07 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/14 09:28:15 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/15 22:48:16 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,16 @@ void	setup_signal_handlers_builtin(void)
 
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
-	sa.sa_handler = handle_signal_child;
+	sa.sa_handler = handle_signal_builtin;
 	sigaction(SIGINT, &sa, NULL);
 	sigaction(SIGQUIT, &sa, NULL);
 }
 
-//on_new_line: no mueve físicamente el cursor a una nueva línea, le dice a readline que prepare una nueva línea
-//replace_line: borra la línea que el usuario estaba escribiendo por una cadena vacía
-//redisplay: actualiza el prompt de la pantalla
-//SIGINT: control + C
-//SIGQUIT: control + contrabarra
-
 void	handle_signal_father(int signum)
 {
-	(void)signum;
 	if (signum == SIGINT)
 	{
-		printf(NEW_LINE);
+		ft_putstr_fd(NEW_LINE, STDOUT_FILENO);
 		rl_on_new_line();
 		rl_replace_line(EMPTY, 0);
 		rl_redisplay();
@@ -69,8 +62,8 @@ int handle_eof_interactive(char *str)
 {
 	if (!str)
 	{
-		printf(EXIT);
-		printf(NEW_LINE);
+		ft_putstr_fd(EXIT, STDOUT_FILENO);
+		ft_putstr_fd(NEW_LINE, STDOUT_FILENO);
 		handle_error(EOF);
 		exit (EXIT_SUCCESS);
 	}

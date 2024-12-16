@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/14 20:55:35 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:36:57 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int argc, char **argv, char **envp)
 		return(handle_error(ERR_ARG), EXIT_FAILURE);
 	(void)argv;
 	exe_lst = NULL;
-	init_shell(&shell);
+	init_shell(&shell, envp);
 	if (handle_enviroment(envp, &shell))
 		return (EXIT_FAILURE);
 	setup_signal_handlers_shell();
