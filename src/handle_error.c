@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:43:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/16 21:39:36 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/16 21:57:42 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ void handle_error_continue(int error_type)
 		perror(ERR_MSG_HERE);
 	if (error_type == ERR_GETWD)
 		perror(ERR_MSG_GETWD);
+	if (error_type == ERR_EOF)
+		ft_putendl_fd(ERR_MSG_EOF, STDOUT_FILENO);
 	return;
 }
