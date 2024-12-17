@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beiglesi <beiglesi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/11/09 18:45:34 by beiglesi         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:20:06 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	len_var(char *input, int i)
 
 	temp = i;
 	len = 0;
-	while (!valid_char_env(input[temp]))
+	// while (input[temp] && valid_char_env(input[temp]))
+	while (input[temp] && input[temp] != ' ')
 	{
 		len++;
 		temp++;
@@ -57,8 +58,8 @@ int	len_var(char *input, int i)
 int	valid_char_env(char c)
 {
 	if(ft_isalnum(c) || c == '_')
-		return(0);
-	return(1);
+		return(1);
+	return(0);
 }
 
 bool	is_expansible(char *input, int i)
