@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/16 23:33:38 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/17 23:21:14 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char	*find_value_varenv(char *str, t_mini *shell)
 	return (NULL);
 }
 
-/* ANALIZAR SI LA VARIABLE NO ESTÁ EN ENV */
 int	update_dir_env(char *dir, char *new_value, t_mini *shell)
 {
 	int		i;
@@ -93,12 +92,19 @@ int	update_dir_env(char *dir, char *new_value, t_mini *shell)
 			new_var = ft_strjoin_variadic(3, dir, "=", new_value);
 			if (!new_var)
 				return (handle_error(ERR_MALLOC), EXIT_FAILURE);
-			if (shell->env[i])
-				free(shell->env[i]);
+			free(shell->env[i]);
 			shell->env[i] = new_var;
 			return (EXIT_SUCCESS);
 		}
 		i++;
+	}
+	new_var = ft_strjoin_variadic(3, dir, "=", new_value);
+	if (!new_var)
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+	if (add_newvar(new_var, shell) != EXIT_SUCCESS)
+	{
+		free(new_var);
+		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }
