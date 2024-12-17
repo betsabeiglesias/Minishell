@@ -6,84 +6,45 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/15 20:32:55 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/17 18:40:37 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-char	*do_expansion(t_mini *shell)
-{
-	int			i;
-	t_varenv	var;
-	char		**input;
-
-	input = &shell->input;
-	i = 0;
-    while((*input)[i] != '\0')
-	{
-		if ((*input)[i] == '$' && is_expansible(*input, i))
-        {
-			if((*input)[i+1] == ' ' || (*input)[i+1] =='\0')
-			{	
-				i++;
-				continue;
-			}
-			else if((*input)[i+1] == '?')
-			{
-				print_exitstatus(input, i);
-				i = 0;
-			}
-			else
-			{
-				i++;
-				if(init_varen(&var, *input, i))
-					return(NULL);
-				if(get_var_env(shell, &var) == 0)
-				{
-					if(insert_expanded_var(input, &var))
-						return (NULL);
-				// if (var.var_expanded != NULL)
-				// 	i += ft_strlen(var.var_expanded);
-				// else 
-				// 	i += var.len;
-				}
-				clean_varen(&var);
-				i = 0;
-			}
-		}
-        i++;
-	}
-    return (*input);
-}
-
 
 int	init_varen(t_varenv *var, char *input, int i)
 {
 	var->start = i;
 	var->len = len_var(input, i);
 	var->value = ft_substr(input, i, var->len);
-	if(!var->value)
-		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+	if (!var->value)
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	var->var_expanded = NULL;
 	return (EXIT_SUCCESS);
 }
 
-void	clean_varen(t_varenv *var)
+int	only_dollar(char *input, int *i)
 {
-	if (var->value)
+	if ((input)[*i + 1] == ' ' || (input)[*i + 1] == '\0')
 	{
-		free (var->value);
-		var->value = NULL;
+		(*i)++;
+		return (1);
 	}
-	// if (var->var_expanded)
-	// {
-	// 	free (var->var_expanded);
-	// 	var->var_expanded = NULL;
-	// }
+	return (0);
 }
 
-int print_exitstatus(char **input, int i)
+int	dollar_question(char **input, int *i)
+{
+	if ((*input)[*i + 1] == '?')
+	{
+		print_exitstatus(input, *i);
+		*i = 0;
+		return (1);
+	}
+	return (0);
+}
+
+int	print_exitstatus(char **input, int i)
 {
 	char	*prev;
 	char	*post;
@@ -93,9 +54,9 @@ int print_exitstatus(char **input, int i)
 	prev = ft_substr(*input, 0, i);
 	if (!prev)
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
-	post = ft_substr(*input, i+2, ft_strlen(*input));
+	post = ft_substr(*input, i + 2, ft_strlen(*input));
 	if (!post)
-	{	
+	{
 		free(prev);
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	}
@@ -110,4 +71,3 @@ int print_exitstatus(char **input, int i)
 	*input = temp;
 	return (EXIT_SUCCESS);
 }
-

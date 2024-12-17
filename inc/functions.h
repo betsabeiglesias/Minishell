@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/16 22:15:40 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/17 17:53:58 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,9 @@ int		init_varen (t_varenv *var, char *cmd_line, int i);
 void	clean_varen (t_varenv *var);
 int		len_var(char *cmd_line, int i);
 int     print_exitstatus(char **input, int i);
+int only_dollar(char *input, int *i);
+int dollar_question(char **input, int *i);
+int handle_var_expansion(t_varenv *var, char *input, int i, t_mini *shell);
 
 // ENVIROMENT
 int		init_env(char **envp, t_mini *shell);
