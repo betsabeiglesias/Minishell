@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:56:51 by binary            #+#    #+#             */
-/*   Updated: 2024/12/15 17:33:46 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/17 20:43:30 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int	builtin_export(t_exec *node, t_mini *shell, int fd)
 	while(node->cmd_all[args])
 	{
 		if(!check_namevar(node->cmd_all[args]))
-			return(EXIT_FAILURE);
+		{
+			printf("export: %s: not a valid identifier\n", node->cmd_all[args]);
+			args++;
+			continue ;
+		}
 		if (export_args(node->cmd_all[args], shell))
 			return (EXIT_FAILURE);
 		args++;
@@ -39,8 +43,10 @@ int change_var_value(char *str, t_mini *shell)
 	len_name = len_var_name(str);
 	while (shell->env[i])
 	{
-		if (!ft_strncmp(shell->env[i], str, len_name))
+		if (!ft_strncmp(shell->env[i], str, len_name)  && \
+            (shell->env[i][len_name] == '=' || shell->env[i][len_name] == '\0'))
 		{
+			free(shell->env[i]);
 			shell->env[i] = ft_strdup(str);
 			if (!shell->env[i])
 				return (handle_error(ERR_MALLOC), EXIT_FAILURE);
@@ -68,24 +74,6 @@ int	export_args(char *str, t_mini *shell)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }
-
-// void	ft_free_mat_str2(char ***mat, size_t size)
-// {
-// 	size_t	i;
-
-// 	if (!mat || !(*mat))
-// 		return ;
-// 	i = 0;
-// 	while (i < size)
-// 	{
-// 		if ((*mat)[i])
-// 			free((*mat)[i]);
-// 		(*mat)[i] = NULL;
-// 		i++;
-// 	}
-// 	free(*mat);
-// 	*mat = NULL; // Ahora el puntero original se establece en NULL
-// }
 
 int add_newvar(char *str, t_mini *shell)
 {
@@ -140,9 +128,10 @@ int	check_namevar(char *str)
 		else
 			return (0);
 	}
-	if (str[i] == '=')
-		return(1);	
-	return (0);
+	// if (str[i] == '=')
+	// 	return(1);	
+	// return (0);
+	return (1);
 }
 
 void	export_no_args(t_mini *shell, int fd)
@@ -164,12 +153,17 @@ void	print_export(char *str, int fd)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	if (check_varequal(str))
 	{
-		ft_putchar_fd(str[i], fd);
-		if (str[i] == '=')
-			ft_putchar_fd('\"', fd);
-		i++;
+		while (str[i] != '\0')
+		{
+			ft_putchar_fd(str[i], fd);
+			if (str[i] == '=')
+				ft_putchar_fd('\"', fd);
+			i++;
+		}
+		ft_putchar_fd('\"', fd);
 	}
-	ft_putchar_fd('\"', fd);
+	else
+		ft_putstr_fd(str, fd);
 }

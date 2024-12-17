@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/17 17:53:58 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/17 21:25:42 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int		builtin_echo(t_exec *node, int fd);
 int		builtin_exit(t_exec *node, t_mini *shell);
 int		builtin_env(t_mini *shell, int fd);
 void	free_shell_exit(t_mini *shell);
+int	 check_varequal(char *str);
 
 // BUILT_AUX_EXIT
 void	print_exit(void);
@@ -159,6 +160,8 @@ int		relative_route(t_exec *node, t_mini *shell);
 
 // BUILTIN_UNSET
 int     builtin_unset(t_exec *node, t_mini *shell);
+int	copy_varenv(char **new_env, char *var_env, int j);
+int	is_match(char **cmd_all, char *var_env, int arg);
 int		is_var_name(char *str, char *mini_var);
 int	    new_reduced_size_env(t_exec *node, t_mini *shell);
 

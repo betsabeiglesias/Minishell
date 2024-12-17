@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 22:35:41 by binary            #+#    #+#             */
-/*   Updated: 2024/12/16 22:37:58 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/17 19:50:44 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,29 @@ int	builtin_env(t_mini *shell, int fd)
 	i = 0;
 	while (shell->env[i])
 	{
-		ft_putstr_fd(shell->env[i], fd);
-		ft_putstr_fd("\n", fd);
+		if (check_varequal(shell->env[i]))
+			ft_putendl_fd(shell->env[i], fd);
+		// ft_putstr_fd(shell->env[i], fd);
+		// ft_putstr_fd("\n", fd);
 		i++;
 	}
 	return (EXIT_SUCCESS);
 }
+
+int	check_varequal(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '=')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 
 int	builtin_exit(t_exec *node, t_mini *shell)
 {
