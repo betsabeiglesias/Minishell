@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/17 19:13:03 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/17 21:39:03 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
@@ -101,6 +102,9 @@ int		init_varen (t_varenv *var, char *cmd_line, int i);
 void	clean_varen (t_varenv *var);
 int		len_var(char *cmd_line, int i);
 int     print_exitstatus(char **input, int i);
+int only_dollar(char *input, int *i);
+int dollar_question(char **input, int *i);
+int handle_var_expansion(t_varenv *var, char *input, int i, t_mini *shell);
 
 // ENVIROMENT
 int		init_env(char **envp, t_mini *shell);
@@ -113,6 +117,8 @@ void	free_mini(t_mini *shell);
 int		builtin_echo(t_exec *node, int fd);
 int		builtin_exit(t_exec *node, t_mini *shell);
 int		builtin_env(t_mini *shell, int fd);
+void	free_shell_exit(t_mini *shell);
+int	 check_varequal(char *str);
 
 // BUILT_AUX_EXIT
 void	print_exit(void);
@@ -156,6 +162,8 @@ int		relative_route(t_exec *node, t_mini *shell);
 
 // BUILTIN_UNSET
 int     builtin_unset(t_exec *node, t_mini *shell);
+int	copy_varenv(char **new_env, char *var_env, int j);
+int	is_match(char **cmd_all, char *var_env, int arg);
 int		is_var_name(char *str, char *mini_var);
 int	    new_reduced_size_env(t_exec *node, t_mini *shell);
 
