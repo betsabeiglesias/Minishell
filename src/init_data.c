@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/16 16:42:37 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/17 19:52:48 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../inc/minishell.h"
 
-int    init_shell(t_mini *shell)
+int	init_shell(t_mini *shell)
 {
 	shell->env = NULL;
 	shell->input = NULL;
@@ -41,7 +40,7 @@ int	get_all_paths(t_mini *shell)
 		{
 			paths = ft_split(shell->env[i] + ft_strlen(PATH), DOTS);
 			if (!paths)
-				return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+				return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 			get = 1;
 		}
 		i++;
@@ -50,9 +49,9 @@ int	get_all_paths(t_mini *shell)
 	return (EXIT_SUCCESS);
 }
 
-t_exec *init_cmd_node(void)
+t_exec	*init_cmd_node(void)
 {
-	t_exec *node;
+	t_exec	*node;
 
 	node = malloc(sizeof(t_exec));
 	if (!node)

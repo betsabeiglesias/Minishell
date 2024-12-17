@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 11:34:49 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/10 18:05:51 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:47:37 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,32 @@ int	check_metachar_separate(char *str)
 {
 	size_t	i;
 	bool	s_quote;
-    bool	d_quote;
+	bool	d_quote;
 
 	i = 0;
 	s_quote = false;
-    d_quote = false;
+	d_quote = false;
 	while (i < ft_strlen(str))
-    {
-        new_quote_status(&s_quote, &d_quote, i, str);
+	{
+		new_quote_status(&s_quote, &d_quote, i, str);
 		if (s_quote == false && d_quote == false && is_valid_metachar(str[i]))
 		{
 			if (do_check(str, i))
 				return (EXIT_FAILURE);
 		}
 		i++;
-    }
+	}
 	return (EXIT_SUCCESS);
 }
 
-int do_check(char *str, int i)
+int	do_check(char *str, int i)
 {
 	if (check_pipe_separate(str, i))
 		return (EXIT_FAILURE);
 	if (check_redir_separate(str, i, '>'))
 		return (EXIT_FAILURE);
 	if (check_redir_separate(str, i, '<'))
-		return (EXIT_FAILURE);	
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -85,7 +85,8 @@ int	check_redir_separate(char *str, int i, char c)
 	}
 	return (EXIT_SUCCESS);
 }
-int	do_redir_check(char *str,int i, char c)
+
+int	do_redir_check(char *str, int i, char c)
 {
 	if (str[i - 1] == SPACE && str[i + 1] == SPACE)
 		return (EXIT_SUCCESS);

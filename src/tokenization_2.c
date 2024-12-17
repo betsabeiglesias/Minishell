@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:46:17 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/06 13:16:34 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:55:13 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	save_token(t_varparse *data)
 	if (!data->tmp || data->tmp[0] == '\0')
 		return (EXIT_SUCCESS);
 	aux = ft_strdup(data->tmp);
-	if(!aux)
-		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+	if (!aux)
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	node = ft_lstnew((void *)aux);
-	if(!node)
-		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+	if (!node)
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	ft_lstadd_back(&data->tk_lst, node);
 	ft_free2(&data->tmp);
 	return (EXIT_SUCCESS);
@@ -52,7 +52,7 @@ int	handle_final_token(t_varparse *data)
 char	*add_literal_str(char *dst, char *str, char quote)
 {
 	int		len;
-	char 	*aux;
+	char	*aux;
 
 	len = ft_strchr(str, quote) - str;
 	aux = malloc((ft_strlen(dst) + len + 1) * sizeof(char));

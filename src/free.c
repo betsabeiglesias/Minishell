@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/12/16 16:14:34 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/17 19:51:20 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,7 @@ void	lst_clear_token_content(t_list *lst)
 	}
 	return ;
 }
-void handle_free(t_mini shell, int error)
-{
-	(void)shell;
 
-	if (error == ERR_ENVP)
-	{
-		//liberar todo shell
-	}	
-	else if (error == EOF)
-	{
-		//liberar todo shell
-	}
-	return ;
-}
 void	free_shell(t_mini *shell)
 {
 	if (shell->env)
@@ -114,3 +101,20 @@ void	ft_free_v(void *str)
 		free(str);
 	return ;
 }
+
+/*
+void handle_free(t_mini shell, int error)
+{
+	(void)shell;
+
+	if (error == ERR_ENVP)
+	{
+		//liberar todo shell
+	}	
+	else if (error == EOF)
+	{
+		//liberar todo shell
+	}
+	return ;
+}
+*/
