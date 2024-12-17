@@ -6,9 +6,10 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/17 21:25:42 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/17 21:39:03 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
@@ -43,6 +44,7 @@ void    handle_error_continue(int error_type);
 t_list	*parse(t_mini *shell);
 int syntax_check_on_tokens(t_list *tk_lst);
 int is_str_metachar(char *str);
+int check_extrem_tokens(t_list *tk_lst);
 
 //SYNTAX CHECK 2
 int		check_metachar_separate(char *str);
