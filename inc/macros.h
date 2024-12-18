@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/16 21:55:08 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/18 19:53:40 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define ERR_GETWD			18
 # define ERR_OLDPWD			19
 # define ERR_EOF            20
+# define ERR_ENV			21
 
 # define ERR_MSG_QUOTE		    "SYNTAX ERROR: open quotes"
 # define ERR_MSG_EXTREM		    "SYNTAX ERROR: nothing after or before metachar"
@@ -57,6 +58,8 @@
 # define ERR_MSG_GETWD			"FAILED TO GET WORKING DIRECTORY"
 # define ERR_MSG_OLDPWD			"Error updating OLDPWD"
 # define ERR_MSG_EOF			"Warning: here-document deilimited by end-of-file (wanted 'delimiter')"
+# define ERR_MSG_ENV			"ERROR INITIALIZING ENVIRONMENT"
+
 
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'

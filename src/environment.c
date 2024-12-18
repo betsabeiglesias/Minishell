@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:08:15 by binary            #+#    #+#             */
-/*   Updated: 2024/12/14 20:18:57 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:36:05 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../inc/minishell.h"
 
@@ -37,7 +36,7 @@ int	init_env(char **envp, t_mini *shell)
 	i = 0;
 	while (envp[i])
 		i++;
-	if(!exist_oldpwd(envp))
+	if (!exist_oldpwd(envp))
 	{
 		i++;
 		shell->oldpwd = false;
@@ -46,77 +45,61 @@ int	init_env(char **envp, t_mini *shell)
 	if (shell->env == NULL)
 	{
 		handle_error(ERR_MALLOC);
-		return(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
-	//liberar env en el punto donde falla
-	return(EXIT_SUCCESS) ;
+	return (EXIT_SUCCESS);
 }
+
 int	exist_oldpwd(char **env)
 {
 	int	i;
 
 	i = 0;
-	while(env[i])
-	{	
-		if(!ft_strncmp("OLDPWD=", env[i], ft_strlen("OLDPWD=")))
-			return(1);
+	while (env[i])
+	{
+		if (!ft_strncmp("OLDPWD=", env[i], ft_strlen("OLDPWD=")))
+			return (1);
 		i++;
 	}
 	return (0);
-
 }
-
 
 int	get_my_env(char **envp, t_mini *shell)
 {
-	int	i;
+	int	size;
 
-	i = 0;
+	size = ft_matsize(envp);
 	shell->env = NULL;
-	if(init_env(envp, shell))
-	{
-		printf("Error en init_env\n");
-		return (EXIT_FAILURE);
-	}
-	while (envp[i])
-	{
-		shell->env[i] = ft_strdup(envp[i]);
-		if (shell->env[i] == NULL)
-		{
-			free_env(shell);
-			return (handle_error(ERR_ENVP), EXIT_FAILURE);
-		}
-		i++;
-	}
+	if (init_env(envp, shell))
+		return (handle_error(21), EXIT_FAILURE);
+	if (ft_matdup(shell->env, envp, size))
+		return (handle_error(ERR_MALLOC), size);
 	if (shell->oldpwd == false)
 	{
-		shell->env[i] = ft_strdup("OLDPWD=");
-		if (shell->env[i] == NULL)
+		shell->env[size] = ft_strdup("OLDPWD=");
+		if (shell->env[size] == NULL)
 		{
-        	free_env(shell);
+			free_env(shell);
 			handle_error(ERR_ENVP);
-			return(EXIT_FAILURE);
+			return (EXIT_FAILURE);
 		}
-		i++;
-		shell->env[i] = NULL;
+		shell->env[size + 1] = NULL;
 	}
 	else
-	{
-		shell->env[i] = NULL;
-	}
+		shell->env[size] = NULL;
 	return (EXIT_SUCCESS);
 }
 
-void free_mini(t_mini *shell)
+void	free_mini(t_mini *shell)
 {
 	int	i;
 
 	if (shell)
 	{
-		if(shell->env)
+		if (shell->env)
 		{
 			i = 0;
-			while(shell->env[i])
+			while (shell->env[i])
 			{
 				free(shell->env[i]);
 				i++;

@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:06:14 by binary            #+#    #+#             */
-/*   Updated: 2024/12/17 21:31:37 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/18 19:36:28 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	builtin_unset(t_exec *node, t_mini *shell)
 	{
 		if (!is_match(node->cmd_all, shell->env[i], ft_matsize(node->cmd_all) - 1))
 		{
-			if (copy_varenv(new_env, shell->env[i], j))	
+			if (copy_varenv(new_env, shell->env[i], j))
 				return (EXIT_FAILURE);
 			j++;
 		}

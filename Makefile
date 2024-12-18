@@ -6,7 +6,7 @@
 #    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/12/17 18:30:49 by binary           ###   ########.fr        #
+#    Updated: 2024/12/18 19:23:17 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,9 @@ SRC =	main.c \
 		execution_1.c \
 		execution_2.c \
 		aux.c \
-		builtin_export.c \
+		builtin_export_1.c \
+		builtin_export_2.c \
+		builtin_exit_2.c \
 		builtin_env_exit_echo.c \
 		builtin_unset.c \
 		builtin_pwd.c \
@@ -57,7 +59,6 @@ SRC =	main.c \
 		builtin_cd_2.c \
 		builtin_cd_1.c \
 		builtin_auxiliar.c \
-		builtin_aux_exit.c \
 
 SRC_ARITZ =	main_parse.c \
 			check_syntax_1.c \
@@ -70,37 +71,6 @@ SRC_ARITZ =	main_parse.c \
 			free.c \
 			parse.c \
 
-# para borrar
-SRC_BET = main_bet.c \
-		environment.c \
-		signals.c \
-		handle_error.c \
-		init_data.c \
-		check_syntax_1.c \
-		check_syntax_2.c \
-		check_syntax_3.c \
-		check_utils.c \
-		tokenization_1.c \
-		tokenization_2.c \
-		free.c \
-		parse.c \
-		expansion_1.c \
-		expansion_2.c \
-		command_list_1.c \
-		command_list_2.c \
-		command_list_aux.c \
-		execution_1.c \
-		execution_2.c \
-		aux.c \
-		builtin_export.c \
-		builtin_env_exit_echo.c \
-		builtin_unset.c \
-		builtin_pwd.c \
-		builtin_cd_2.c \
-		builtin_cd_1.c \
-		builtin_auxiliar.c \
-		builtin_aux_exit.c \
-				
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:29:52 by binary            #+#    #+#             */
-/*   Updated: 2024/12/17 19:10:30 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/18 19:38:19 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	len_var(char *input, int i)
 
 	temp = i;
 	len = 0;
-	// while (input[temp] && valid_char_env(input[temp]))
 	while (input[temp] && input[temp] != ' ')
 	{
 		len++;
@@ -39,7 +38,7 @@ int	len_var(char *input, int i)
 
 int	valid_char_env(char c)
 {
-	if(ft_isalnum(c) || c == '_')
-		return(1);
-	return(0);
+	if (ft_isalnum(c) || c == '_')
+		return (1);
+	return (0);
 }

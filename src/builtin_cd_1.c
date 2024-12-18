@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/17 23:21:14 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/18 18:31:53 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,7 @@ int	update_dir_env(char *dir, char *new_value, t_mini *shell)
 	if (!new_var)
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	if (add_newvar(new_var, shell) != EXIT_SUCCESS)
-	{
-		free(new_var);
-		return (EXIT_FAILURE);
-	}
+		return (free(new_var), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
