@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:58:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:25:30 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:28:37 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_exec	*init_variables(t_exec *node, t_mini *shell)
 	return (node);
 }
 
-t_list *jump_to_next_token(int is_redir, t_list *tk_lst)
+t_list	*jump_to_next_token(int is_redir, t_list *tk_lst)
 {
 	if (is_redir)
 	{
@@ -78,7 +78,6 @@ void	handle_get_path(t_exec *node, t_mini *shell)
 			node->path = get_path(shell->all_paths, node->cmd_all[0]);
 	}
 	else
-	node->path = ft_strdup(node->cmd_all[0]);
+		node->path = ft_strdup(node->cmd_all[0]);
 	return ;
 }
-

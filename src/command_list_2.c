@@ -6,27 +6,27 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:18:03 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/09 19:25:11 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:30:02 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int handle_commands(t_list *tk_lst, t_exec *node)
+int	handle_commands(t_list *tk_lst, t_exec *node)
 {
 	if (!node->cmd_all)
 	{
 		node->cmd_all = ft_calloc(1, sizeof(char *));
 		if (!node->cmd_all)
-			return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+			return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	}
 	node->cmd_all = add_token_to_cmd(node->cmd_all, (char *)tk_lst->content);
 	if (!node->cmd_all)
-		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-char **add_token_to_cmd(char **cmd_all, char *str)
+char	**add_token_to_cmd(char **cmd_all, char *str)
 {
 	char	**dst;
 	size_t	size;
@@ -40,7 +40,7 @@ char **add_token_to_cmd(char **cmd_all, char *str)
 	if (!dst)
 	{
 		ft_free_mat_str(cmd_all, ft_matsize(cmd_all));
-		return(handle_error(ERR_MALLOC), NULL);
+		return (handle_error(ERR_MALLOC), NULL);
 	}
 	i = 0;
 	while (i < size)
@@ -81,11 +81,11 @@ char	*get_path(char **all_paths, char *cmd)
 
 int	save_exe_node(t_list **exe_lst, t_exec *exe_node)
 {
-	t_list * node;	
+	t_list	*node;	
 
 	node = ft_lstnew((void *)exe_node);
-	if(!node)
-		return(handle_error(ERR_MALLOC), EXIT_FAILURE);
+	if (!node)
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	ft_lstadd_back(exe_lst, node);
 	return (EXIT_SUCCESS);
 }
@@ -109,4 +109,3 @@ int	handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell)
 	*node = NULL;
 	return (EXIT_SUCCESS);
 }
-
