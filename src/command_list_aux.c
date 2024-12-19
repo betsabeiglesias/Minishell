@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:14:11 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/10 18:14:37 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:12:37 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 int	is_str_pipe(char *str)
 {
-	if(!str)
+	if (!str)
 		return (0);
 	if (ft_strlen(str) == 1 && *str == PIPE)
 		return (1);
 	return (0);
 }
+
 int	is_str_redir(char *str, char *redir)
 {
-	if(!str)
+	if (!str)
 		return (0);
 	if (!ft_strncmp(str, redir, ft_strlen(str)))
 		return (1);

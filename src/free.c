@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 19:40:44 by binary            #+#    #+#             */
-/*   Updated: 2024/12/19 16:51:33 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:50:15 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ void	ft_free_mat_int(int **mat, int size)
 	mat = NULL;
 	return ;
 }
-void lst_clear_exec(t_list *lst)
-{	
+
+void	lst_clear_exec(t_list *lst)
+{
 	while (lst)
 	{
 		free_node_exec((t_exec *)lst->content);
@@ -68,7 +69,7 @@ void lst_clear_exec(t_list *lst)
 	return ;
 }
 
-void free_node_exec(t_exec *node)
+void	free_node_exec(t_exec *node)
 {
 	if (!node)
 		return ;
@@ -76,12 +77,11 @@ void free_node_exec(t_exec *node)
 	ft_free(node->path);
 	ft_free(node->filename_in);
 	ft_free(node->filename_out);
-	ft_free(node->heredoc_content);
+	ft_free(node->hdoc_content);
 	ft_free_v((void *)node);
 	node = NULL;
 	return ;
 }
-
 
 /*
 void handle_free(t_mini shell, int error)

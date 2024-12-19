@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/17 19:52:48 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:38:20 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_exec	*init_cmd_node(void)
 	node->filename_in = NULL;
 	node->filename_out = NULL;
 	node->out_append = 0;
-	node->heredoc_content = NULL;
+	node->hdoc_content = NULL;
 	return (node);
 }
 

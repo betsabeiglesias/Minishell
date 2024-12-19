@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:43:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/16 21:57:42 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/19 17:49:29 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	handle_error(int error_type)
 	handle_error_continue(error_type);
 	return (EXIT_FAILURE);
 }
-void handle_error_continue(int error_type)
+
+void	handle_error_continue(int error_type)
 {
 	if (error_type == ERR_ACCESS)
 		perror(ERR_MSG_ACCESS);
@@ -51,5 +52,5 @@ void handle_error_continue(int error_type)
 		perror(ERR_MSG_GETWD);
 	if (error_type == ERR_EOF)
 		ft_putendl_fd(ERR_MSG_EOF, STDOUT_FILENO);
-	return;
+	return ;
 }

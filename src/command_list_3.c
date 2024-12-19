@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:24:19 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:35:30 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:39:02 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int	read_stdin(t_exec *node, char *delimiter)
 {
 	char	*buffer;
 
-	node->heredoc_content = ft_strdup(EMPTY);
+	node->hdoc_content = ft_strdup(EMPTY);
 	buffer = ft_strdup(EMPTY);
-	if (!buffer || !node->heredoc_content)
+	if (!buffer || !node->hdoc_content)
 		return (ft_free(buffer), ft_free(delimiter), handle_error(ERR_MALLOC),
 			EXIT_FAILURE);
 	while (buffer)
@@ -87,12 +87,12 @@ int	read_stdin(t_exec *node, char *delimiter)
 			break ;
 		}
 		if (buffer)
-			node->heredoc_content = ft_strjoin_freed(node->heredoc_content, buffer);
+			node->hdoc_content = ft_strjoin_freed(node->hdoc_content, buffer);
 	}
 	return (EXIT_SUCCESS);
 }
 
-int is_cmd_executable(char **cmd_all)
+int	is_cmd_executable(char **cmd_all)
 {
 	if (cmd_all == NULL)
 		return (0);

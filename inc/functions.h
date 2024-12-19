@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:06:40 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:02:42 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,10 +209,13 @@ int		**create_pipes(int num_procs);
 void	close_pipes(t_mini *shell, int num_procs);
 int		builtin_count(t_list *exe_lst);
 int		do_redirections(t_exec *node, int child, int num_procs, t_mini *shell);
-int		create_here_doc_file(char *heredoc_content);
+int		create_here_doc_file(char *hdoc_content);
 int		do_redirections_continue(t_exec *node, int fd_in, int fd_out);
 void	get_exit_status(int *status, int i);
 int     create_process(t_list *exe_lst, int num_procs, t_mini *shell);
+
+// EXECUTION 2
+void	dup_pipes(int child, int num_procs, t_mini *shell);
 
 //COMMAND_LIST_AUX
 int		is_str_pipe(char *str);
