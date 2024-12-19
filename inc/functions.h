@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/18 22:01:44 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/19 17:06:40 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	new_prompt(t_mini *shell, t_list *exe_lst);
 void	free_to_prompt(t_list *exe_lst, t_mini *shell);
 int		handle_enviroment(char **envp, t_mini *shell);
 
-//AUX
+//AUX BORRAAAAAAAAAAAR
 int		ft_print_lst(t_list *list);
 int		ft_print_cmd_lst(t_list *cmd_lst);
 void	print_cmd_all(char **cmd_all);
@@ -192,9 +192,7 @@ int		is_cmd_executable(char **cmd_all);
 void	handle_get_path(t_exec *node, t_mini *shell);
 int		handle_pipe(t_list *tk_lst, t_exec *node, t_mini *shell, t_list **exe_lst);
 t_list	*jump_to_next_token(int is_redir, t_list *tk_lst);
-//void    init_variables(t_exec *node, t_mini *shell);
 t_exec	*init_variables(t_exec *node, t_mini *shell);
-/* ************************************************************************** */
 
 //COMMAND_LIST_2
 char	*get_path(char **all_paths, char *cmd);
@@ -214,6 +212,7 @@ int		do_redirections(t_exec *node, int child, int num_procs, t_mini *shell);
 int		create_here_doc_file(char *heredoc_content);
 int		do_redirections_continue(t_exec *node, int fd_in, int fd_out);
 void	get_exit_status(int *status, int i);
+int     create_process(t_list *exe_lst, int num_procs, t_mini *shell);
 
 //COMMAND_LIST_AUX
 int		is_str_pipe(char *str);

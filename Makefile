@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
+#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/12/18 19:23:17 by binary           ###   ########.fr        #
+#    Updated: 2024/12/19 17:25:22 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,45 +32,21 @@ SRC =	main.c \
 		signals.c \
 		handle_error.c \
 		init_data.c \
-		check_syntax_1.c \
-		check_syntax_2.c \
-		check_syntax_3.c \
-		check_utils.c \
-		tokenization_1.c \
-		tokenization_2.c \
-		free.c \
+		check_syntax_1.c check_syntax_2.c check_syntax_3.c check_utils.c \
+		tokenization_1.c tokenization_2.c \
+		free.c free_2.c \
 		parse.c \
-		expansion_1.c \
-		expansion_2.c \
-		expansion_3.c \
-		command_list_1.c \
-		command_list_2.c \
-		command_list_aux.c \
-		execution_1.c \
-		execution_2.c \
-		aux.c \
-		builtin_export_1.c \
-		builtin_export_2.c \
+		expansion_1.c expansion_2.c expansion_3.c \
+		command_list_1.c command_list_2.c \
+		command_list_3.c command_list_aux.c \
+		execution_1.c execution_2.c execution_3.c \
+		builtin_export_1.c builtin_export_2.c \
 		builtin_exit_2.c \
 		builtin_env_exit_echo.c \
 		builtin_unset.c \
 		builtin_pwd.c \
-		builtin_cd_3.c \
-		builtin_cd_2.c \
-		builtin_cd_1.c \
+		builtin_cd_1.c builtin_cd_2.c builtin_cd_3.c \
 		builtin_auxiliar.c \
-
-SRC_ARITZ =	main_parse.c \
-			check_syntax_1.c \
-			check_syntax_2.c \
-			check_utils.c \
-			handle_error.c \
-			tokenization_1.c \
-			tokenization_2.c \
-			init_data.c \
-			free.c \
-			parse.c \
-
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
