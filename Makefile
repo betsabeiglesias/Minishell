@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
+#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/12/19 17:28:45 by aolabarr         ###   ########.fr        #
+#    Updated: 2024/12/19 19:44:48 by binary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -L$(LIBLST_DIR) -llst -lreadline -g3
 
 SRC =	main.c \
 		environment.c \
-		signals.c \
+		signals_1.c signals_2.c \
 		handle_error.c \
 		init_data.c \
 		check_syntax_1.c check_syntax_2.c check_syntax_3.c check_utils.c \
@@ -49,13 +49,7 @@ SRC =	main.c \
 				
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
-# para borrar
-OBJS_BET = $(addprefix $(OBJ_DIR)/,$(SRC_BET:.c=.o))
-
 all: lib $(OBJ_DIR) $(NAME)
-
-# para borrar
-bet: lib $(OBJ_DIR) $(NAME_BET)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)

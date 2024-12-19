@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_aux_exit.c                                 :+:      :+:    :+:   */
+/*   builtin_exit_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 12:24:33 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/15 20:17:07 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/19 19:48:51 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	print_exit(void)
 int	ft_atoi_exit(char *str)
 {
 	int	nb;
-	
+
 	nb = ft_atoi(str);
 	nb = nb % 256;
-	return(nb);
+	return (nb);
 }
 
 int	ft_str_hasalpha(char *str)
@@ -32,9 +32,9 @@ int	ft_str_hasalpha(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if(ft_isalpha(str[i]))
+		if (ft_isalpha(str[i]))
 			return (1);
 		i++;
 	}

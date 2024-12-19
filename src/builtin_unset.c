@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:06:14 by binary            #+#    #+#             */
-/*   Updated: 2024/12/18 19:36:28 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/19 19:40:14 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	builtin_unset(t_exec *node, t_mini *shell)
 		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
 	while (shell->env[i])
 	{
-		if (!is_match(node->cmd_all, shell->env[i], ft_matsize(node->cmd_all) - 1))
+		if (!match(node->cmd_all, shell->env[i], ft_matsize(node->cmd_all) - 1))
 		{
 			if (copy_varenv(new_env, shell->env[i], j))
 				return (EXIT_FAILURE);
@@ -55,7 +55,7 @@ int	copy_varenv(char **new_env, char *var_env, int j)
 	return (EXIT_SUCCESS);
 }
 
-int	is_match(char **cmd_all, char *var_env, int arg)
+int	match(char **cmd_all, char *var_env, int arg)
 {
 	int	k;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:21:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/11/30 19:08:24 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:37:59 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_free2(char **str)
 {
-    if (*str)
-    {
-		  free(*str);
-		  *str = NULL;
-    }
-    return ;
+	if (*str)
+	{
+		free(*str);
+		*str = NULL;
+	}
+	return ;
 }

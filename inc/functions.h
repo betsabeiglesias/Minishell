@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 18:02:42 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:41:16 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ int		relative_route(t_exec *node, t_mini *shell);
 // BUILTIN_UNSET
 int		builtin_unset(t_exec *node, t_mini *shell);
 int		copy_varenv(char **new_env, char *var_env, int j);
-int		is_match(char **cmd_all, char *var_env, int arg);
+int		match(char **cmd_all, char *var_env, int arg);
 int		is_var_name(char *str, char *mini_var);
 int		new_reduced_size_env(t_exec *node, t_mini *shell);
 
@@ -212,7 +212,7 @@ int		do_redirections(t_exec *node, int child, int num_procs, t_mini *shell);
 int		create_here_doc_file(char *hdoc_content);
 int		do_redirections_continue(t_exec *node, int fd_in, int fd_out);
 void	get_exit_status(int *status, int i);
-int     create_process(t_list *exe_lst, int num_procs, t_mini *shell);
+int		create_process(t_list *exe_lst, int num_procs, t_mini *shell);
 
 // EXECUTION 2
 void	dup_pipes(int child, int num_procs, t_mini *shell);

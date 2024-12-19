@@ -6,11 +6,9 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/18 19:53:40 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/19 19:33:29 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #ifndef MACROS_H
 # define MACROS_H
@@ -60,7 +58,6 @@
 # define ERR_MSG_EOF			"Warning: here-document deilimited by end-of-file (wanted 'delimiter')"
 # define ERR_MSG_ENV			"ERROR INITIALIZING ENVIRONMENT"
 
-
 # define SINGLE_QUOTE		'\''
 # define DOUBLE_QUOTE		'"'
 # define SPACE				' '
@@ -98,6 +95,5 @@
 # define UNSET				"unset"
 # define ENV				"env"
 # define EXIT				"exit"
-
 
 #endif

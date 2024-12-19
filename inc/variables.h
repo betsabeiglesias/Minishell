@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:30:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:38:20 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:32:31 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ typedef struct s_exec
 	char	*hdoc_content;
 }				t_exec;
 
-typedef struct	s_mini
+typedef struct s_mini
 {
-   char		**env;
-   char		**all_paths;
-   bool		oldpwd;
-   char		*input;
-   //char		*delimiter; BORRAR
-   pid_t	*pid;
-   int		**pipes;
-   int		num_pipes;
-   int      is_redir;
-   int      exit_status;
+	char	**env;
+	char	**all_paths;
+	bool	oldpwd;
+	char	*input;
+	//char		*delimiter; BORRAR
+	pid_t	*pid;
+	int		**pipes;
+	int		num_pipes;
+	int		is_redir;
+	int		exit_status;
 }				t_mini;
 
 typedef struct s_varenv
@@ -47,25 +47,24 @@ typedef struct s_varenv
 	int		len;
 }				t_varenv;
 
-typedef struct	s_quote
+typedef struct s_quote
 {
-    bool	sing;
-    bool	doub;
+	bool	sing;
+	bool	doub;
 }				t_quote;
 
-typedef struct	s_varparse
+typedef struct s_varparse
 {
-    t_list	*tk_lst;
+	t_list	*tk_lst;
 	char	*tmp;
-    int		i;
+	int		i;
 	int		old_len;
 }				t_varparse;
 
-typedef struct	s_fd
+typedef struct s_fd
 {
-    int     in;
-    int     out;
+	int		in;
+	int		out;
 }				t_fd;
-
 
 #endif

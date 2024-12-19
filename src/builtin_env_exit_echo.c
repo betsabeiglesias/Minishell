@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 22:35:41 by binary            #+#    #+#             */
-/*   Updated: 2024/12/17 19:50:44 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/19 19:41:52 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	builtin_env(t_mini *shell, int fd)
 	{
 		if (check_varequal(shell->env[i]))
 			ft_putendl_fd(shell->env[i], fd);
-		// ft_putstr_fd(shell->env[i], fd);
-		// ft_putstr_fd("\n", fd);
 		i++;
 	}
 	return (EXIT_SUCCESS);
@@ -41,7 +39,6 @@ int	check_varequal(char *str)
 	}
 	return (0);
 }
-
 
 int	builtin_exit(t_exec *node, t_mini *shell)
 {
@@ -114,7 +111,5 @@ void	free_shell_exit(t_mini *shell)
 	shell->all_paths = NULL;
 	shell->pid = NULL;
 	shell->pipes = NULL;
-	// free(shell);
-	// shell = NULL;
 	return ;
 }
