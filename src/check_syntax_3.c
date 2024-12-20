@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 19:52:31 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/17 19:49:46 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:05:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_metachar_consecutive(char *str)
 int	do_check_consecutive(char *str, int i)
 {
 	i++;
-	while (str[i] == SPACE)
+	while (str[i] == SPA_C)
 		i++;
 	if (str[i] == PIPE || is_redir_metachar(str[i]))
 		return (EXIT_FAILURE);

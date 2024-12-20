@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 13:28:52 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 19:33:29 by binary           ###   ########.fr       */
+/*   Created: 2024/12/20 16:50:32 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/12/20 17:05:09 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,36 +36,35 @@
 # define ERR_EOF            20
 # define ERR_ENV			21
 
-# define ERR_MSG_QUOTE		    "SYNTAX ERROR: open quotes"
-# define ERR_MSG_EXTREM		    "SYNTAX ERROR: nothing after or before metachar"
-# define ERR_MSG_ALONE		    "SYNTAX ERROR: need separate metacharacter"
-# define ERR_MSG_CONSECUTIVE    "SYNTAX ERROR: Consecutive metachar"
-# define ERR_MSG_ENVP		    "ENVIRONMENT VARIABLE NOT FOUND OR UNDEFINED"
-# define ERR_MSG_MALLOC		    "MALLOC FAILED"
-# define ERR_MSG_ARG		    "ningun argumento"
-# define ERR_MSG_ATTR           "UNABLE TO ACCESS TERMINAL ATTRIBUTES"
-# define ERR_MSG_OPEN           "OPEN ERROR"
-# define ERR_MSG_ACCESS			"COMMAND NOT FOUND"
-# define ERR_MSG_FORK			"FAILED FORK"
-# define ERR_MSG_EXECVE			"FAILED EXECVE"
-# define ERR_MSG_PIPE			"FAILED PIPE"
-# define ERR_MSG_BUILT			"FAILED BUILT"
-# define ERR_MSG_EXPORT			"FAILED EXPORT"
-# define ERR_MSG_CHDIR			"ERROR CHDIR"
-# define ERR_MSG_HERE			"Error deleting here_doc"
-# define ERR_MSG_GETWD			"FAILED TO GET WORKING DIRECTORY"
-# define ERR_MSG_OLDPWD			"Error updating OLDPWD"
-# define ERR_MSG_EOF			"Warning: here-document deilimited by end-of-file (wanted 'delimiter')"
-# define ERR_MSG_ENV			"ERROR INITIALIZING ENVIRONMENT"
+# define ERR_MSG_QUOTE	"SYNTAX ERROR: open quotes"
+# define ERR_MSG_EXTREM	"SYNTAX ERROR: nothing after or before metachar"
+# define ERR_MSG_ALONE	"SYNTAX ERROR: need separate metacharacter"
+# define ERR_MSG_CONSEC	"SYNTAX ERROR: consecutive metachar"
+# define ERR_MSG_ENVP	"ENV ERROR: env. variable not found or undefined"
+# define ERR_MSG_ENV	"ENV ERROR: initializing enviroment failed"
+# define ERR_MSG_OLDPWD	"ENV ERROR: updating OLDPWD"
+# define ERR_MSG_MALLOC	"SYS ERROR: malloc failed"
+# define ERR_MSG_ATTR	"SYS ERROR: unable to access terminal attributes"
+# define ERR_MSG_OPEN	"SYS ERROR: open failed"
+# define ERR_MSG_CHDIR	"SYS ERROR: chdir failed"
+# define ERR_MSG_FORK	"SYS ERROR: fork failed"
+# define ERR_MSG_EXECVE	"SYS ERROR: execve failed"
+# define ERR_MSG_PIPE	"SYS ERROR: pipe failed"
+# define ERR_MSG_GETWD	"SYS ERROR: failed to get working directory"
+# define ERR_MSG_ACCESS	"ERROR: command not found"
+# define ERR_MSG_BUILT	"ERROR: built failed"
+# define ERR_MSG_EXPORT	"ERROR: export failed"
+# define ERR_MSG_HERE	"ERROR: deleting here_doc failed"
+# define ERR_MSG_EOF	"WAR: here-doc delimited by EOF (wanted 'delimiter')"
 
-# define SINGLE_QUOTE		'\''
-# define DOUBLE_QUOTE		'"'
-# define SPACE				' '
-# define POINT              '.'
-# define PIPE				'|'
+# define SINGLE_QUOTE		39
+# define DOUBLE_QUOTE		34
+# define SPA_C			    32
+# define POINT              46
+# define PIPE				124
 # define DOTS	            58
 # define SLASH		        "/"
-# define SLASH_CHAR		    '/'
+# define SLASH_CHAR		    47
 # define NEW_LINE            "\n"
 # define EMPTY              ""
 # define EXIT               "exit"

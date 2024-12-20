@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 19:41:16 by binary           ###   ########.fr       */
+/*   Created: 2024/12/20 16:40:03 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/12/20 16:41:06 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,8 @@ int		create_outfile(t_exec *node, char *redir);
 void	handle_all_redir(t_list *tk_lst, int *is_redir, t_exec *node);
 int		is_cmd_executable(char **cmd_all);
 void	handle_get_path(t_exec *node, t_mini *shell);
-int		handle_pipe(t_list *tk_lst, t_exec *node, t_mini *shell, t_list **exe_lst);
+int		handle_pipe(t_list *tk_lst, t_exec *node,
+			t_mini *shell, t_list **exe_lst);
 t_list	*jump_to_next_token(int is_redir, t_list *tk_lst);
 t_exec	*init_variables(t_exec *node, t_mini *shell);
 

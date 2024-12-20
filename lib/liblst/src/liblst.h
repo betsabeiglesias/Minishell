@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblst.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:40:19 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 19:36:37 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/20 16:35:18 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 typedef struct s_list
 {
 	void			*content;
-	//t_token			token;
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;

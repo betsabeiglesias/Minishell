@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 19:43:27 by binary            #+#    #+#             */
-/*   Updated: 2024/12/19 19:45:13 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/20 16:59:23 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	handle_signal_father(int signum)
 	}
 }
 
-int handle_eof_interactive(char *str)
+int	handle_eof_interactive(char *str)
 {
 	if (!str)
 	{

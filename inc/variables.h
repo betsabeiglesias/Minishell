@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:30:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 19:32:31 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/20 16:37:59 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_mini
 	char	**all_paths;
 	bool	oldpwd;
 	char	*input;
-	//char		*delimiter; BORRAR
 	pid_t	*pid;
 	int		**pipes;
 	int		num_pipes;

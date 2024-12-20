@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 11:34:49 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/17 19:47:37 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:05:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_pipe_separate(char *str, int i)
 {
 	if (str[i] == PIPE)
 	{
-		if (str[i - 1] == SPACE && str[i + 1] == SPACE)
+		if (str[i - 1] == SPA_C && str[i + 1] == SPA_C)
 			return (EXIT_SUCCESS);
 		else
 			return (EXIT_FAILURE);
@@ -61,18 +61,18 @@ int	check_redir_separate(char *str, int i, char c)
 {
 	if (str[i] == c && i == 0)
 	{
-		if (str[i + 1] == SPACE || (str[i + 1] == c && str[i + 2] == SPACE))
+		if (str[i + 1] == SPA_C || (str[i + 1] == c && str[i + 2] == SPA_C))
 			return (EXIT_SUCCESS);
 		else
 			return (EXIT_FAILURE);
 	}
 	else if (str[i] == c && i == 1)
 	{
-		if (str[i - 1] == SPACE && str[i + 1] == SPACE)
+		if (str[i - 1] == SPA_C && str[i + 1] == SPA_C)
 			return (EXIT_SUCCESS);
-		else if (str[i - 1] == SPACE && str[i + 1] == c && str[i + 2] == SPACE)
+		else if (str[i - 1] == SPA_C && str[i + 1] == c && str[i + 2] == SPA_C)
 			return (EXIT_SUCCESS);
-		else if (str[i - 1] == c && str[i + 1] == SPACE)
+		else if (str[i - 1] == c && str[i + 1] == SPA_C)
 			return (EXIT_SUCCESS);
 		return (EXIT_FAILURE);
 	}
@@ -88,11 +88,11 @@ int	check_redir_separate(char *str, int i, char c)
 
 int	do_redir_check(char *str, int i, char c)
 {
-	if (str[i - 1] == SPACE && str[i + 1] == SPACE)
+	if (str[i - 1] == SPA_C && str[i + 1] == SPA_C)
 		return (EXIT_SUCCESS);
-	else if (str[i - 1] == SPACE && str[i + 1] == c && str[i + 2] == SPACE)
+	else if (str[i - 1] == SPA_C && str[i + 1] == c && str[i + 2] == SPA_C)
 		return (EXIT_SUCCESS);
-	else if (str[i - 2] == SPACE && str[i - 1] == c && str[i + 1] == SPACE)
+	else if (str[i - 2] == SPA_C && str[i - 1] == c && str[i + 1] == SPA_C)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }
