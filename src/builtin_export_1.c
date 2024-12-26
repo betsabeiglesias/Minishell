@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:56:51 by binary            #+#    #+#             */
-/*   Updated: 2024/12/18 19:33:13 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/26 15:18:53 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	builtin_export(t_exec *node, t_mini *shell, int fd)
 		export_no_args(shell, fd);
 	while (node->cmd_all[args])
 	{
-		if (!check_namevar(node->cmd_all[args]))
+		if (check_namevar(node->cmd_all[args]))
 		{
 			printf("export: %s: not a valid identifier\n", node->cmd_all[args]);
 			args++;
@@ -98,14 +98,14 @@ int	check_namevar(char *str)
 	i = 0;
 	while (is_space(str[i]))
 		i++;
-	if (ft_isalpha(str[i]) || str[i] == '_')
-		i++;
+	if (!ft_isalpha(str[i]) || str[i] == '_')
+		return (1);
+	i++;
 	while (str[i] != '\0' && str[i] != '=')
 	{
-		if (ft_isalnum(str[i]) || str[i] == '_')
-			i++;
-		else
-			return (0);
+		if (!ft_isalnum(str[i]) || str[i] == '_')
+			return (1);
+		i++;
 	}
-	return (1);
+	return (0);
 }
