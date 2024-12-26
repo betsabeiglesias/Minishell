@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:42:02 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/26 21:40:58 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,41 @@ void	new_prompt(t_mini *shell, t_list *exe_lst)
 	handle_eof_interactive(shell->input);
 	if (shell->input && *shell->input)
 		add_history(shell->input);
+	if (get_all_paths(shell))
+	{
+		//ft_free_mat_str(shell->env, ft_matsize(shell->env));
+		return ;
+	}
 	exe_lst = parse(shell);
 	if (exe_lst)
 		init_execution(exe_lst, shell);
 	free_to_prompt(exe_lst, shell);
 	return ;
+}
+
+int	clone_env(t_mini *shell)
+{
+	char	**temp;
+	int		size;
+	int		i;
+
+	i = 0;
+	size = ft_matsize(shell->env);
+	temp = malloc(sizeof(char *)* (size + 1));
+	if (!temp)
+		return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+	while (shell->env[i])
+	{
+		temp[i] = ft_strdup(shell->env[i]);
+		if(!temp[i])
+		{
+			ft_free_mat_str(temp, i);
+			return (handle_error(ERR_MALLOC), EXIT_FAILURE);
+		}
+		i++;
+	}
+	temp[i] = '\0';
+	ft_free_mat_str(shell->env, size);
+	shell->env = temp;
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 19:41:16 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/26 20:54:34 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 void	new_prompt(t_mini *shell, t_list *exe_lst);
 void	free_to_prompt(t_list *exe_lst, t_mini *shell);
 int		handle_enviroment(char **envp, t_mini *shell);
+int     clone_env(t_mini *shell);
 
 //AUX BORRAAAAAAAAAAAR
 int		ft_print_lst(t_list *list);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:38:20 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/26 22:11:47 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ int	get_all_paths(t_mini *shell)
 		}
 		i++;
 	}
-	shell->all_paths = paths;
+	if(!paths)
+		shell->all_paths = ft_split("/ /", ' ');
+	else
+		shell->all_paths = paths;
 	return (EXIT_SUCCESS);
 }
 

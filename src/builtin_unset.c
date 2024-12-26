@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:06:14 by binary            #+#    #+#             */
-/*   Updated: 2024/12/19 19:40:14 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/26 22:08:29 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,21 +80,22 @@ int	is_var_name(char *str, char *mini_var)
 int	new_reduced_size_env(t_exec *node, t_mini *shell)
 {
 	int	i;
+	int j;
 	int	size;
-	int	j;
 
 	i = 1;
-	size = 0;
+	size = ft_matsize(shell->env);
 	while (node->cmd_all[i])
 	{
 		j = 0;
 		while (shell->env[j])
 		{
-			if (!ft_strncmp(node->cmd_all[i], shell->env[j], \
-				ft_strlen(node->cmd_all[i])))
+			if (is_var_name(node->cmd_all[i], shell->env[j]))
+			{
+				size--;
 				break ;
+			}
 			j++;
-			size++;
 		}
 		i++;
 	}
