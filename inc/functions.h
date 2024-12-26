@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:40:03 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/20 16:41:06 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/26 20:44:35 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ int		handle_commands(t_list *tk_lst, t_exec *node);
 char	**add_token_to_cmd(char **cmd_all, char *str);
 int		save_exe_node(t_list **exe_lst, t_exec *exe_node);
 int		handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell);
+char	*construct_path(char *cmd, char *path);
 
 // EXECUTION
 int		init_execution(t_list *exe_lst, t_mini *shell);
