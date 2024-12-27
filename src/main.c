@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/26 21:40:58 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/27 09:37:39 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ void	new_prompt(t_mini *shell, t_list *exe_lst)
 	if (shell->input && *shell->input)
 		add_history(shell->input);
 	if (get_all_paths(shell))
-	{
-		//ft_free_mat_str(shell->env, ft_matsize(shell->env));
 		return ;
-	}
 	exe_lst = parse(shell);
 	if (exe_lst)
 		init_execution(exe_lst, shell);

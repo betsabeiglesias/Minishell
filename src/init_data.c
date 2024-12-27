@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/26 22:11:47 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/27 09:37:33 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_all_paths(t_mini *shell)
 		i++;
 	}
 	if(!paths)
-		shell->all_paths = ft_split("/ /", ' ');
+		shell->all_paths = NULL;
 	else
 		shell->all_paths = paths;
 	return (EXIT_SUCCESS);
