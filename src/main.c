@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:42:02 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/27 09:38:50 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ int	handle_enviroment(char **envp, t_mini *shell)
 		return (EXIT_FAILURE);
 	if (get_my_env(envp, shell))
 		return (handle_error(ERR_ENVP), EXIT_FAILURE);
-	if (get_all_paths(shell))
-	{
-		ft_free_mat_str(shell->env, ft_matsize(shell->env));
-		return (handle_error(ERR_ENVP), EXIT_FAILURE);
-	}
 	return (EXIT_SUCCESS);
 }
 
@@ -57,6 +52,8 @@ void	new_prompt(t_mini *shell, t_list *exe_lst)
 	handle_eof_interactive(shell->input);
 	if (shell->input && *shell->input)
 		add_history(shell->input);
+	if (get_all_paths(shell))
+		return ;
 	exe_lst = parse(shell);
 	if (exe_lst)
 		init_execution(exe_lst, shell);

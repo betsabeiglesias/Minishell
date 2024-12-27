@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 19:09:42 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:38:20 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/27 09:37:09 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	get_all_paths(t_mini *shell)
 	char	**paths;
 
 	if (!shell->env)
-		return (EXIT_FAILURE);
+		return (handle_error(ERR_ENVP), EXIT_FAILURE);
+	paths = NULL;
 	i = 0;
 	get = 0;
 	while (i < ft_matsize(shell->env) && get == 0)
