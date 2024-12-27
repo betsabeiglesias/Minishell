@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 18:07:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 18:11:16 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:16:52 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	create_process(t_list *exe_lst, int num_procs, t_mini *shell)
 		else if (shell->pid[i] == 0)
 		{
 			if (exe_child((t_exec *)exe_lst->content, i, num_procs, shell))
-				return (EXIT_FAILURE);
+				exit(EXIT_FAILURE);
 		}
 		i++;
 		exe_lst = exe_lst->next;
@@ -65,7 +65,7 @@ int	exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 	if (is_builtin(node->cmd_all))
 		setup_signal_handlers_builtin();
 	else
-		setup_signal_handlers_fork(); /*se puede borrar */
+		setup_signal_handlers_fork();
 	if (do_redirections(node, child, num_procs, shell))
 		return (EXIT_FAILURE);
 	if (is_builtin((node->cmd_all)))

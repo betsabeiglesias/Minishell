@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 13:28:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/26 20:54:34 by binary           ###   ########.fr       */
+/*   Created: 2024/12/20 16:40:03 by aolabarr          #+#    #+#             */
+/*   Updated: 2024/12/27 09:48:47 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,8 @@ int		create_outfile(t_exec *node, char *redir);
 void	handle_all_redir(t_list *tk_lst, int *is_redir, t_exec *node);
 int		is_cmd_executable(char **cmd_all);
 void	handle_get_path(t_exec *node, t_mini *shell);
-int		handle_pipe(t_list *tk_lst, t_exec *node, t_mini *shell, t_list **exe_lst);
+int		handle_pipe(t_list *tk_lst, t_exec *node,
+			t_mini *shell, t_list **exe_lst);
 t_list	*jump_to_next_token(int is_redir, t_list *tk_lst);
 t_exec	*init_variables(t_exec *node, t_mini *shell);
 
@@ -201,6 +202,7 @@ int		handle_commands(t_list *tk_lst, t_exec *node);
 char	**add_token_to_cmd(char **cmd_all, char *str);
 int		save_exe_node(t_list **exe_lst, t_exec *exe_node);
 int		handle_last_save_node(t_list **exe_lst, t_exec **node, t_mini *shell);
+char	*construct_path(char *cmd, char *path);
 
 // EXECUTION
 int		init_execution(t_list *exe_lst, t_mini *shell);

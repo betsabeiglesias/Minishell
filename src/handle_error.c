@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:43:26 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:49:29 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:49:29 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	handle_error(int error_type)
 	if (error_type == ERR_ALONE)
 		ft_putendl_fd(ERR_MSG_ALONE, STDOUT_FILENO);
 	if (error_type == ERR_CONSECUTIVE)
-		ft_putendl_fd(ERR_MSG_CONSECUTIVE, STDOUT_FILENO);
+		ft_putendl_fd(ERR_MSG_CONSEC, STDOUT_FILENO);
 	if (error_type == ERR_ENVP)
 		ft_putendl_fd(ERR_MSG_ENVP, STDOUT_FILENO);
 	if (error_type == ERR_ATTR)

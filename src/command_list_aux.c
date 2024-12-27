@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:14:11 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 18:12:37 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/26 20:46:32 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,14 @@ int	is_identical_str(char *str1, char *str2)
 		return (1);
 	else
 		return (0);
+}
+char	*construct_path(char *cmd, char *path)
+{
+	char	*pathname;
+
+	pathname = ft_strdup(EMPTY);
+	pathname = ft_strjoin_freed(pathname, path);
+	pathname = ft_strjoin_freed(pathname, SLASH);
+	pathname = ft_strjoin_freed(pathname, cmd);
+	return (pathname);
 }

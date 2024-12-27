@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:18:03 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:30:02 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/26 20:46:35 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,17 @@ char	*get_path(char **all_paths, char *cmd)
 
 	if (!all_paths)
 		return (NULL);
+	if (access(cmd, X_OK) == ACCESS)
+	{
+		pathname = ft_strdup(cmd);
+		if (!pathname)
+			return (handle_error(ERR_MALLOC), NULL);
+		return (pathname);	
+	}
 	i = 0;
 	while (i < ft_matsize(all_paths))
 	{
-		pathname = ft_strdup(EMPTY);
-		pathname = ft_strjoin_freed(pathname, all_paths[i]);
-		pathname = ft_strjoin_freed(pathname, SLASH);
-		pathname = ft_strjoin_freed(pathname, cmd);
+		pathname = construct_path(cmd, all_paths[i]);
 		if (!pathname)
 			return (handle_error(ERR_MALLOC), NULL);
 		if (access(pathname, X_OK) == ACCESS)

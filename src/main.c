@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/27 09:37:39 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/27 09:47:23 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ int	handle_enviroment(char **envp, t_mini *shell)
 		return (EXIT_FAILURE);
 	if (get_my_env(envp, shell))
 		return (handle_error(ERR_ENVP), EXIT_FAILURE);
-	if (get_all_paths(shell))
-	{
-		ft_free_mat_str(shell->env, ft_matsize(shell->env));
-		return (handle_error(ERR_ENVP), EXIT_FAILURE);
-	}
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 15:06:55 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/17 19:54:26 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:05:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*tokenization(char *str)
 	t_varparse	data;
 
 	init_var_parse(&data);
-	while (str[data.i] == SPACE)
+	while (str[data.i] == SPA_C)
 		data.i++;
 	while (str[data.i])
 	{
@@ -40,11 +40,11 @@ int	handle_token(t_varparse *data, char *str)
 		handle_quote(data, str, SINGLE_QUOTE);
 	else if (str[data->i] == DOUBLE_QUOTE)
 		handle_quote(data, str, DOUBLE_QUOTE);
-	else if (str[data->i] == SPACE)
+	else if (str[data->i] == SPA_C)
 	{
 		if (save_token(data))
 			return (EXIT_FAILURE);
-		while (str[data->i] == SPACE)
+		while (str[data->i] == SPA_C)
 			data->i++;
 	}
 	else
