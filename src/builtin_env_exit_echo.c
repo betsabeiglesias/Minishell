@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 22:35:41 by binary            #+#    #+#             */
-/*   Updated: 2024/12/26 22:18:55 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/27 10:10:50 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	free_shell_exit(t_mini *shell)
 {
 	if (shell->env)
 		ft_free_mat_str(shell->env, ft_matsize(shell->env));
-	// if (shell->all_paths != NULL)
-	// 	ft_free_mat_str(shell->all_paths, ft_matsize(shell->all_paths));
+	if (shell->all_paths != NULL)
+		ft_free_mat_str(shell->all_paths, ft_matsize(shell->all_paths));
 	if (shell->input)
 		ft_free(shell->input);
 	if (shell->pid)
@@ -108,8 +108,8 @@ void	free_shell_exit(t_mini *shell)
 		ft_free_mat_int(shell->pipes, shell->num_pipes);
 	shell->env = NULL;
 	shell->input = NULL;
-	// if (shell->all_paths)
-	// 	shell->all_paths = NULL;
+	if (shell->all_paths)
+		shell->all_paths = NULL;
 	shell->pid = NULL;
 	shell->pipes = NULL;
 	return ;
