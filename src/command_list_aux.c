@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:14:11 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/26 20:46:32 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/27 14:26:03 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	is_identical_str(char *str1, char *str2)
 	else
 		return (0);
 }
+
 char	*construct_path(char *cmd, char *path)
 {
 	char	*pathname;

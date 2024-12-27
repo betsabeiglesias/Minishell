@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 11:20:13 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:48:10 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/27 14:24:55 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_list	*parse(t_mini *shell)
 	if (!str)
 		return (NULL);
 	tk_lst = tokenization(str);
-	//ft_print_lst(tk_lst);
 	if (!tk_lst)
 		return (NULL);
 	if (syntax_check_on_tokens(tk_lst))
@@ -34,8 +33,6 @@ t_list	*parse(t_mini *shell)
 		return (NULL);
 	}
 	exe_lst = create_execution_list(tk_lst, shell);
-	//ft_print_cmd_lst(exe_lst);
-	//lst_clear_token_content(tk_lst); LIBERAR AL FINAL EN EL MAIN
 	ft_lstclear(&tk_lst, &free);
 	return (exe_lst);
 }

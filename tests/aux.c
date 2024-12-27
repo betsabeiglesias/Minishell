@@ -45,3 +45,15 @@ void print_cmd_all(char **cmd_all)
     }
     printf("\n");
 }
+
+// void print_env(t_mini *shell)
+// {
+//     int i = 0;
+//     printf("Contenido actual de shell->env:\n");
+//     while (shell->env[i])
+//     {
+//         printf("env[%d]: %s\n", i, shell->env[i]);
+//         i++;
+//     }
+// 	// printf("DIRECCIÓN MEMORIA SHELL ENV: %p\n", shell->env);
+// }

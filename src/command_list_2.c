@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:18:03 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/26 20:46:35 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/27 14:24:00 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*get_path(char **all_paths, char *cmd)
 		pathname = ft_strdup(cmd);
 		if (!pathname)
 			return (handle_error(ERR_MALLOC), NULL);
-		return (pathname);	
+		return (pathname);
 	}
 	i = 0;
 	while (i < ft_matsize(all_paths))

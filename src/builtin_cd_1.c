@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/18 18:31:53 by binary           ###   ########.fr       */
+/*   Updated: 2024/12/27 14:55:06 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-// void print_env(t_mini *shell)
-// {
-//     int i = 0;
-//     printf("Contenido actual de shell->env:\n");
-//     while (shell->env[i])
-//     {
-//         printf("env[%d]: %s\n", i, shell->env[i]);
-//         i++;
-//     }
-// 	// printf("DIRECCIÓN MEMORIA SHELL ENV: %p\n", shell->env);
-// }
 
 int	builtin_cd(t_exec *node, t_mini *shell)
 {

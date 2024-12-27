@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 19:40:44 by binary            #+#    #+#             */
-/*   Updated: 2024/12/19 17:50:15 by aolabarr         ###   ########.fr       */
+/*   Updated: 2024/12/27 14:35:50 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,31 +82,3 @@ void	free_node_exec(t_exec *node)
 	node = NULL;
 	return ;
 }
-
-/*
-void handle_free(t_mini shell, int error)
-{
-	(void)shell;
-
-	if (error == ERR_ENVP)
-	{
-		//liberar todo shell
-	}	
-	else if (error == EOF)
-	{
-		//liberar todo shell
-	}
-	return ;
-}
-
-LIBERACIONES QUE NO SE NECESITAN
-//if (shell->paths)
-	//	ft_free_mat_str(shell->paths, ft_matsize(shell->paths));
-//if (shell->pid)
-	//	ft_free_v((void *)shell->pid);
-	//if (shell->pipes)
-	//	ft_free_mat_int(shell->pipes, shell->num_pipes);
-//shell->paths = NULL;
-//shell->pid = NULL;
-//shell->pipes = NULL;
-*/
