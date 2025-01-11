@@ -3,17 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: binary <binary@student.42.fr>              +#+  +:+       +#+         #
+#    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/05 12:55:45 by aolabarr          #+#    #+#              #
-#    Updated: 2024/12/24 23:13:41 by binary           ###   ########.fr        #
+#    Created: 2025/01/11 10:06:38 by aolabarr          #+#    #+#              #
+#    Updated: 2025/01/11 10:07:45 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-
-# para borrar
-NAME_BET = mini_bet
 
 NO_LINK = -c
 CFLAGS = -Wall -Wextra -Werror -g3 -g
@@ -42,8 +39,7 @@ SRC =	main.c \
 		builtin_export_1.c builtin_export_2.c \
 		builtin_exit_2.c \
 		builtin_env_exit_echo.c \
-		builtin_unset.c \
-		builtin_pwd.c \
+		builtin_unset.c \ builtin_pwd.c \
 		builtin_cd_1.c builtin_cd_2.c builtin_cd_3.c \
 		builtin_auxiliar.c \
 				
@@ -53,10 +49,6 @@ all: lib $(OBJ_DIR) $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
-
-# para borrar
-$(NAME_BET): $(OBJS_BET)
-	$(CC) $(CFLAGS) $(OBJS_BET) $(LDFLAGS) -o $(NAME_BET) 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(NO_LINK) $(CFLAGS) -I$(INC_DIR) $< -o $@
@@ -80,6 +72,6 @@ clean:
 
 re: fclean all
 
-.PHONY: all fclean clean re lib sanitizer
+.PHONY: all fclean clean re lib
 
 #.SILENT:
