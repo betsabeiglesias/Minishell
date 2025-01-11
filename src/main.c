@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:00:10 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/27 14:26:48 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/01/11 10:12:16 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	clone_env(t_mini *shell)
 		}
 		i++;
 	}
-	temp[i] = '\0';
+	temp[i] = NULL;
 	ft_free_mat_str(shell->env, size);
 	shell->env = temp;
 	return (EXIT_SUCCESS);

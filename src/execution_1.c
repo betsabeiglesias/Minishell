@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 18:07:14 by aolabarr          #+#    #+#             */
-/*   Updated: 2024/12/20 17:16:52 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/01/11 10:58:30 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	exe_child(t_exec *node, int child, int num_procs, t_mini *shell)
 		if (node->path == NULL && node->cmd_all != NULL)
 		{
 			handle_error(ERR_ACCESS);
-			exit(EXIT_FAILURE);
+			exit(127);
 		}
 		else if (node->path == NULL && node->cmd_all == NULL)
 			exit(EXIT_FAILURE);

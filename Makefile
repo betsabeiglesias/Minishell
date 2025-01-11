@@ -6,7 +6,7 @@
 #    By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/11 10:06:38 by aolabarr          #+#    #+#              #
-#    Updated: 2025/01/11 10:07:45 by aolabarr         ###   ########.fr        #
+#    Updated: 2025/01/11 13:04:14 by aolabarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC =	main.c \
 		builtin_export_1.c builtin_export_2.c \
 		builtin_exit_2.c \
 		builtin_env_exit_echo.c \
-		builtin_unset.c \ builtin_pwd.c \
+		builtin_unset.c builtin_pwd.c \
 		builtin_cd_1.c builtin_cd_2.c builtin_cd_3.c \
 		builtin_auxiliar.c \
 				

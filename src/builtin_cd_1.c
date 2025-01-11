@@ -6,7 +6,7 @@
 /*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 10:56:41 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/27 14:55:06 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/01/11 12:38:26 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 int	builtin_cd(t_exec *node, t_mini *shell)
 {
+	char	*dir_to_save;
+
 	if (!node->cmd_all[1])
 		return (cd_to_home(shell), EXIT_SUCCESS);
 	if (!ft_strncmp(node->cmd_all[1], "..", 2) \
 		|| !ft_strncmp(node->cmd_all[1], "-", 1))
 		return (cd_especial_cases(node, shell), EXIT_SUCCESS);
+	dir_to_save = getcwd(NULL, 0);
 	if (chdir(node->cmd_all[1]) == 0)
+	{
+		if (change_value_varenv("OLDPWD", dir_to_save, shell) != 0)
+			return (free(dir_to_save), handle_error(ERR_OLDPWD), EXIT_FAILURE);
 		return (EXIT_SUCCESS);
+	}
 	return (handle_error(ERR_CHDIR), EXIT_FAILURE);
 }
 

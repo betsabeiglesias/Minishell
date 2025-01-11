@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:29:52 by binary            #+#    #+#             */
-/*   Updated: 2024/12/18 19:38:19 by binary           ###   ########.fr       */
+/*   Updated: 2025/01/11 12:23:04 by aolabarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	len_var(char *input, int i)
 
 	temp = i;
 	len = 0;
-	while (input[temp] && input[temp] != ' ')
+	while (input[temp] && valid_char_env(input[temp]))
 	{
 		len++;
 		temp++;
