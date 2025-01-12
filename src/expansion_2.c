@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:32:31 by beiglesi          #+#    #+#             */
-/*   Updated: 2024/12/17 18:40:37 by binary           ###   ########.fr       */
+/*   Updated: 2025/01/12 09:30:40 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	init_varen(t_varenv *var, char *input, int i)
 
 int	only_dollar(char *input, int *i)
 {
-	if ((input)[*i + 1] == ' ' || (input)[*i + 1] == '\0')
+	if ((input)[*i + 1] == ' ' || (input)[*i + 1] == '\0' \
+	|| !valid_char_env((input)[*i + 1]))
 	{
 		(*i)++;
 		return (1);

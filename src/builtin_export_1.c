@@ -6,7 +6,7 @@
 /*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:56:51 by binary            #+#    #+#             */
-/*   Updated: 2024/12/26 15:18:53 by binary           ###   ########.fr       */
+/*   Updated: 2025/01/12 09:29:07 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,12 @@ int	check_namevar(char *str)
 	i = 0;
 	while (is_space(str[i]))
 		i++;
-	if (!ft_isalpha(str[i]) || str[i] == '_')
+	if (!ft_isalpha(str[i]) && str[i] != '_')
 		return (1);
 	i++;
 	while (str[i] != '\0' && str[i] != '=')
 	{
-		if (!ft_isalnum(str[i]) || str[i] == '_')
+		if (!ft_isalnum(str[i]) && str[i] != '_')
 			return (1);
 		i++;
 	}

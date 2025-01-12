@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aolabarr <aolabarr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: binary <binary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:37:46 by beiglesi          #+#    #+#             */
-/*   Updated: 2025/01/11 12:25:59 by aolabarr         ###   ########.fr       */
+/*   Updated: 2025/01/12 09:16:30 by binary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ int	get_var_env(t_mini *shell, t_varenv *var)
 	var_name[var->len + 1] = '\0';
 	while (*shell->env != NULL)
 	{
-		if (!ft_strncmp(*shell->env, var_name, var->len))
+		if (!ft_strncmp(*shell->env, var_name, var->len + 1))
 		{
-			var->var_expanded = (*shell->env + 1 + (var->len));
+			var->var_expanded = (*shell->env + (var->len + 1));
 			free(var_name);
 			shell->env = env_start;
 			return (EXIT_SUCCESS);
